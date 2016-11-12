@@ -1,0 +1,15 @@
+$mainFont: 'Roboto', sans-serif;
+$textColor: #3a3a3a;
+.app-contents {
+  position: relative;
+  height: 100vh;
+}
+.container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  padding: 0 40px;
+  font-family: $mainFont;
+  color: $textColor;
+  position: relative;
+}

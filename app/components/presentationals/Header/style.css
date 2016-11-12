@@ -1,0 +1,88 @@
+$mainColor: #3498db;
+$borderColor: #d3d3d3;
+$offWhite: #F0F0F0;
+$mainFont: 'Roboto', sans-serif;
+$secondaryFont: 'Montserrat', sans-serif;
+$shadow: 0 10px 10px -5px rgba(0,0,0,0.03);
+
+@define-extend button {
+  height: 100%;
+  width: 50px;
+  top: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease-in-out;
+}
+
+header {
+  height: 50px;
+  background: white;
+  font-family: $mainFont;
+  border: 1px solid $borderColor;
+  box-shadow: $shadow;
+  position: relative;
+  .title {
+     color: $mainColor;
+     text-transform: uppercase;
+     font-weight: 500;
+     text-align: center;
+     height: 100%;
+     line-height: 50px;
+   }
+  .contain-button {
+    position: relative;
+    width: 20px;
+    height: 20px;
+  }
+  .menu,
+  .add-note {
+    @extend button;
+    &:hover {
+      background: $offWhite;
+      cursor: pointer;
+    }
+  }
+  .menu {
+    border-left: 1px solid $borderColor;
+    right: 0;
+    .contain-button {
+      height: 14px;
+    }
+    .horizontal {
+      position: absolute;
+      background: $mainColor;
+      height: 2px;
+      width: 100%;
+      &:nth-child(2) {
+        top: 6px;
+      }
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+  }
+  .add-note {
+    border-right: 1px solid $borderColor;
+    left: 0;
+    .vertical {
+      position: absolute;
+      top: 0;
+      left: 9px;
+      display: block;
+      background: $mainColor;
+      width: 2px;
+      height: 100%;
+    }
+    .horizontal {
+      position: absolute;
+      top: 9px;
+      left: 0;
+      display: block;
+      background: $mainColor;
+      height: 2px;
+      width: 100%;
+    }
+  }
+}
