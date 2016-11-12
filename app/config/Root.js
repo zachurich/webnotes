@@ -7,6 +7,7 @@ import {Router, Route, hashHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Import all our components to be accessible to Router
+import Register from '../components/containers/Register';
 import Entry from '../components/containers/Entry/';
 import App from '../components/App/';
 import NotFound from '../components/presentationals/NotFound/';
@@ -18,7 +19,8 @@ const Root = () => {
   return (
     <Router history={hashHistory}>
       <div>
-        <Route path="/" component={Entry} />
+        <Route path="/" component={Register} />
+        <Route path="/login" component={Entry} />
         <Route path="/notes/:username" component={App} />
         <Route component={NotFound}/>
       </div>

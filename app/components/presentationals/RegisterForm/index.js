@@ -14,10 +14,10 @@ require('./style.css');
 function RegisterForm(props) {
     const RegisterMessage = "Register";
     return (
-        <div className="Register-container">
+        <div className="entry-container">
             <h1>{RegisterMessage}</h1>
             <form
-              className="Register-form"
+              className="entry-form"
               onSubmit={props.userSubmit}>
                 <input
                   className="username-input"

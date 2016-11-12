@@ -22,7 +22,7 @@ class Header extends React.Component {
     })
   }
   render() {
-    const userName = this.props.title;
+    const username = this.props.title;
     return (
       <header>
         <div className="add-note">
@@ -31,7 +31,7 @@ class Header extends React.Component {
             <span className="horizontal"></span>
           </div>
         </div>
-        <div className="title">{userName}</div>
+        <div className="title">{username}</div>
         <div className="menu">
           <div className="contain-button">
             <span className="horizontal"></span>

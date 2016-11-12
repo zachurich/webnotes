@@ -12,7 +12,7 @@ import Button from '../Button/'
 require('./style.css');
 
 function EntryForm(props) {
-    const entryMessage = "Enter Your Name to Begin";
+    const entryMessage = "Login";
     return (
         <div className="entry-container">
             <h1>{entryMessage}</h1>
