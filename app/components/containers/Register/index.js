@@ -1,5 +1,5 @@
 /*
-This component houses the 'EntryForm' component and is responsible for
+This component houses the 'RegisterForm' component and is responsible for
 taking in user data, and creating appropriate route params
 */
 
@@ -7,11 +7,11 @@ taking in user data, and creating appropriate route params
 
 import React from 'react';
 import base from '../../../config/base';
-import EntryForm from '../../presentationals/EntryForm/'
+import RegisterForm from '../../presentationals/RegisterForm/'
 
 require('./style.css');
 
-class Entry extends React.Component {
+class Register extends React.Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,9 +44,9 @@ class Entry extends React.Component {
 
     }
     render() {
-        const entryMessage = "Enter Your Name to Begin";
+        const RegisterMessage = "Enter Your Name to Begin";
         return (
-          <EntryForm
+          <RegisterForm
             userSubmit={this.handleSubmit}
             username={(input) => {
               this.username = input
@@ -62,8 +62,8 @@ class Entry extends React.Component {
     }
 }
 
-Entry.contextTypes = {
+Register.contextTypes = {
     router: React.PropTypes.object
 }
 
-export default Entry;
+export default Register;

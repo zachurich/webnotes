@@ -2,7 +2,7 @@ $mainFont: 'Roboto', sans-serif;
 $textColor: #3a3a3a;
 .app-contents {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 }
 .container {
   display: flex;

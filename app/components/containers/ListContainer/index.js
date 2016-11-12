@@ -1,6 +1,6 @@
 /*
-This component is used for taking in data that will be output
-through the 'ListItems' component
+This component is used for taking in data through 'Form' that will be output
+through 'ListItems'
 */
 import React from 'react';
 
