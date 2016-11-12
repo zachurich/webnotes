@@ -18,5 +18,3 @@ npm run dev
 
 * Build out menu
 * Set up user authentication
-
-For next week, I plan on building a landing page for this app
