@@ -1,31 +1,30 @@
 // Header Component
 import React from 'react';
-import $ from 'jquery';
 
 require('./style.css');
 
 
 class Header extends React.Component {
-  componentDidMount() {
-    $('.add-note').on('click', function() {
-      console.log('working!');
-      if($('.overlay').hasClass('show')) {
-        $('.overlay').removeClass('show');
-      } else {
-        $('.overlay').addClass('show');
-      }
-    })
-    $('button').on('click', function() {
-      if($('.overlay').hasClass('show')) {
-        $('.overlay').removeClass('show');
-      }
-    })
+  constructor() {
+      super();
+      this.openEditor = this.openEditor.bind(this);
+  }
+  openEditor() {
+    const button = document.querySelector('.add-note');
+    const editor = document.querySelector('.overlay');
+    const submit = document.querySelector('button');
+
+    editor.style.display = 'block';
+    submit.addEventListener('click', function() {
+    editor.style.display = "none";
+    });
   }
   render() {
     const username = this.props.title;
+    console.log(username);
     return (
       <header>
-        <div className="add-note">
+        <div className="add-note" onClick={ this.openEditor }>
           <div className="contain-button">
             <span className="vertical"></span>
             <span className="horizontal"></span>

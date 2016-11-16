@@ -8,7 +8,7 @@ import Button from '../Button/';
 
 require('./style.css');
 
-function Form(props) {
+function Editor (props) {
     return (
       <div className="overlay">
         <div className="modal">
@@ -23,4 +23,4 @@ function Form(props) {
     )
 }
 
-export default Form;
+export default Editor;

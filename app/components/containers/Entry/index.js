@@ -16,10 +16,21 @@ class Entry extends React.Component {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    setupUserInfo() {
+      const user = base.auth().currentUser;
+      // Check for existing user data and grab the username to use for
+      // user's unique notes route
+      if (user != null) {
+        user.providerData.forEach( profile => {
+          const username = profile.displayName;
+          this.context.router.push(`/notes/${username}`);
+        });
+      }
+    }
     handleSubmit(e) {
         e.preventDefault();
         // get the data from the input
-        const username = this.username.value;
+        // const username = this.username.value;
         const email = this.email.value;
         const password = this.password.value;
         /*
@@ -28,11 +39,12 @@ class Entry extends React.Component {
           which resulted in 'this' being rebound
         */
         const authHandler = (error, email) => {
-          if(username.length < 0 && email.length < 0 && password.length < 0 || error) {
+          if(error) {
             console.log(error);
           } else {
             console.log('Logged In!')
-            this.context.router.push(`/notes/${username}`);
+            // this.context.router.push(`/notes/${username}`);
+            this.setupUserInfo();
           }
         }
 
@@ -48,9 +60,6 @@ class Entry extends React.Component {
         return (
           <EntryForm
             userSubmit={this.handleSubmit}
-            username={(input) => {
-              this.username = input
-            }}
             email={(input) => {
               this.email = input
             }}

@@ -21,11 +21,6 @@ function EntryForm(props) {
               onSubmit={props.userSubmit}>
                 <input
                   className="username-input"
-                  placeholder="Name"
-                  type="text"
-                  ref={props.username}/>
-                <input
-                  className="username-input"
                   placeholder="Email"
                   type="text"
                   ref={props.email}/>

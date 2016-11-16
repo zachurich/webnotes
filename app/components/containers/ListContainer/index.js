@@ -5,7 +5,7 @@ through 'ListItems'
 import React from 'react';
 
 import ListItems from '../../presentationals/ListItems/';
-import Form from '../../presentationals/Form/';
+import Editor from '../../presentationals/Editor/';
 import Button from '../../presentationals/Button/';
 
 import base from '../../../config/base';
@@ -76,7 +76,7 @@ class ListContainer extends React.Component {
   render() {
     return (
       <div>
-          <Form
+          <Editor
             addItem={ this.addItem }
             inputTitle={ (a) => this._inputTitle = a }
             inputText={ (a) => this._inputText = a } />
