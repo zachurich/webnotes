@@ -18,13 +18,19 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: [
-      // "webpack/hot/only-dev-server",
+      "webpack/hot/only-dev-server",
       "./app/config/Root.js"
   ],
   module: {
     loaders: [
-      {test: /\.css$/,loader: "style-loader!css-loader!postcss-loader"},
-      {test: /\.jsx?$/,exclude: /(node_modules|bower_components)/,loader: 'babel-loader',
+      {
+       test: /\.scss$/,
+       loaders: ["style", "css", "sass"]
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],

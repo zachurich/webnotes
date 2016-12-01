@@ -6,7 +6,7 @@ import React from 'react';
 
 import Button from '../Button/';
 
-require('./style.css');
+require('./style.scss');
 
 function Editor (props) {
     return (

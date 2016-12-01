@@ -9,7 +9,7 @@ import Button from '../Button/'
 
 // import Register from '../../presentationals/';
 
-require('./style.css');
+require('./style.scss');
 
 function RegisterForm(props) {
     const RegisterMessage = "Register";
@@ -32,7 +32,7 @@ function RegisterForm(props) {
                 <input
                   className="password-input"
                   placeholder="Password"
-                  type="text"
+                  type="password"
                   ref={props.password}/>
                 <Button/>
             </form>

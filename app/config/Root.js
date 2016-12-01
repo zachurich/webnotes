@@ -12,8 +12,8 @@ import Entry from '../components/containers/Entry/';
 import App from '../components/App/';
 import NotFound from '../components/presentationals/NotFound/';
 
-require('./style.css');
-require('./reset.css');
+require('./style.scss');
+// require('./reset.scss');
 
 const Root = () => {
   return (
@@ -22,7 +22,7 @@ const Root = () => {
         <Route path="/" component={Register} />
         <Route path="/login" component={Entry} />
         <Route path="/notes/:username" component={App} />
-        <Route component={NotFound}/>
+        <Route path="/404" component={NotFound}/>
       </div>
     </Router>
   )

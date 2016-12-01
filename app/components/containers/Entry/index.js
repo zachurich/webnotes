@@ -9,8 +9,6 @@ import React from 'react';
 import base from '../../../config/base';
 import EntryForm from '../../presentationals/EntryForm/'
 
-require('./style.css');
-
 class Entry extends React.Component {
     constructor() {
         super();
@@ -29,8 +27,8 @@ class Entry extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
+
         // get the data from the input
-        // const username = this.username.value;
         const email = this.email.value;
         const password = this.password.value;
         /*
@@ -42,7 +40,6 @@ class Entry extends React.Component {
           if(error) {
             console.log(error);
           } else {
-            console.log('Logged In!')
             // this.context.router.push(`/notes/${username}`);
             this.setupUserInfo();
           }
@@ -53,19 +50,14 @@ class Entry extends React.Component {
             email: email,
             password: password,
         }, authHandler);
-
     }
     render() {
         const entryMessage = "Enter Your Name to Begin";
         return (
           <EntryForm
             userSubmit={this.handleSubmit}
-            email={(input) => {
-              this.email = input
-            }}
-            password={(input) => {
-              this.password = input
-            }}
+            email={(input) => { this.email = input }}
+            password={(input) => { this.password = input }}
           />
         )
     }

@@ -9,7 +9,7 @@ import Button from '../Button/'
 
 // import Entry from '../../presentationals/';
 
-require('./style.css');
+require('./style.scss');
 
 function EntryForm(props) {
     const entryMessage = "Login";
@@ -27,7 +27,7 @@ function EntryForm(props) {
                 <input
                   className="password-input"
                   placeholder="Password"
-                  type="text"
+                  type="password"
                   ref={props.password}/>
                 <Button/>
             </form>

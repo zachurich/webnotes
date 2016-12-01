@@ -10,8 +10,6 @@ import { Link } from 'react-router';
 import base from '../../../config/base';
 import RegisterForm from '../../presentationals/RegisterForm/'
 
-require('./style.css');
-
 class Register extends React.Component {
     constructor() {
       super();
@@ -49,7 +47,7 @@ class Register extends React.Component {
             document.write("This user cannot be updated at this time.");
           });
           console.log("Registered!");
-          this.context.router.push(`/notes/${username}`);
+          this.context.router.push(`/login`);
         });
     }
     render() {

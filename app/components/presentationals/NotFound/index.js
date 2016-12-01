@@ -1,6 +1,6 @@
 import React from 'react';
 
-// require('./style.css');
+// require('./style.scss');
 
 class NotFound extends React.Component {
   render() {

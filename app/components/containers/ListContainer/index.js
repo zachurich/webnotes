@@ -10,7 +10,7 @@ import Button from '../../presentationals/Button/';
 
 import base from '../../../config/base';
 
-require('./style.css');
+require('./style.scss');
 
 class ListContainer extends React.Component {
   constructor() {
@@ -46,7 +46,7 @@ class ListContainer extends React.Component {
       const curr_date = d.getDate();
       const curr_month = d.getMonth() + 1; //Months are zero based
       const curr_year = d.getFullYear();
-      return curr_month + "-" + curr_date + "-" + curr_year;
+      return curr_month + "/" + curr_date + "/" + curr_year;
     }
     // Add list items to end of array 'items'
     itemArray.push (
@@ -59,9 +59,7 @@ class ListContainer extends React.Component {
     );
     // Set the state of the component with what's been inputed
     this.setState({ items: itemArray });
-    // Empty input value after submit
-    // Leaving like this till I find a validation method
-    // TODO: Find a validation method
+
     this._inputTitle.value = "Title";
     this._inputText.value = "Content";
     // Prevent form submit from refreshing page as it normally would

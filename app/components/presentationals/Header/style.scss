@@ -1,0 +1,88 @@
+@import '../../variables.scss';
+
+%button {
+	height: 42px;
+	width: 42px;
+	border-radius: 50%;
+	top: 0;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	box-shadow: $shadow;
+	transition: all 0.1s ease-in-out;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80px;
+	font-family: $mainFont;
+	width: 100%;
+	&--title {
+		/*min-width: 100px;*/
+		padding: 10px 30px;
+		background: white;
+		border-radius: $corners;
+		box-shadow: $shadow;
+		color: $mainColor;
+		text-transform: uppercase;
+		font-weight: $bold;
+		font-size: $font-large;
+		text-align: center;
+	 }
+	.contain-button {
+		position: relative;
+		width: 20px;
+		height: 20px;
+	}
+	&--menu,
+	&--add-note {
+		z-index: 9999;
+		position: fixed;
+		top: 19px;
+		@extend %button;
+	}
+	&--menu {
+		right: 19px;
+		.contain-button {
+			height: 14px;
+		}
+		&--horizontal {
+			position: absolute;
+			background: $mainColor;
+			height: 2px;
+			width: 100%;
+			&:nth-child(2) {
+				top: 6px;
+			}
+			&:nth-child(3) {
+				bottom: 0;
+			}
+		}
+	}
+	&--add-note {
+		left: 19px;
+		&--vertical {
+			position: absolute;
+			top: 0;
+			left: 9px;
+			display: block;
+			background: $mainColor;
+			width: 2px;
+			height: 100%;
+		}
+		&--horizontal {
+			position: absolute;
+			top: 9px;
+			left: 0;
+			display: block;
+			background: $mainColor;
+			height: 2px;
+			width: 100%;
+		}
+	}
+}

@@ -1,7 +1,7 @@
 // Header Component
 import React from 'react';
 
-require('./style.css');
+require('./style.scss');
 
 
 class Header extends React.Component {
@@ -21,21 +21,21 @@ class Header extends React.Component {
   }
   render() {
     const username = this.props.title;
-    console.log(username);
+    // console.log(username);
     return (
-      <header>
-        <div className="add-note" onClick={ this.openEditor }>
+      <header class="header">
+        <div className="header--add-note" onClick={ this.openEditor }>
           <div className="contain-button">
-            <span className="vertical"></span>
-            <span className="horizontal"></span>
+            <span className="header--add-note--vertical"></span>
+            <span className="header--add-note--horizontal"></span>
           </div>
         </div>
-        <div className="title">{username}</div>
-        <div className="menu">
+        <div className="header--title">{username}</div>
+        <div className="header--menu">
           <div className="contain-button">
-            <span className="horizontal"></span>
-            <span className="horizontal"></span>
-            <span className="horizontal"></span>
+            <span className="header--menu--horizontal"></span>
+            <span className="header--menu--horizontal"></span>
+            <span className="header--menu--horizontal"></span>
           </div>
         </div>
       </header>

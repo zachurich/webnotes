@@ -1,9 +1,4 @@
-$mainColor: #3498db;
-$borderColor: #d3d3d3;
-$offWhite: #F0F0F0;
-$mainFont: 'Roboto', sans-serif;
-$secondaryFont: 'Montserrat', sans-serif;
-$shadow: 0 10px 10px -5px rgba(0,0,0,0.03);
+@import '../../variables.scss';
 
 .entry-container {
   height: 100vh;

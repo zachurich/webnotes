@@ -3,7 +3,7 @@ This component takes our inputed data, and outputs it to the DOM
 */
 import React from 'react';
 
-require('./style.css');
+require('./style.scss');
 
 function ListItems(props) {
     // Build our list output
@@ -12,16 +12,16 @@ function ListItems(props) {
 
     function createTasks(item) {
         return (
-            <li key={item.key}>
+            <li className="list--items" key={item.key}>
                 {/* <div className="erase" onClick={remove}>X</div> */}
-                <h2>{item.title}</h2>
-                <p className="date">
+                <h2 className="list--items--title">{item.title}</h2>
+                <p className="list--items--date">
                   {item.date}
                 </p>
-                <p className="note-content">
+                <p className="list--items--note-content">
                   {item.text}
                 </p>
-                {/* <div className="read-more"></div> */}
+                {/* <div className="list--items--read-more"></div> */}
             </li>
         );
     }
