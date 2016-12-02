@@ -1,7 +1,11 @@
+@import '../components/variables';
+
 body {
   padding: 0;
   margin: 0;
   font-size: 16px;
+  font-family: $mainFont;
+  color: $textColor;
 }
 
 .show {

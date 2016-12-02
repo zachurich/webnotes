@@ -1,32 +1,68 @@
 @import '../../variables.scss';
 
-.entry-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  h1 {
-    color: $mainColor;
-    font-family: $mainFont;
-    font-size: 1.5em;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .entry-form {
-    max-width: 20em;
-    height: 40px;
-    box-shadow: $shadow;
-    .username-input,
-    .password-input {
-      font-size: 1.2em;
-      height: 100%;
-      width: 100%;
-      outline: 0;
-      padding-left: 10px;
-      border: 1px solid $borderColor;
-      margin-bottom: 20px;
-      box-sizing: border-box;
+.entry {
+    background: $mainColor;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &--title {
+        padding: 0;
+        margin: 0;
+        color: $mainColor;
+        font-size: $font-large;
+        font-family: $mainFont;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 20px;
     }
-  }
+
+    &--form {
+        display: block;
+        padding: 40px 30px;
+
+        .input {
+            &--email,
+            &--password,
+            &--username {
+                font-size: $font-small;
+                text-transform: uppercase;
+                color: inherit;
+                height: 100%;
+                width: 100%;
+                outline: 0;
+                padding: 10px 0;
+                border: 0;
+                border-bottom: 2px solid $mainColor;
+                margin-bottom: 20px;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    &--form,
+    &--login-link {
+        box-sizing: border-box;
+        max-width: 400px;
+        min-width: 300px;
+        width: 50%;
+        color: inherit;
+        background: white;
+        box-shadow: $shadow;
+    }
+
+    &--login-link {
+        padding: 20px 0;
+        display: block;
+        margin-top: $padding;
+        font-size: $font-small;
+        text-align: center;
+        text-decoration: none;
+
+        span {
+            color: $mainColor;
+        }
+    }
 }

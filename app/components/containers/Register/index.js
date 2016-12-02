@@ -61,7 +61,6 @@ class Register extends React.Component {
                 }} password={(input) => {
                     this.password = input
                 }}/>
-                <Link to='/login'>Already Registered? Login instead.</Link>
             </div>
         )
     }

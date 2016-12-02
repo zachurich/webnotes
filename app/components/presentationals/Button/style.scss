@@ -1,17 +1,23 @@
 @import '../../variables.scss';
 
 button {
-  height: 40px;
-  width: 100%;
-  max-width: 610px;
-  background: $mainColor;
-  color: white;
-  font-size: 1em;
+  display: block;
+  min-width: 100px;
+  margin: 20px auto 0;
+  padding: 10px 40px;
+  color: $mainColor;
+  background: white;
+  font-size: $font-small;
+  font-weight: $semi-bold;
   text-transform: uppercase;
-  border-radius: 2px;
-  border: none;
+  border-radius: 20px;
+  border: 2px solid $mainColor;
   outline: none;
+  transition: $transition;
   &:hover {
+    background: $mainColor;
+    border: 2px solid transparent;
+    color: white;
     box-shadow: $shadow;
   }
 }

@@ -6,36 +6,42 @@ where the approiate actions occur to handle the user data
 
 import React from 'react';
 import Button from '../Button/'
+import { Link } from 'react-router';
 
 // import Register from '../../presentationals/';
 
 require('./style.scss');
 
 function RegisterForm(props) {
-    const RegisterMessage = "Register";
+    const RegisterMessage = "Sign Up";
     return (
-        <div className="entry-container">
-            <h1>{RegisterMessage}</h1>
+        <div className="entry">
             <form
-              className="entry-form"
+              className="entry--form"
               onSubmit={props.userSubmit}>
+                <h1 class="entry--title">{RegisterMessage}</h1>
                 <input
-                  className="username-input"
+                  className="input--username"
                   placeholder="Name"
                   type="text"
                   ref={props.username}/>
                 <input
-                  className="username-input"
+                  className="input--email"
                   placeholder="Email"
                   type="text"
                   ref={props.email}/>
                 <input
-                  className="password-input"
+                  className="input--password"
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
                 <Button/>
             </form>
+            <Link
+              className="entry--login-link"
+              to='/login'
+              >Already Registered? <span>Login instead.</span>
+            </Link>
         </div>
     )
 }

@@ -14,18 +14,18 @@ require('./style.scss');
 function EntryForm(props) {
     const entryMessage = "Login";
     return (
-        <div className="entry-container">
-            <h1>{entryMessage}</h1>
+        <div className="entry">
             <form
-              className="entry-form"
+              className="entry--form"
               onSubmit={props.userSubmit}>
+              <h1 className="entry--title">{entryMessage}</h1>
                 <input
-                  className="username-input"
+                  className="input--username"
                   placeholder="Email"
                   type="text"
                   ref={props.email}/>
                 <input
-                  className="password-input"
+                  className="input--password"
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>

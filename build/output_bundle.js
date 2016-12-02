@@ -174,6 +174,10 @@
 	__webpack_require__(275);
 	// require('./reset.scss');
 
+	if (typeof window !== 'undefined') {
+	  window.React = _react2.default;
+	}
+
 	var Root = function Root() {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -27488,12 +27492,7 @@
 	                        _this3.email = input;
 	                    }, password: function password(input) {
 	                        _this3.password = input;
-	                    } }),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/login' },
-	                    'Already Registered? Login instead.'
-	                )
+	                    } })
 	            );
 	        }
 	    }]);
@@ -29393,49 +29392,62 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _reactRouter = __webpack_require__(174);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// import Register from '../../presentationals/';
 
-	/*
-	This component is the UI for the 'Register' container component.
-	Data poassed in though user input is sent up to the container
-	where the approiate actions occur to handle the user data
-	*/
-
-	__webpack_require__(253);
+	__webpack_require__(253); /*
+	                         This component is the UI for the 'Register' container component.
+	                         Data poassed in though user input is sent up to the container
+	                         where the approiate actions occur to handle the user data
+	                         */
 
 	function RegisterForm(props) {
-	  var RegisterMessage = "Register";
+	  var RegisterMessage = "Sign Up";
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'entry-container' },
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      RegisterMessage
-	    ),
+	    { className: 'entry' },
 	    _react2.default.createElement(
 	      'form',
 	      {
-	        className: 'entry-form',
+	        className: 'entry--form',
 	        onSubmit: props.userSubmit },
+	      _react2.default.createElement(
+	        'h1',
+	        { className: 'entry--title' },
+	        RegisterMessage
+	      ),
 	      _react2.default.createElement('input', {
-	        className: 'username-input',
+	        className: 'input--username',
 	        placeholder: 'Name',
 	        type: 'text',
 	        ref: props.username }),
 	      _react2.default.createElement('input', {
-	        className: 'username-input',
+	        className: 'input--email',
 	        placeholder: 'Email',
 	        type: 'text',
 	        ref: props.email }),
 	      _react2.default.createElement('input', {
-	        className: 'password-input',
+	        className: 'input--password',
 	        placeholder: 'Password',
 	        type: 'password',
 	        ref: props.password }),
 	      _react2.default.createElement(_Button2.default, null)
+	    ),
+	    _react2.default.createElement(
+	      _reactRouter.Link,
+	      {
+	        className: 'entry--login-link',
+	        to: '/login'
+	      },
+	      'Already Registered? ',
+	      _react2.default.createElement(
+	        'span',
+	        null,
+	        'Login instead.'
+	      )
 	    )
 	  );
 	}
@@ -29480,11 +29492,8 @@
 	  _createClass(Button, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'button',
-	        { type: 'submit' },
-	        'Submit'
-	      );
+	      console.log(this.route);
+	      return _react2.default.createElement('button', { type: 'submit' });
 	    }
 	  }]);
 
@@ -29528,7 +29537,7 @@
 
 
 	// module
-	exports.push([module.id, "button {\n  height: 40px;\n  width: 100%;\n  max-width: 610px;\n  background: #f1a85e;\n  color: white;\n  font-size: 1em;\n  text-transform: uppercase;\n  border-radius: 2px;\n  border: none;\n  outline: none; }\n  button:hover {\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n", ""]);
+	exports.push([module.id, "button {\n  display: block;\n  min-width: 100px;\n  margin: 20px auto 0;\n  padding: 10px 40px;\n  color: #f1a85e;\n  background: white;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-transform: uppercase;\n  border-radius: 20px;\n  border: 2px solid #f1a85e;\n  outline: none;\n  transition: all 0.2s ease-in-out; }\n  button:hover {\n    background: #f1a85e;\n    border: 2px solid transparent;\n    color: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n", ""]);
 
 	// exports
 
@@ -29876,7 +29885,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry-container {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry-container h1 {\n    color: #f1a85e;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .entry-container .entry-form {\n    max-width: 20em;\n    height: 40px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    .entry-container .entry-form .username-input,\n    .entry-container .entry-form .password-input {\n      font-size: 1.2em;\n      height: 100%;\n      width: 100%;\n      outline: 0;\n      padding-left: 10px;\n      border: 1px solid #d3d3d3;\n      margin-bottom: 20px;\n      box-sizing: border-box; }\n", ""]);
+	exports.push([module.id, ".entry {\n  background: #f1a85e;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #f1a85e;\n    font-size: 1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    display: block;\n    padding: 40px 30px; }\n    .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n      font-size: 0.8em;\n      text-transform: uppercase;\n      color: inherit;\n      height: 100%;\n      width: 100%;\n      outline: 0;\n      padding: 10px 0;\n      border: 0;\n      border-bottom: 2px solid #f1a85e;\n      margin-bottom: 20px;\n      box-sizing: border-box; }\n  .entry--form, .entry--login-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--login-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none; }\n    .entry--login-link span {\n      color: #f1a85e; }\n", ""]);
 
 	// exports
 
@@ -30036,24 +30045,24 @@
 	    var entryMessage = "Login";
 	    return _react2.default.createElement(
 	        'div',
-	        { className: 'entry-container' },
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            entryMessage
-	        ),
+	        { className: 'entry' },
 	        _react2.default.createElement(
 	            'form',
 	            {
-	                className: 'entry-form',
+	                className: 'entry--form',
 	                onSubmit: props.userSubmit },
+	            _react2.default.createElement(
+	                'h1',
+	                { className: 'entry--title' },
+	                entryMessage
+	            ),
 	            _react2.default.createElement('input', {
-	                className: 'username-input',
+	                className: 'input--username',
 	                placeholder: 'Email',
 	                type: 'text',
 	                ref: props.email }),
 	            _react2.default.createElement('input', {
-	                className: 'password-input',
+	                className: 'input--password',
 	                placeholder: 'Password',
 	                type: 'password',
 	                ref: props.password }),
@@ -30099,7 +30108,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry-container {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry-container h1 {\n    color: #f1a85e;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .entry-container .entry-form {\n    max-width: 20em;\n    height: 40px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    .entry-container .entry-form .username-input,\n    .entry-container .entry-form .password-input {\n      font-size: 1.2em;\n      height: 100%;\n      width: 100%;\n      outline: 0;\n      padding-left: 10px;\n      border: 1px solid #d3d3d3;\n      margin-bottom: 20px;\n      box-sizing: border-box; }\n", ""]);
+	exports.push([module.id, ".entry {\n  background: #f1a85e;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #f1a85e;\n    font-size: 1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    display: block;\n    padding: 40px 30px; }\n    .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n      font-size: 0.8em;\n      text-transform: uppercase;\n      color: inherit;\n      height: 100%;\n      width: 100%;\n      outline: 0;\n      padding: 10px 0;\n      border: 0;\n      border-bottom: 2px solid #f1a85e;\n      margin-bottom: 20px;\n      box-sizing: border-box; }\n  .entry--form, .entry--login-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--login-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none; }\n    .entry--login-link span {\n      color: #f1a85e; }\n", ""]);
 
 	// exports
 
@@ -30646,7 +30655,7 @@
 
 
 	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: flex;\n  width: 100%;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  margin: 25px 0 0; }\n  @media screen and (max-width: 1090px) {\n    .list {\n      justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    overflow: hidden;\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.2s ease-in-out; }\n    .list--items:hover, .list--items:active {\n      transform: scale(1.001);\n      box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 5px 0;\n        width: 100%; } }\n    .list--items--read-more {\n      position: absolute;\n      left: 0;\n      bottom: 0;\n      height: 20px;\n      width: 100%;\n      border-top: 1px solid #d3d3d3; }\n    .list--items--title {\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #f1a85e;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #c9c9c9;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: flex;\n  width: 100%;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  margin: 25px 0 0; }\n  @media screen and (max-width: 1090px) {\n    .list {\n      justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    overflow: hidden;\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.2s ease-in-out; }\n    .list--items:hover, .list--items:active {\n      transform: scale(1.001);\n      box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 5px 0;\n        width: 100%; } }\n    .list--items--read-more {\n      position: absolute;\n      left: 0;\n      bottom: 0;\n      height: 20px;\n      width: 100%;\n      border-top: 1px solid #d3d3d3; }\n    .list--items--title {\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #f1a85e;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n", ""]);
 
 	// exports
 
@@ -30817,7 +30826,7 @@
 
 
 	// module
-	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100vh;\n  background: #f1a85e; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #c9c9c9;\n  position: relative; }\n", ""]);
+	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100vh;\n  background: #f1a85e; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n", ""]);
 
 	// exports
 
@@ -30857,7 +30866,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n\n.show {\n  display: flex; }\n", ""]);
+	exports.push([module.id, "body {\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: flex; }\n", ""]);
 
 	// exports
 
