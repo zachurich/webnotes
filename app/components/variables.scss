@@ -1,16 +1,19 @@
-$mainColor: #f1a85e;
+$color--main: #00B67A;
+$color--secondary: #023854;
 $textColor: #909090;
 $borderColor: #d3d3d3;
 $offWhite: #F0F0F0;
+
 $mainFont: 'Open Sans', sans-serif;
 $secondaryFont: 'Montserrat', sans-serif;
+
 $shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);
 $padding: 20px;
 $corners: 3px;
 
-$font-large: 1em;
-$font-medium: 1em;
-$font-small: 0.8em;
+$font--large: 1.1em;
+$font--medium: 1em;
+$font--small: 0.8em;
 
 $bold: 700;
 $semi-bold: 600;

@@ -35,7 +35,7 @@ function RegisterForm(props) {
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
-                <Button/>
+                <Button type="Register"/>
             </form>
             <Link
               className="entry--login-link"

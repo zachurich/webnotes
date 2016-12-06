@@ -12,11 +12,24 @@ function Editor (props) {
     return (
       <div className="overlay">
         <div className="modal">
-            <form className="list-form" onSubmit={props.addItem}>
-                <h1>Write a note</h1>
-                <input className="title" ref={props.inputTitle} type="text" placeholder="Title" defaultValue="Title"/>
-                <textarea className="note" ref={props.inputText} type="text" placeholder="Note" defaultValue="Content"></textarea>
-                <Button/>
+            <form
+              className="modal--form"
+              onSubmit={props.addItem}>
+                <h1 className="modal--form--header">Write a note</h1>
+                <input
+                  className="modal--form--title"
+                  ref={props.inputTitle}
+                  type="text"
+                  maxLength="10"
+                  placeholder="Title"
+                  defaultValue="Title"/>
+                <textarea
+                  className="modal--form--note"
+                  ref={props.inputText}
+                  type="text"
+                  placeholder="Note"
+                  defaultValue="Content"></textarea>
+                <Button type="Add Note"/>
             </form>
         </div>
       </div>

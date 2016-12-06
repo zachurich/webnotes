@@ -18,7 +18,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: [
-      "webpack/hot/only-dev-server",
+      // "webpack/hot/only-dev-server",
       "./app/config/Root.js"
   ],
   module: {

@@ -6,6 +6,7 @@ taking in user data, and creating appropriate route params
 /* TODO: Create a Register Component and a login component */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import base from '../../../config/base';
 import EntryForm from '../../presentationals/EntryForm/'
 
@@ -52,7 +53,6 @@ class Entry extends React.Component {
         }, authHandler);
     }
     render() {
-        const entryMessage = "Enter Your Name to Begin";
         return (
           <EntryForm
             userSubmit={this.handleSubmit}

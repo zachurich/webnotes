@@ -28,10 +28,10 @@
 		background: white;
 		border-radius: $corners;
 		box-shadow: $shadow;
-		color: $mainColor;
+		color: $color--main;
 		text-transform: uppercase;
 		font-weight: $bold;
-		font-size: $font-large;
+		font-size: $font--medium;
 		text-align: center;
 	 }
 	.contain-button {
@@ -41,7 +41,7 @@
 	}
 	&--menu,
 	&--add-note {
-		z-index: 9999;
+		z-index: 9998;
 		position: fixed;
 		top: 19px;
 		@extend %button;
@@ -53,7 +53,7 @@
 		}
 		&--horizontal {
 			position: absolute;
-			background: $mainColor;
+			background: $color--main;
 			height: 2px;
 			width: 100%;
 			&:nth-child(2) {
@@ -71,7 +71,7 @@
 			top: 0;
 			left: 9px;
 			display: block;
-			background: $mainColor;
+			background: $color--main;
 			width: 2px;
 			height: 100%;
 		}
@@ -80,7 +80,7 @@
 			top: 9px;
 			left: 0;
 			display: block;
-			background: $mainColor;
+			background: $color--main;
 			height: 2px;
 			width: 100%;
 		}

@@ -1,7 +1,6 @@
 @import '../../variables.scss';
 
 .entry {
-    background: $mainColor;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -11,8 +10,8 @@
     &--title {
         padding: 0;
         margin: 0;
-        color: $mainColor;
-        font-size: $font-large;
+        color: $color--main;
+        font-size: $font--large;
         font-family: $mainFont;
         text-align: center;
         text-transform: uppercase;
@@ -22,12 +21,13 @@
     &--form {
         display: block;
         padding: 40px 30px;
-
+        border-radius: $corners;
         .input {
+          border-radius: 0;
             &--email,
             &--password,
             &--username {
-                font-size: $font-small;
+                font-size: $font--small;
                 text-transform: uppercase;
                 color: inherit;
                 height: 100%;
@@ -35,7 +35,7 @@
                 outline: 0;
                 padding: 10px 0;
                 border: 0;
-                border-bottom: 2px solid $mainColor;
+                border-bottom: 2px solid $color--main;
                 margin-bottom: 20px;
                 box-sizing: border-box;
             }
@@ -57,12 +57,12 @@
         padding: 20px 0;
         display: block;
         margin-top: $padding;
-        font-size: $font-small;
+        font-size: $font--small;
         text-align: center;
         text-decoration: none;
 
         span {
-            color: $mainColor;
+            color: $color--main;
         }
     }
 }

@@ -29,7 +29,7 @@ function EntryForm(props) {
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
-                <Button/>
+                <Button type="Login"/>
             </form>
         </div>
     )

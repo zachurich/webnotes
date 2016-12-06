@@ -3,10 +3,10 @@ This component is used for taking in data through 'Form' that will be output
 through 'ListItems'
 */
 import React from 'react';
-
 import ListItems from '../../presentationals/ListItems/';
 import Editor from '../../presentationals/Editor/';
 import Button from '../../presentationals/Button/';
+import ExpandedNote from '../../presentationals/ExpandedNote';
 
 import base from '../../../config/base';
 
@@ -16,9 +16,12 @@ class ListContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      items: []
+      items: [],
+
     }
     this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    // this.openItem = this.openItem.bind(this);
   }
   // Sync state to firebase DB
   componentWillMount() {
@@ -33,14 +36,15 @@ class ListContainer extends React.Component {
     base.removeBinding(this.ref);
   }
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem(`user-${this.props.url}`,
-    JSON.stringify(nextState.order));
+    localStorage.setItem(`user-${nextProps.url}`,
+    JSON.stringify(nextState.items));
   }
-  // Create a function to add list items to out 'items' array
   addItem(e) {
     // Store our items in components 'items' state
     const itemArray = this.state.items;
-    // Function to get full date (will be stored in 'key')
+
+    console.log(itemArray);
+
     function dateGet() {
       const d = new Date();
       const curr_date = d.getDate();
@@ -53,27 +57,34 @@ class ListContainer extends React.Component {
       {
         title: this._inputTitle.value,
         text: this._inputText.value,
+        id: Date.now(),
         key: Date.now(),
         date: dateGet()
       }
     );
-    // Set the state of the component with what's been inputed
+
     this.setState({ items: itemArray });
 
-    this._inputTitle.value = "Title";
-    this._inputText.value = "Content";
-    // Prevent form submit from refreshing page as it normally would
     e.preventDefault();
   }
-  // remove(item){
-  //   const items = itemArray.filter(function(itm){
-  //     return item.key !== itm.key;
-  //   });
-  //   this.setState({ items: itemArray });
-  // }
+  removeItem(key) {
+    // Make 'copy' of existing items
+    const itemList = {...this.state.items};
+
+    // Set key to null to delete
+    itemList[key] = null;
+
+    // Update state
+    this.setState({ items: itemList });
+  }
   render() {
     return (
-      <div>
+      <div style={{
+        padding: '0 20px',
+      }}>
+          {/* <ExpandedNote
+            // data={ this.giveData }
+          /> */}
           <Editor
             addItem={ this.addItem }
             inputTitle={ (a) => this._inputTitle = a }
@@ -82,7 +93,8 @@ class ListContainer extends React.Component {
           <ListItems
             params={ this.props.url }
             entries={ this.state.items }
-            remove={ this.remove } />
+            removeItem={ this.removeItem }
+          />
         </div>
       </div>
     );

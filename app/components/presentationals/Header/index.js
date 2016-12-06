@@ -14,9 +14,9 @@ class Header extends React.Component {
     const editor = document.querySelector('.overlay');
     const submit = document.querySelector('button');
 
-    editor.style.display = 'block';
+    editor.style.display = 'flex';
     submit.addEventListener('click', function() {
-    editor.style.display = "none";
+      editor.style.display = "none";
     });
   }
   render() {
@@ -31,7 +31,7 @@ class Header extends React.Component {
           </div>
         </div>
         <div className="header--title">{username}</div>
-        <div className="header--menu">
+        <div className="header--menu" onClick={this.props.logout}>
           <div className="contain-button">
             <span className="header--menu--horizontal"></span>
             <span className="header--menu--horizontal"></span>

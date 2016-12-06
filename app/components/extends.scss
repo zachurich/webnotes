@@ -1,0 +1,36 @@
+%input {
+ outline: 0;
+ border: 1px solid $borderColor;
+ border-radius: 0;
+ font-size: $font--medium;
+ color: $textColor;
+ box-sizing: border-box;
+ width: 100%;
+ padding-left: 10px;
+ margin-bottom: 20px;
+}
+
+%overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(2,56,84,0.9);
+  position: fixed;
+  z-index: 9998;
+}
+
+%modal {
+  box-sizing: border-box;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 30em;
+  margin: 20px auto 0 !important;
+  background: white;
+  border-radius: 2px;
+  box-shadow: $shadow;
+}
