@@ -7,7 +7,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 require('./style.scss');
 
 function ExpandedNote(props) {
-  console.log(props.data);
     return (
       <div className="expanded--overlay">
         <div className="expanded--modal">

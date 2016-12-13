@@ -1,5 +1,5 @@
 /*
-This component is the UI for the 'Entry' container component.
+This component is the UI for the 'Login' container component.
 Data poassed in though user input is sent up to the container
 where the approiate actions occur to handle the user data
 */
@@ -7,18 +7,20 @@ where the approiate actions occur to handle the user data
 import React from 'react';
 import Button from '../Button/'
 
-// import Entry from '../../presentationals/';
+// import Login from '../../stateless/';
 
 require('./style.scss');
 
-function EntryForm(props) {
-    const entryMessage = "Login";
+function LoginForm(props) {
+    const LoginMessage = "Login";
     return (
-        <div className="entry">
+        <div className="Login">
             <form
-              className="entry--form"
+              className="Login--form"
               onSubmit={props.userSubmit}>
-              <h1 className="entry--title">{entryMessage}</h1>
+              <h1 className="Login--title" style={{
+                letterSpacing: '0.0625em',
+              }}>{LoginMessage}</h1>
                 <input
                   className="input--username"
                   placeholder="Email"
@@ -35,4 +37,4 @@ function EntryForm(props) {
     )
 }
 
-export default EntryForm;
+export default LoginForm;

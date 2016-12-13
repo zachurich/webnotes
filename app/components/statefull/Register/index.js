@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import base from '../../../config/base';
-import RegisterForm from '../../presentationals/RegisterForm/'
+import RegisterForm from '../../stateless/RegisterForm/'
 
 class Register extends React.Component {
     constructor() {

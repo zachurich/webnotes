@@ -3,33 +3,36 @@ This component is used for taking in data through 'Form' that will be output
 through 'ListItems'
 */
 import React from 'react';
-import ListItems from '../../presentationals/ListItems/';
-import Editor from '../../presentationals/Editor/';
-import Button from '../../presentationals/Button/';
-import ExpandedNote from '../../presentationals/ExpandedNote';
+import ListItems from '../../stateless/ListItems/';
+import Editor from '../../stateless/Editor/';
+import Button from '../../stateless/Button/';
+import ExpandedNote from '../../stateless/ExpandedNote';
 
 import base from '../../../config/base';
 
 require('./style.scss');
 
 class ListContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      items: [],
-
+      items: {},
+      error: false,
     }
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
-    // this.openItem = this.openItem.bind(this);
   }
+
   // Sync state to firebase DB
   componentWillMount() {
-    this.ref = base.syncState(`/notes/${this.props.url}`,
+    const str = window.location.hash;
+    const strFormat = str.lastIndexOf('/');
+    const username = str.substring(strFormat + 1);
+
+    this.ref = base.syncState(`/notes/${username}`,
       {
         context: this,
-        state: 'items',
-        asArray: true
+        state: 'items'
       });
   }
   componentWillUnmount() {
@@ -40,10 +43,10 @@ class ListContainer extends React.Component {
     JSON.stringify(nextState.items));
   }
   addItem(e) {
-    // Store our items in components 'items' state
-    const itemArray = this.state.items;
+    e.preventDefault();
 
-    console.log(itemArray);
+    // Store our items in components 'items' state
+    let items = {...this.state.items};
 
     function dateGet() {
       const d = new Date();
@@ -53,39 +56,40 @@ class ListContainer extends React.Component {
       return curr_month + "/" + curr_date + "/" + curr_year;
     }
     // Add list items to end of array 'items'
-    itemArray.push (
-      {
-        title: this._inputTitle.value,
-        text: this._inputText.value,
-        id: Date.now(),
-        key: Date.now(),
-        date: dateGet()
-      }
-    );
+    const title = this._inputTitle.value;
+    const text = this._inputText.value;
 
-    this.setState({ items: itemArray });
+    if (title.length > 1 || text.length > 1) {
 
-    e.preventDefault();
+      // this creates a new object in our state object titled 'note-uniqueID'
+      // with all our details
+      items[`note-${Date.now()}`] = {
+          title: this._inputTitle.value,
+          text: this._inputText.value,
+          id: Date.now(),
+          // key: Date.now(),
+          date: dateGet()
+      };
+      this.setState({ items: items });
+    } else {
+      this.setState({ error: true });
+    }
   }
   removeItem(key) {
     // Make 'copy' of existing items
-    const itemList = {...this.state.items};
-
-    // Set key to null to delete
-    itemList[key] = null;
-
+    const items = {...this.state.items};
+    // Delete our clicked item
+    items[key] = null;
     // Update state
-    this.setState({ items: itemList });
+    this.setState({ items: items });
   }
   render() {
     return (
       <div style={{
         padding: '0 20px',
       }}>
-          {/* <ExpandedNote
-            // data={ this.giveData }
-          /> */}
           <Editor
+            error={ this.state.error }
             addItem={ this.addItem }
             inputTitle={ (a) => this._inputTitle = a }
             inputText={ (a) => this._inputText = a } />

@@ -15,6 +15,4 @@ npm run dev
 ```
 
 ### Things left to do:
-
 * Build out menu
-* Set up user authentication

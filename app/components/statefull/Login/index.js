@@ -1,5 +1,5 @@
 /*
-This component houses the 'EntryForm' component and is responsible for
+This component houses the 'LoginForm' component and is responsible for
 taking in user data, and creating appropriate route params
 */
 
@@ -8,9 +8,9 @@ taking in user data, and creating appropriate route params
 import React from 'react';
 import ReactDOM from 'react-dom';
 import base from '../../../config/base';
-import EntryForm from '../../presentationals/EntryForm/'
+import LoginForm from '../../stateless/LoginForm/'
 
-class Entry extends React.Component {
+class Login extends React.Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,12 +38,8 @@ class Entry extends React.Component {
           which resulted in 'this' being rebound
         */
         const authHandler = (error, email) => {
-          if(error) {
-            console.log(error);
-          } else {
-            // this.context.router.push(`/notes/${username}`);
-            this.setupUserInfo();
-          }
+          if (error) console.log(error);
+            else this.setupUserInfo();
         }
 
         // Simple email/password authentication
@@ -54,7 +50,7 @@ class Entry extends React.Component {
     }
     render() {
         return (
-          <EntryForm
+          <LoginForm
             userSubmit={this.handleSubmit}
             email={(input) => { this.email = input }}
             password={(input) => { this.password = input }}
@@ -63,8 +59,8 @@ class Entry extends React.Component {
     }
 }
 
-Entry.contextTypes = {
+Login.contextTypes = {
     router: React.PropTypes.object
 }
 
-export default Entry;
+export default Login;

@@ -7,6 +7,9 @@ require('./style.scss');
 class Header extends React.Component {
   constructor() {
       super();
+      this.state = {
+        list: [],
+      }
       this.openEditor = this.openEditor.bind(this);
   }
   openEditor() {
@@ -14,14 +17,20 @@ class Header extends React.Component {
     const editor = document.querySelector('.overlay');
     const submit = document.querySelector('button');
 
+    const title = document.querySelector('.modal--form--title');
+    const note = document.querySelector('.modal--form--note');
+
     editor.style.display = 'flex';
     submit.addEventListener('click', function() {
-      editor.style.display = "none";
+      if ( title.value.length < 1 || note < 1 )
+        return;
+      else
+        editor.style.display = "none";
+
     });
   }
   render() {
     const username = this.props.title;
-    // console.log(username);
     return (
       <header class="header">
         <div className="header--add-note" onClick={ this.openEditor }>
@@ -30,7 +39,9 @@ class Header extends React.Component {
             <span className="header--add-note--horizontal"></span>
           </div>
         </div>
-        <div className="header--title">{username}</div>
+        <div className="header--title" style={{
+          letterSpacing: '0.0625em',
+        }}>{username}</div>
         <div className="header--menu" onClick={this.props.logout}>
           <div className="contain-button">
             <span className="header--menu--horizontal"></span>

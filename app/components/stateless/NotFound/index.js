@@ -5,7 +5,7 @@ import React from 'react';
 class NotFound extends React.Component {
   render() {
     // Props are defined here
-    const entryUser = this.props.params.entryName;
+    const LoginUser = this.props.params.LoginName;
     // Render all our components here
     return (
       <div>

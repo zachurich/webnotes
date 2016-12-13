@@ -1,6 +1,6 @@
 @import '../../variables.scss';
 
-.entry {
+.Login {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -28,7 +28,6 @@
             &--password,
             &--username {
                 font-size: $font--small;
-                text-transform: uppercase;
                 color: inherit;
                 height: 100%;
                 width: 100%;

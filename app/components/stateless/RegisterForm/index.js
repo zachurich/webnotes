@@ -8,18 +8,20 @@ import React from 'react';
 import Button from '../Button/'
 import { Link } from 'react-router';
 
-// import Register from '../../presentationals/';
+// import Register from '../../stateless/';
 
 require('./style.scss');
 
 function RegisterForm(props) {
     const RegisterMessage = "Sign Up";
     return (
-        <div className="entry">
+        <div className="Login">
             <form
-              className="entry--form"
+              className="Login--form"
               onSubmit={props.userSubmit}>
-                <h1 class="entry--title">{RegisterMessage}</h1>
+                <h1 class="Login--title" style={{
+                  letterSpacing: '0.0625em',
+                }}>{RegisterMessage}</h1>
                 <input
                   className="input--username"
                   placeholder="Name"
@@ -38,7 +40,7 @@ function RegisterForm(props) {
                 <Button type="Register"/>
             </form>
             <Link
-              className="entry--login-link"
+              className="Login--login-link"
               to='/login'
               >Already Registered? <span>Login instead.</span>
             </Link>

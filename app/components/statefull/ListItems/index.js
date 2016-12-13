@@ -2,7 +2,8 @@
 This component takes our inputed data, and outputs it to the DOM
 */
 import React from 'react';
-import ExpandedNote from '../ExpandedNote/';
+import ExpandedNote from '../../stateless/ExpandedNote/';
+import Notes from '../../stateless/Notes/'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 require('./style.scss');
@@ -27,6 +28,7 @@ class ListItems extends React.Component {
   }
   // Click updates state and passes item data
   handleOpen(item) {
+    console.log(item);
     this.setState({ showExpanded: true });
     this.passItemData(item);
   }
@@ -34,42 +36,15 @@ class ListItems extends React.Component {
   handleClose() {
     this.setState({ showExpanded: false });
   }
-  createTasks = (item) => {
-      return (
-          <li
-            className="list--items"
-            key={item.id}
-          >
-              <div
-                className="list--items--erase"
-                onClick={() => this.props.removeItem(item.key) }>
-              </div>
-              <h2
-                className="list--items--title">
-                {item.title}
-              </h2>
-              <p
-                className="list--items--date">
-                {item.date}
-              </p>
-              <p
-                className="list--items--note-content">
-                {item.text}
-              </p>
-              <div
-                className="list--items--read-more"
-                onClick={() => this.handleOpen(item)}>
-                View Note
-              </div>
-          </li>
-      );
-  }
+
   render() {
       // Get our list object
       const listEntries = this.props.entries;
+      console.log(listEntries);
 
       // Map it using createTasks method
-      const listItems = listEntries.map(this.createTasks);
+
+      // const listItems = listEntries.map(this.createTasks);
       return (
         <div>
           { this.state.showExpanded ?
@@ -81,7 +56,18 @@ class ListItems extends React.Component {
               transitionName="pop-in"
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}>
-              {listItems}
+              {
+                Object
+                  .keys(listEntries)
+                    .map(key =>
+                        <Notes
+                          key={key}
+                          index={key}
+                          details={listEntries[key]}
+                          open={ this.handleOpen }
+                          remove={ () => this.props.removeItem(key) }/>
+                        )
+              }
             </ReactCSSTransitionGroup>
           </ul>
         </div>
