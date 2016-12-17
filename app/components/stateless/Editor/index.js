@@ -9,11 +9,8 @@ import Button from '../Button/';
 require('./style.scss');
 
 function Editor (props) {
-  let errorMessage = '';
-  if( props.error == true) {
-    document.querySelector('.modal--form').classList.add('errorMessage');
-    errorMessage = 'You must enter one or more character.';
-  }
+  let conditionalText = '';
+  props.error == true ? conditionalText = 'Close Editor' : conditionalText = 'Add Note';
 
     return (
       <div className="overlay">
@@ -23,6 +20,7 @@ function Editor (props) {
               onSubmit={props.addItem}>
                 <h1 className="modal--form--header">Write a note</h1>
                 <input
+                  onChange={props.updateText}
                   className="modal--form--title"
                   ref={props.inputTitle}
                   type="text"
@@ -35,7 +33,7 @@ function Editor (props) {
                   type="text"
                   placeholder="Note">
                 </textarea>
-                <Button color="#3498db" type="Add Note" close={ props.close } />
+                <Button color="#EC644B" type={ conditionalText } close={ props.close } />
             </form>
         </div>
       </div>

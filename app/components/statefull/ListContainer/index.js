@@ -18,7 +18,7 @@ class ListContainer extends React.Component {
     super(props);
     this.state = {
       items: {},
-      error: false,
+      error: true,
     }
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -72,8 +72,6 @@ class ListContainer extends React.Component {
           date: dateGet()
       };
       this.setState({ items: items });
-    } else {
-      this.setState({ error: true });
     }
   }
   removeItem(key) {
@@ -95,7 +93,8 @@ class ListContainer extends React.Component {
           transitionLeaveTimeout={300}>
           { this.props.editor ?
             <Editor
-              error={ this.state.error }
+              updateText={ this.props.updateText }
+              error={ this.props.error }
               addItem={ this.addItem }
               close={ this.props.close }
               inputTitle={ (a) => this._inputTitle = a }

@@ -22,7 +22,7 @@
   bottom: 0;
   width: 100%;
   height: 100vh;
-  background: $color--secondary--trans;
+  background: $color--tertiary;
   position: fixed;
   z-index: 9998;
 }
@@ -33,10 +33,15 @@
   padding: 20px 30px;
   width: 90%;
   max-width: 30em;
-  margin: 20px auto 0 !important;
+  margin: 20px auto 0;
   background: white;
   border-radius: 2px;
   box-shadow: $shadow;
+  @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 }
 
 %button {

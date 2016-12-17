@@ -15,13 +15,15 @@ class App extends React.Component {
 
       this.state = {
         username: '',
-        editor: false
+        editor: false,
+        error: true,
       }
 
       this.handleLogOut = this.handleLogOut.bind(this);
       this.handleName = this.handleName.bind(this);
       this.showEditor = this.showEditor.bind(this);
       this.closeEditor = this.closeEditor.bind(this);
+      this.handleButtonText = this.handleButtonText.bind(this);
     }
     componentWillMount() {
       // check for user signed-in status
@@ -68,8 +70,16 @@ class App extends React.Component {
       this.setState({ editor: true });
     }
 
+    handleButtonText(e) {
+      if (e.target.value) {
+        this.setState({ error: false });
+      } else {
+        this.setState({ error: true });
+      }
+    }
+
     closeEditor() {
-      this.setState({ editor: false })
+      this.setState({ editor: false, error: true })
     }
 
     displayWelcome = (welcome) => {
@@ -90,8 +100,16 @@ class App extends React.Component {
         return (
             <div className="app-contents">
                 { this.displayWelcome(welcomeText) }
-                <Header triggerEditor={this.showEditor} title={ username } logout={this.handleLogOut}/>
-                <ListContainer editor={this.state.editor} close={this.closeEditor} url={ username }/>
+                <Header
+                  triggerEditor={this.showEditor}
+                  title={ username }
+                  logout={this.handleLogOut}/>
+                <ListContainer
+                  error={this.state.error}
+                  updateText={ this.handleButtonText }
+                  editor={this.state.editor}
+                  close={this.closeEditor}
+                  url={ username }/>
             </div>
         );
     }
