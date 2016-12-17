@@ -3,14 +3,15 @@ This component is used for taking in data through 'Form' that will be output
 through 'ListItems'
 */
 import React from 'react';
-import ListItems from '../../stateless/ListItems/';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ListItems from '../ListItems/';
 import Editor from '../../stateless/Editor/';
 import Button from '../../stateless/Button/';
 import ExpandedNote from '../../stateless/ExpandedNote';
 
 import base from '../../../config/base';
 
-require('./style.scss');
+require('../../transitions.scss');
 
 class ListContainer extends React.Component {
   constructor(props) {
@@ -88,11 +89,18 @@ class ListContainer extends React.Component {
       <div style={{
         padding: '0 20px',
       }}>
-          <Editor
-            error={ this.state.error }
-            addItem={ this.addItem }
-            inputTitle={ (a) => this._inputTitle = a }
-            inputText={ (a) => this._inputText = a } />
+        <ReactCSSTransitionGroup
+          transitionName="fade-in"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+          { this.props.editor ?
+            <Editor
+              error={ this.state.error }
+              addItem={ this.addItem }
+              close={ this.props.close }
+              inputTitle={ (a) => this._inputTitle = a }
+              inputText={ (a) => this._inputText = a }/> : null }
+        </ReactCSSTransitionGroup>
         <div className="container">
           <ListItems
             params={ this.props.url }

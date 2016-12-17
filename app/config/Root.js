@@ -7,10 +7,10 @@ import {Router, Route, hashHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Import all our components to be accessible to Router
-import Register from '../components/containers/Register';
-import Entry from '../components/containers/Entry/';
+import Register from '../components/statefull/Register/';
+import Entry from '../components/statefull/Login/';
 import App from '../components/App/';
-import NotFound from '../components/presentationals/NotFound/';
+import NotFound from '../components/stateless/NotFound/';
 
 require('./style.scss');
 // require('./reset.scss');

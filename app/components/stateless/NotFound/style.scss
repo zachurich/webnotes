@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+
+.notfound {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: $color--main;
+  &--card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    height: 100px;
+    width: 30%;
+    padding: 20px;
+    min-width: 300px;
+    margin: auto;
+    border-radius: $corners;
+    box-shadow: $shadow;
+  }
+  &--text {
+    color: $color--main;
+  }
+}

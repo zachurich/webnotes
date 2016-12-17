@@ -1,26 +1,9 @@
 @import '../../variables.scss';
+@import '../../extends.scss';
 
 button {
-  display: block;
-  min-width: 100px;
-  margin: 20px auto 0;
-  padding: 10px 40px;
-  color: $color--main;
-  background: white;
-  font-size: $font--small;
-  font-weight: $semi-bold;
-  text-transform: uppercase;
-  border-radius: 20px;
-  border: 2px solid $color--main;
+  border: 0;
+  box-shadow: none;
   outline: none;
-  transition: $transition;
-  &:hover,
-  &:active {
-    cursor: pointer;
-    transform: translateY(-3px);
-    background: $color--main;
-    border: 2px solid transparent;
-    color: white;
-    box-shadow: $shadow;
-  }
+  @extend %button;
 }

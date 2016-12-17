@@ -35,7 +35,7 @@ function Editor (props) {
                   type="text"
                   placeholder="Note">
                 </textarea>
-                <Button type="Add Note"/>
+                <Button color="#3498db" type="Add Note" close={ props.close } />
             </form>
         </div>
       </div>

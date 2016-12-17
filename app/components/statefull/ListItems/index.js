@@ -6,7 +6,7 @@ import ExpandedNote from '../../stateless/ExpandedNote/';
 import Notes from '../../stateless/Notes/'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-require('./style.scss');
+require('../../transitions.scss');
 
 class ListItems extends React.Component {
   constructor(props) {
@@ -47,10 +47,15 @@ class ListItems extends React.Component {
       // const listItems = listEntries.map(this.createTasks);
       return (
         <div>
+          <ReactCSSTransitionGroup
+            transitionName="fade-in"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}>
           { this.state.showExpanded ?
             <ExpandedNote
               data={ this.itemData }
               close={ this.handleClose }/> : null }
+          </ReactCSSTransitionGroup>
           <ul className="list">
             <ReactCSSTransitionGroup
               transitionName="pop-in"

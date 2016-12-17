@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-// require('./style.scss');
+require('./style.scss');
 
 class NotFound extends React.Component {
   render() {
@@ -8,8 +9,14 @@ class NotFound extends React.Component {
     const LoginUser = this.props.params.LoginName;
     // Render all our components here
     return (
-      <div>
-        <p>Nothing Here...</p>
+      <div className="notfound">
+        <div className="notfound--card">
+          <p className="notfound--text">You need to create an account or login to access Webnotes.</p>
+          <Link
+            to='/login'>
+            Login
+          </Link>
+        </div>
       </div>
     );
   }

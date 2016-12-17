@@ -12,6 +12,7 @@
   "author": "Zach Urich <re.jo@live.com>",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-add-module-exports": "^0.1.2",

@@ -14,11 +14,14 @@ class App extends React.Component {
       super();
 
       this.state = {
-        username: ''
+        username: '',
+        editor: false
       }
 
       this.handleLogOut = this.handleLogOut.bind(this);
       this.handleName = this.handleName.bind(this);
+      this.showEditor = this.showEditor.bind(this);
+      this.closeEditor = this.closeEditor.bind(this);
     }
     componentWillMount() {
       // check for user signed-in status
@@ -30,6 +33,7 @@ class App extends React.Component {
               this.setState( { username: user.displayName } );
           } else {
               console.log("A user is NOT signed in!");
+              this.context.router.push(`/404`);
           }
       });
     }
@@ -40,6 +44,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+      document.addEventListener("touchstart", function() {},false);
       const welcome = document.querySelector('.welcome');
 
       setTimeout(() => {
@@ -59,6 +64,14 @@ class App extends React.Component {
             });
     }
 
+    showEditor() {
+      this.setState({ editor: true });
+    }
+
+    closeEditor() {
+      this.setState({ editor: false })
+    }
+
     displayWelcome = (welcome) => {
       return (
         <div
@@ -71,18 +84,14 @@ class App extends React.Component {
       )
     }
     render() {
-      // if we are not signed in, hit the 404
-      // if (this.state.user == null ) {
-      //   this.context.router.push('/404');
-      // }
       const username = this.state.username;
       const welcomeText = `Welcome, ${ this.state.username }.`;
         // Render all our components here
         return (
             <div className="app-contents">
                 { this.displayWelcome(welcomeText) }
-                <Header title={ username } logout={this.handleLogOut}/>
-                <ListContainer url={ username }/>
+                <Header triggerEditor={this.showEditor} title={ username } logout={this.handleLogOut}/>
+                <ListContainer editor={this.state.editor} close={this.closeEditor} url={ username }/>
             </div>
         );
     }

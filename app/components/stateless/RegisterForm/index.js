@@ -10,16 +10,16 @@ import { Link } from 'react-router';
 
 // import Register from '../../stateless/';
 
-require('./style.scss');
+require('../form.scss');
 
 function RegisterForm(props) {
     const RegisterMessage = "Sign Up";
     return (
-        <div className="Login">
+        <div className="entry">
             <form
-              className="Login--form"
+              className="entry--form"
               onSubmit={props.userSubmit}>
-                <h1 class="Login--title" style={{
+                <h1 class="entry--title" style={{
                   letterSpacing: '0.0625em',
                 }}>{RegisterMessage}</h1>
                 <input
@@ -37,10 +37,10 @@ function RegisterForm(props) {
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
-                <Button type="Register"/>
+                <Button color="#023854" type="Register"/>
             </form>
             <Link
-              className="Login--login-link"
+              className="entry--entry-link"
               to='/login'
               >Already Registered? <span>Login instead.</span>
             </Link>

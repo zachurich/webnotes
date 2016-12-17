@@ -69,15 +69,15 @@
 
 	var _Register2 = _interopRequireDefault(_Register);
 
-	var _Entry = __webpack_require__(272);
+	var _Login = __webpack_require__(272);
 
-	var _Entry2 = _interopRequireDefault(_Entry);
+	var _Login2 = _interopRequireDefault(_Login);
 
-	var _App = __webpack_require__(276);
+	var _App = __webpack_require__(274);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _NotFound = __webpack_require__(292);
+	var _NotFound = __webpack_require__(293);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -87,7 +87,7 @@
 	// This is the main component to load all components
 
 	// Lets start by importing all the stuff we need for React to work
-	__webpack_require__(295);
+	__webpack_require__(298);
 	// require('./reset.scss');
 
 	var Root = function Root() {
@@ -98,7 +98,7 @@
 	      'div',
 	      null,
 	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Register2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Entry2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/notes/:username', component: _App2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/404', component: _NotFound2.default })
 	    )
@@ -30996,7 +30996,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Register from '../../presentationals/';
+	// import Register from '../../stateless/';
 
 	__webpack_require__(270); /*
 	                         This component is the UI for the 'Register' container component.
@@ -31036,12 +31036,12 @@
 	        placeholder: 'Password',
 	        type: 'password',
 	        ref: props.password }),
-	      _react2.default.createElement(_Button2.default, { type: 'Register' })
+	      _react2.default.createElement(_Button2.default, { color: '#f1a85e', type: 'Register' })
 	    ),
 	    _react2.default.createElement(
 	      _reactRouter.Link,
 	      {
-	        className: 'entry--login-link',
+	        className: 'entry--entry-link',
 	        to: '/login'
 	      },
 	      'Already Registered? ',
@@ -31096,10 +31096,17 @@
 	    value: function render() {
 
 	      var text = this.props.type;
+	      var color = this.props.color;
 
 	      return _react2.default.createElement(
 	        'button',
-	        { type: 'submit' },
+	        {
+	          style: {
+	            background: color,
+	            height: '40px',
+	            lineHeight: '40px'
+	          },
+	          type: 'submit' },
 	        text
 	      );
 	    }
@@ -31126,8 +31133,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -31145,7 +31152,7 @@
 
 
 	// module
-	exports.push([module.id, "button {\n  display: block;\n  min-width: 100px;\n  margin: 20px auto 0;\n  padding: 10px 40px;\n  color: #F1A85E;\n  background: white;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-transform: uppercase;\n  border-radius: 20px;\n  border: 2px solid #F1A85E;\n  outline: none;\n  transition: all 0.2s ease-in-out; }\n  button:hover, button:active {\n    cursor: pointer;\n    transform: translateY(-3px);\n    background: #F1A85E;\n    border: 2px solid transparent;\n    color: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n", ""]);
+	exports.push([module.id, "button {\n  border-radius: 0 0 3px 3px;\n  position: absolute;\n  background: #023854;\n  width: 100%;\n  height: 30px;\n  line-height: 30px;\n  left: 0;\n  bottom: 0;\n  cursor: pointer;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-align: center;\n  text-transform: uppercase;\n  color: white; }\n\nbutton {\n  border: 0;\n  box-shadow: none;\n  outline: none; }\n", ""]);
 
 	// exports
 
@@ -31474,8 +31481,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./form.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./form.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -31493,7 +31500,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #F1A85E;\n    font-size: 1.1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    display: block;\n    padding: 40px 30px;\n    border-radius: 3px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #F1A85E;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n  .entry--form, .entry--login-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--login-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 3px; }\n    .entry--login-link span {\n      color: #F1A85E; }\n", ""]);
+	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #f1a85e;\n    font-size: 1.1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    position: relative;\n    display: block;\n    padding: 40px 30px 80px;\n    border-radius: 3px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #f1a85e;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n  .entry--form, .entry--entry-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--entry-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 3px; }\n    .entry--entry-link span {\n      color: #f1a85e; }\n", ""]);
 
 	// exports
 
@@ -31522,9 +31529,9 @@
 
 	var _base2 = _interopRequireDefault(_base);
 
-	var _EntryForm = __webpack_require__(273);
+	var _LoginForm = __webpack_require__(273);
 
-	var _EntryForm2 = _interopRequireDefault(_EntryForm);
+	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31533,25 +31540,25 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               This component houses the 'EntryForm' component and is responsible for
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               This component houses the 'LoginForm' component and is responsible for
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               taking in user data, and creating appropriate route params
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 	/* TODO: Create a Register Component and a login component */
 
-	var Entry = function (_React$Component) {
-	  _inherits(Entry, _React$Component);
+	var Login = function (_React$Component) {
+	  _inherits(Login, _React$Component);
 
-	  function Entry() {
-	    _classCallCheck(this, Entry);
+	  function Login() {
+	    _classCallCheck(this, Login);
 
-	    var _this = _possibleConstructorReturn(this, (Entry.__proto__ || Object.getPrototypeOf(Entry)).call(this));
+	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(Entry, [{
+	  _createClass(Login, [{
 	    key: 'setupUserInfo',
 	    value: function setupUserInfo() {
 	      var _this2 = this;
@@ -31582,12 +31589,7 @@
 	        which resulted in 'this' being rebound
 	      */
 	      var authHandler = function authHandler(error, email) {
-	        if (error) {
-	          console.log(error);
-	        } else {
-	          // this.context.router.push(`/notes/${username}`);
-	          _this3.setupUserInfo();
-	        }
+	        if (error) console.log(error);else _this3.setupUserInfo();
 	      };
 
 	      // Simple email/password authentication
@@ -31601,7 +31603,7 @@
 	    value: function render() {
 	      var _this4 = this;
 
-	      return _react2.default.createElement(_EntryForm2.default, {
+	      return _react2.default.createElement(_LoginForm2.default, {
 	        userSubmit: this.handleSubmit,
 	        email: function email(input) {
 	          _this4.email = input;
@@ -31613,14 +31615,14 @@
 	    }
 	  }]);
 
-	  return Entry;
+	  return Login;
 	}(_react2.default.Component);
 
-	Entry.contextTypes = {
+	Login.contextTypes = {
 	  router: _react2.default.PropTypes.object
 	};
 
-	exports.default = Entry;
+	exports.default = Login;
 
 /***/ },
 /* 273 */
@@ -31642,18 +31644,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Entry from '../../presentationals/';
+	// import Login from '../../stateless/';
 
 	/*
-	This component is the UI for the 'Entry' container component.
+	This component is the UI for the 'Login' container component.
 	Data poassed in though user input is sent up to the container
 	where the approiate actions occur to handle the user data
 	*/
 
-	__webpack_require__(274);
+	__webpack_require__(270);
 
-	function EntryForm(props) {
-	  var entryMessage = "Login";
+	function LoginForm(props) {
+	  var LoginMessage = "Login";
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'entry' },
@@ -31667,7 +31669,7 @@
 	        { className: 'entry--title', style: {
 	            letterSpacing: '0.0625em'
 	          } },
-	        entryMessage
+	        LoginMessage
 	      ),
 	      _react2.default.createElement('input', {
 	        className: 'input--username',
@@ -31679,55 +31681,15 @@
 	        placeholder: 'Password',
 	        type: 'password',
 	        ref: props.password }),
-	      _react2.default.createElement(_Button2.default, { type: 'Login' })
+	      _react2.default.createElement(_Button2.default, { color: '#f1a85e', type: 'Login' })
 	    )
 	  );
 	}
 
-	exports.default = EntryForm;
+	exports.default = LoginForm;
 
 /***/ },
 /* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(275);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(269)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 275 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(268)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #F1A85E;\n    font-size: 1.1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    display: block;\n    padding: 40px 30px;\n    border-radius: 3px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #F1A85E;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n  .entry--form, .entry--login-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--login-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none; }\n    .entry--login-link span {\n      color: #F1A85E; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31752,15 +31714,15 @@
 
 	var _reactRouter = __webpack_require__(184);
 
-	var _Header = __webpack_require__(277);
+	var _Header = __webpack_require__(275);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListContainer = __webpack_require__(280);
+	var _ListContainer = __webpack_require__(278);
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _NotFound = __webpack_require__(292);
+	var _NotFound = __webpack_require__(293);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -31772,7 +31734,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(293);
+	__webpack_require__(296);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -31782,36 +31744,69 @@
 
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
+	    _this.displayWelcome = function (welcome) {
+	      return _react2.default.createElement(
+	        'div',
+	        {
+	          className: 'welcome remove' },
+	        _react2.default.createElement(
+	          'h1',
+	          {
+	            className: 'welcome--text' },
+	          welcome
+	        )
+	      );
+	    };
+
+	    _this.state = {
+	      username: ''
+	    };
+
 	    _this.handleLogOut = _this.handleLogOut.bind(_this);
+	    _this.handleName = _this.handleName.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(App, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var welcome = document.querySelector('.welcome');
-
-	      setTimeout(function () {
-	        welcome.style.display = 'none';
-	      }, 3000);
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
 
 	      // check for user signed-in status
 	      _base2.default.auth().onAuthStateChanged(function (user) {
 	        if (user) {
 	          console.log(user.displayName + ' is signed in!');
+	          _this2.setState({ username: user.displayName });
 	        } else {
 	          console.log("A user is NOT signed in!");
+	          _this2.context.router.push('/404');
 	        }
 	      });
 	    }
 	  }, {
+	    key: 'handleName',
+	    value: function handleName(username) {
+	      console.log(username);
+	      return username;
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.addEventListener("touchstart", function () {}, false);
+	      var welcome = document.querySelector('.welcome');
+
+	      setTimeout(function () {
+	        welcome.style.display = 'none';
+	      }, 3000);
+	    }
+	  }, {
 	    key: 'handleLogOut',
 	    value: function handleLogOut() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      _base2.default.auth().signOut().then(function () {
 	        // Sign-out successful.
-	        _this2.context.router.push('/');
+	        _this3.context.router.push('/');
 	      }, function (error) {
 	        console.log(error);
 	      });
@@ -31819,34 +31814,13 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      function displayWelcome(welcome) {
-	        return _react2.default.createElement(
-	          'div',
-	          {
-	            className: 'welcome remove' },
-	          _react2.default.createElement(
-	            'h1',
-	            {
-	              className: 'welcome--text' },
-	            welcome
-	          )
-	        );
-	      }
-	      // store the current user in a var
-	      var user = _base2.default.auth().currentUser;
-	      // if we are not signed in, hit the 404
-	      if (user === null) {
-	        this.context.router.push('/404');
-	      }
-
-	      var username = user.displayName;
-	      var welcomeText = 'Welcome, ' + username + '.';
-	      // const username = this.props.params.username;
+	      var username = this.state.username;
+	      var welcomeText = 'Welcome, ' + this.state.username + '.';
 	      // Render all our components here
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'app-contents' },
-	        displayWelcome(welcomeText),
+	        this.displayWelcome(welcomeText),
 	        _react2.default.createElement(_Header2.default, { title: username, logout: this.handleLogOut }),
 	        _react2.default.createElement(_ListContainer2.default, { url: username })
 	      );
@@ -31863,7 +31837,7 @@
 	exports.default = App;
 
 /***/ },
-/* 277 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31887,7 +31861,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Header Component
 
 
-	__webpack_require__(278);
+	__webpack_require__(276);
 
 	var Header = function (_React$Component) {
 	  _inherits(Header, _React$Component);
@@ -31897,6 +31871,9 @@
 
 	    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
 
+	    _this.state = {
+	      list: []
+	    };
 	    _this.openEditor = _this.openEditor.bind(_this);
 	    return _this;
 	  }
@@ -31908,16 +31885,18 @@
 	      var editor = document.querySelector('.overlay');
 	      var submit = document.querySelector('button');
 
+	      var title = document.querySelector('.modal--form--title');
+	      var note = document.querySelector('.modal--form--note');
+
 	      editor.style.display = 'flex';
 	      submit.addEventListener('click', function () {
-	        editor.style.display = "none";
+	        if (title.value.length < 1 || note < 1) return;else editor.style.display = "none";
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var username = this.props.title;
-	      // console.log(username);
 	      return _react2.default.createElement(
 	        'header',
 	        { className: 'header' },
@@ -31959,13 +31938,13 @@
 	exports.default = Header;
 
 /***/ },
-/* 278 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(279);
+	var content = __webpack_require__(277);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -31974,8 +31953,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -31985,7 +31964,7 @@
 	}
 
 /***/ },
-/* 279 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -31993,13 +31972,13 @@
 
 
 	// module
-	exports.push([module.id, ".header--menu, .header--add-note {\n  height: 42px;\n  width: 42px;\n  border-radius: 50%;\n  top: 0;\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: white;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n  transition: all 0.1s ease-in-out; }\n\n.header {\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 80px;\n  font-family: \"Open Sans\", sans-serif;\n  width: 100%; }\n  .header--title {\n    /*min-width: 100px;*/\n    padding: 10px 30px;\n    background: white;\n    border-radius: 3px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    color: #F1A85E;\n    text-transform: uppercase;\n    font-weight: 700;\n    font-size: 1em;\n    text-align: center; }\n  .header .contain-button {\n    position: relative;\n    width: 20px;\n    height: 20px; }\n  .header--menu, .header--add-note {\n    z-index: 9998;\n    position: fixed;\n    top: 19px; }\n  .header--menu {\n    right: 19px; }\n    .header--menu .contain-button {\n      height: 14px; }\n    .header--menu--horizontal {\n      position: absolute;\n      background: #F1A85E;\n      height: 2px;\n      width: 100%; }\n      .header--menu--horizontal:nth-child(2) {\n        top: 6px; }\n      .header--menu--horizontal:nth-child(3) {\n        bottom: 0; }\n  .header--add-note {\n    left: 19px; }\n    .header--add-note--vertical {\n      position: absolute;\n      top: 0;\n      left: 9px;\n      display: block;\n      background: #F1A85E;\n      width: 2px;\n      height: 100%; }\n    .header--add-note--horizontal {\n      position: absolute;\n      top: 9px;\n      left: 0;\n      display: block;\n      background: #F1A85E;\n      height: 2px;\n      width: 100%; }\n", ""]);
+	exports.push([module.id, ".header--menu, .header--add-note {\n  height: 42px;\n  width: 42px;\n  border-radius: 50%;\n  top: 0;\n  position: absolute;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  background: white;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n  transition: all 0.1s ease-in-out; }\n\n.header {\n  position: relative;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  height: 80px;\n  font-family: \"Open Sans\", sans-serif;\n  width: 100%; }\n  @media screen and (max-width: 660px) {\n    .header {\n      height: 60px; } }\n  .header--title {\n    /*min-width: 100px;*/\n    padding: 10px 30px;\n    background: white;\n    border-radius: 3px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    color: #f1a85e;\n    text-transform: uppercase;\n    font-weight: 700;\n    font-size: 1em;\n    text-align: center; }\n    @media screen and (max-width: 660px) {\n      .header--title {\n        width: 100%;\n        height: 100%;\n        padding: 0;\n        border-radius: 0;\n        line-height: 60px; } }\n  .header .contain-button {\n    position: relative;\n    width: 20px;\n    height: 20px; }\n  .header--menu, .header--add-note {\n    cursor: pointer;\n    z-index: 9998;\n    position: absolute;\n    top: 19px; }\n    .header--menu:hover, .header--add-note:hover {\n      -webkit-transform: scale(1.1);\n      -ms-transform: scale(1.1);\n      transform: scale(1.1);\n      background: #f1a85e; }\n      .header--menu:hover .header--add-note--vertical,\n      .header--menu:hover .header--add-note--horizontal,\n      .header--menu:hover .header--menu--vertical,\n      .header--menu:hover .header--menu--horizontal, .header--add-note:hover .header--add-note--vertical,\n      .header--add-note:hover .header--add-note--horizontal,\n      .header--add-note:hover .header--menu--vertical,\n      .header--add-note:hover .header--menu--horizontal {\n        background: white; }\n    .header--menu:active, .header--add-note:active {\n      -webkit-transform: scale(0.9);\n      -ms-transform: scale(0.9);\n      transform: scale(0.9); }\n  .header--menu {\n    right: 19px; }\n    .header--menu .contain-button {\n      height: 14px; }\n    .header--menu--horizontal {\n      position: absolute;\n      background: #f1a85e;\n      height: 2px;\n      width: 100%; }\n      .header--menu--horizontal:nth-child(2) {\n        top: 6px; }\n      .header--menu--horizontal:nth-child(3) {\n        bottom: 0; }\n  .header--add-note {\n    left: 19px; }\n    .header--add-note--vertical {\n      position: absolute;\n      top: 0;\n      left: 9px;\n      display: block;\n      background: #f1a85e;\n      width: 2px;\n      height: 100%; }\n    .header--add-note--horizontal {\n      position: absolute;\n      top: 9px;\n      left: 0;\n      display: block;\n      background: #f1a85e;\n      height: 2px;\n      width: 100%; }\n    @media screen and (max-width: 660px) {\n      .header--add-note {\n        position: fixed;\n        top: auto;\n        left: auto;\n        height: 50px;\n        width: 50px;\n        bottom: 20px;\n        right: 20px; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 280 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32016,11 +31995,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListItems = __webpack_require__(281);
+	var _ListItems = __webpack_require__(279);
 
 	var _ListItems2 = _interopRequireDefault(_ListItems);
 
-	var _Editor = __webpack_require__(287);
+	var _Editor = __webpack_require__(288);
 
 	var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -32028,7 +32007,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ExpandedNote = __webpack_require__(282);
+	var _ExpandedNote = __webpack_require__(280);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
@@ -32048,34 +32027,38 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	__webpack_require__(290);
+	__webpack_require__(291);
 
 	var ListContainer = function (_React$Component) {
 	  _inherits(ListContainer, _React$Component);
 
-	  function ListContainer() {
+	  function ListContainer(props) {
 	    _classCallCheck(this, ListContainer);
 
-	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this));
+	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this, props));
 
 	    _this.state = {
-	      items: []
-
+	      items: {},
+	      error: false
 	    };
 	    _this.addItem = _this.addItem.bind(_this);
 	    _this.removeItem = _this.removeItem.bind(_this);
 	    return _this;
 	  }
+
 	  // Sync state to firebase DB
 
 
 	  _createClass(ListContainer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.ref = _base2.default.syncState('/notes/' + this.props.url, {
+	      var str = window.location.hash;
+	      var strFormat = str.lastIndexOf('/');
+	      var username = str.substring(strFormat + 1);
+
+	      this.ref = _base2.default.syncState('/notes/' + username, {
 	        context: this,
-	        state: 'items',
-	        asArray: true
+	        state: 'items'
 	      });
 	    }
 	  }, {
@@ -32091,10 +32074,10 @@
 	  }, {
 	    key: 'addItem',
 	    value: function addItem(e) {
-	      // Store our items in components 'items' state
-	      var itemArray = this.state.items;
+	      e.preventDefault();
 
-	      console.log(itemArray);
+	      // Store our items in components 'items' state
+	      var items = _extends({}, this.state.items);
 
 	      function dateGet() {
 	        var d = new Date();
@@ -32104,29 +32087,34 @@
 	        return curr_month + "/" + curr_date + "/" + curr_year;
 	      }
 	      // Add list items to end of array 'items'
-	      itemArray.push({
-	        title: this._inputTitle.value,
-	        text: this._inputText.value,
-	        id: Date.now(),
-	        key: Date.now(),
-	        date: dateGet()
-	      });
+	      var title = this._inputTitle.value;
+	      var text = this._inputText.value;
 
-	      this.setState({ items: itemArray });
+	      if (title.length > 1 || text.length > 1) {
 
-	      e.preventDefault();
+	        // this creates a new object in our state object titled 'note-uniqueID'
+	        // with all our details
+	        items['note-' + Date.now()] = {
+	          title: this._inputTitle.value,
+	          text: this._inputText.value,
+	          id: Date.now(),
+	          // key: Date.now(),
+	          date: dateGet()
+	        };
+	        this.setState({ items: items });
+	      } else {
+	        this.setState({ error: true });
+	      }
 	    }
 	  }, {
 	    key: 'removeItem',
 	    value: function removeItem(key) {
 	      // Make 'copy' of existing items
-	      var itemList = _extends({}, this.state.items);
-
-	      // Set key to null to delete
-	      itemList[key] = null;
-
+	      var items = _extends({}, this.state.items);
+	      // Delete our clicked item
+	      items[key] = null;
 	      // Update state
-	      this.setState({ items: itemList });
+	      this.setState({ items: items });
 	    }
 	  }, {
 	    key: 'render',
@@ -32139,6 +32127,7 @@
 	            padding: '0 20px'
 	          } },
 	        _react2.default.createElement(_Editor2.default, {
+	          error: this.state.error,
 	          addItem: this.addItem,
 	          inputTitle: function inputTitle(a) {
 	            return _this2._inputTitle = a;
@@ -32165,7 +32154,7 @@
 	exports.default = ListContainer;
 
 /***/ },
-/* 281 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32180,9 +32169,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ExpandedNote = __webpack_require__(282);
+	var _ExpandedNote = __webpack_require__(280);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
+
+	var _Notes = __webpack_require__(283);
+
+	var _Notes2 = _interopRequireDefault(_Notes);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(240);
 
@@ -32199,7 +32192,7 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	__webpack_require__(285);
+	__webpack_require__(286);
 
 	var ListItems = function (_React$Component) {
 	  _inherits(ListItems, _React$Component);
@@ -32209,48 +32202,6 @@
 
 	    // This will be used to pass data to expanded component
 	    var _this = _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).call(this, props));
-
-	    _this.createTasks = function (item) {
-	      return _react2.default.createElement(
-	        'li',
-	        {
-	          className: 'list--items',
-	          key: item.id
-	        },
-	        _react2.default.createElement('div', {
-	          className: 'list--items--erase',
-	          onClick: function onClick() {
-	            return _this.props.removeItem(item.key);
-	          } }),
-	        _react2.default.createElement(
-	          'h2',
-	          {
-	            className: 'list--items--title' },
-	          item.title
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          {
-	            className: 'list--items--date' },
-	          item.date
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          {
-	            className: 'list--items--note-content' },
-	          item.text
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          {
-	            className: 'list--items--read-more',
-	            onClick: function onClick() {
-	              return _this.handleOpen(item);
-	            } },
-	          'View Note'
-	        )
-	      );
-	    };
 
 	    var itemData = '';
 
@@ -32275,6 +32226,7 @@
 	  }, {
 	    key: 'handleOpen',
 	    value: function handleOpen(item) {
+	      console.log(item);
 	      this.setState({ showExpanded: true });
 	      this.passItemData(item);
 	    }
@@ -32288,17 +32240,28 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      // Get our list object
 	      var listEntries = this.props.entries;
+	      console.log(listEntries);
 
 	      // Map it using createTasks method
-	      var listItems = listEntries.map(this.createTasks);
+
+	      // const listItems = listEntries.map(this.createTasks);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.state.showExpanded ? _react2.default.createElement(_ExpandedNote2.default, {
-	          data: this.itemData,
-	          close: this.handleClose }) : null,
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          {
+	            transitionName: 'fade-in',
+	            transitionEnterTimeout: 300,
+	            transitionLeaveTimeout: 300 },
+	          this.state.showExpanded ? _react2.default.createElement(_ExpandedNote2.default, {
+	            data: this.itemData,
+	            close: this.handleClose }) : null
+	        ),
 	        _react2.default.createElement(
 	          'ul',
 	          { className: 'list' },
@@ -32308,7 +32271,16 @@
 	              transitionName: 'pop-in',
 	              transitionEnterTimeout: 300,
 	              transitionLeaveTimeout: 300 },
-	            listItems
+	            Object.keys(listEntries).map(function (key) {
+	              return _react2.default.createElement(_Notes2.default, {
+	                key: key,
+	                index: key,
+	                details: listEntries[key],
+	                open: _this2.handleOpen,
+	                remove: function remove() {
+	                  return _this2.props.removeItem(key);
+	                } });
+	            })
 	          )
 	        )
 	      );
@@ -32321,7 +32293,7 @@
 	exports.default = ListItems;
 
 /***/ },
-/* 282 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32343,7 +32315,7 @@
 	/*
 	This component takes our inputed data, and outputs it to the DOM
 	*/
-	__webpack_require__(283);
+	__webpack_require__(281);
 
 	function ExpandedNote(props) {
 	  return _react2.default.createElement(
@@ -32372,9 +32344,7 @@
 	        'div',
 	        { className: 'expanded--modal--form-close',
 	          type: 'Close',
-	          onClick: function onClick() {
-	            return props.close;
-	          } },
+	          onClick: props.close },
 	        'Close'
 	      )
 	    )
@@ -32384,13 +32354,13 @@
 	exports.default = ExpandedNote;
 
 /***/ },
-/* 283 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(282);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32399,8 +32369,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32408,29 +32378,90 @@
 		// When the module is disposed, remove the <style> tags
 		module.hot.dispose(function() { update(); });
 	}
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(268)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100vh;\n  background: rgba(241, 168, 94, 0.95);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0 !important;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #023854;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    position: absolute;\n    background: #023854;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(284);
+
+	function Notes(props) {
+	  var details = props.details;
+	  return _react2.default.createElement(
+	    'li',
+	    {
+	      className: 'list--items'
+	    },
+	    _react2.default.createElement('div', {
+	      className: 'list--items--erase',
+	      onClick: props.remove
+	    }),
+	    _react2.default.createElement(
+	      'h2',
+	      {
+	        className: 'list--items--title' },
+	      details.title
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      {
+	        className: 'list--items--date' },
+	      details.date
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      {
+	        className: 'list--items--note-content' },
+	      details.text
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      {
+	        className: 'list--items--read-more',
+	        onClick: function onClick() {
+	          return props.open(details);
+	        } },
+	      'View Note'
+	    )
+	  );
+	}
+
+	exports.default = Notes;
 
 /***/ },
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(268)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100vh;\n  background: rgba(2, 56, 84, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0 !important;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #F1A85E;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    position: absolute;\n    background: #F1A85E;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(286);
+	var content = __webpack_require__(285);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32439,8 +32470,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32450,7 +32481,7 @@
 	}
 
 /***/ },
-/* 286 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32458,13 +32489,53 @@
 
 
 	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: flex;\n  width: 100%; }\n  @media screen and (max-width: 660px) {\n    .list {\n      display: block; } }\n  .list span {\n    padding: 0;\n    display: flex;\n    width: 100%;\n    justify-content: flex-start;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        justify-content: center; } }\n    @media screen and (max-width: 660px) {\n      .list span {\n        display: block; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.2s ease-in-out; }\n    .list--items:hover, .list--items:active {\n      transform: scale(1.02);\n      box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: 0;\n      height: 20px;\n      line-height: 20px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #909090;\n      border-top: 1px solid #d3d3d3;\n      background: #F0F0F0;\n      opacity: 0;\n      transition: all 0.2s ease-in-out; }\n    .list--items--title {\n      font-weight: 600;\n      color: #F1A85E;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      position: absolute;\n      width: 20px;\n      height: 20px;\n      top: -10px;\n      left: -10px;\n      background: #023854;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0; }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.pop-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n", ""]);
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.2s ease-in-out; }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: 0;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #f1a85e;\n      opacity: 0;\n      transition: all 0.2s ease-in-out; }\n    .list--items--title {\n      font-weight: 600;\n      color: #023854;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 20px;\n      height: 20px;\n      top: -10px;\n      left: -10px;\n      background: #f1a85e;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.2s ease-in-out; }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
 
 	// exports
 
 
 /***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(287);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(269)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
 /* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(268)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32487,9 +32558,15 @@
 
 
 	*/
-	__webpack_require__(288);
+	__webpack_require__(289);
 
 	function Editor(props) {
+	  var errorMessage = '';
+	  if (props.error == true) {
+	    document.querySelector('.modal--form').classList.add('errorMessage');
+	    errorMessage = 'You must enter one or more character.';
+	  }
+
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'overlay' },
@@ -32500,9 +32577,7 @@
 	        'form',
 	        {
 	          className: 'modal--form',
-	          onSubmit: function onSubmit() {
-	            return props.addItem();
-	          } },
+	          onSubmit: props.addItem },
 	        _react2.default.createElement(
 	          'h1',
 	          { className: 'modal--form--header' },
@@ -32520,7 +32595,7 @@
 	          ref: props.inputText,
 	          type: 'text',
 	          placeholder: 'Note' }),
-	        _react2.default.createElement(_Button2.default, { type: 'Add Note' })
+	        _react2.default.createElement(_Button2.default, { color: '#f1a85e', type: 'Add Note' })
 	      )
 	    )
 	  );
@@ -32529,13 +32604,13 @@
 	exports.default = Editor;
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(289);
+	var content = __webpack_require__(290);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32544,8 +32619,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32553,29 +32628,29 @@
 		// When the module is disposed, remove the <style> tags
 		module.hot.dispose(function() { update(); });
 	}
-
-/***/ },
-/* 289 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(268)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 1px solid #d3d3d3;\n  border-radius: 0;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100vh;\n  background: rgba(2, 56, 84, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0 !important;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n\n.overlay .modal--form {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #F1A85E;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px; }\n", ""]);
-
-	// exports
-
 
 /***/ },
 /* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
+	exports = module.exports = __webpack_require__(268)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100vh;\n  background: rgba(241, 168, 94, 0.95);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0 !important;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #f1a85e;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 291 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(291);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32584,8 +32659,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32595,7 +32670,7 @@
 	}
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32603,13 +32678,13 @@
 
 
 	// module
-	exports.push([module.id, ".overlay .modal .list-form input.title,\n.overlay .modal .list-form textarea.note {\n  outline: 0;\n  border: 1px solid #d3d3d3;\n  font-size: 1em;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: none;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.2);\n  position: fixed;\n  z-index: 9998; }\n  .overlay .modal {\n    padding: 50px;\n    width: 90%;\n    max-width: 30em;\n    margin: 20px auto 0 !important;\n    background: white;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    .overlay .modal .list-form {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      flex-direction: column; }\n      .overlay .modal .list-form h1 {\n        color: #F1A85E;\n        font-family: \"Open Sans\", sans-serif;\n        font-size: 1.5em;\n        text-align: center;\n        margin-bottom: 20px; }\n      .overlay .modal .list-form input.title {\n        height: 40px; }\n      .overlay .modal .list-form textarea.note {\n        padding-top: 10px;\n        height: 200px; }\n", ""]);
+	exports.push([module.id, ".overlay .modal .list-form input.title,\n.overlay .modal .list-form textarea.note {\n  outline: 0;\n  border: 1px solid #d3d3d3;\n  font-size: 1em;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: none;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.2);\n  position: fixed;\n  z-index: 9998; }\n  .overlay .modal {\n    padding: 50px;\n    width: 90%;\n    max-width: 30em;\n    margin: 20px auto 0 !important;\n    background: white;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    .overlay .modal .list-form {\n      display: -webkit-flex;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-align-items: center;\n      -ms-flex-align: center;\n      align-items: center;\n      -webkit-justify-content: center;\n      -ms-flex-pack: center;\n      justify-content: center;\n      -webkit-flex-direction: column;\n      -ms-flex-direction: column;\n      flex-direction: column; }\n      .overlay .modal .list-form h1 {\n        color: #023854;\n        font-family: \"Open Sans\", sans-serif;\n        font-size: 1.5em;\n        text-align: center;\n        margin-bottom: 20px; }\n      .overlay .modal .list-form input.title {\n        height: 40px; }\n      .overlay .modal .list-form textarea.note {\n        padding-top: 10px;\n        height: 200px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32624,6 +32699,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(184);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32632,7 +32709,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// require('./style.scss');
+	__webpack_require__(294);
 
 	var NotFound = function (_React$Component) {
 	  _inherits(NotFound, _React$Component);
@@ -32647,15 +32724,25 @@
 	    key: 'render',
 	    value: function render() {
 	      // Props are defined here
-	      var entryUser = this.props.params.entryName;
+	      var LoginUser = this.props.params.LoginName;
 	      // Render all our components here
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'notfound' },
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'Nothing Here...'
+	          'div',
+	          { className: 'notfound--card' },
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'notfound--text' },
+	            'You need to create an account or login to access Webnotes.'
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            {
+	              to: '/login' },
+	            'Login'
+	          )
 	        )
 	      );
 	    }
@@ -32667,13 +32754,13 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(294);
+	var content = __webpack_require__(295);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32682,8 +32769,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32691,29 +32778,29 @@
 		// When the module is disposed, remove the <style> tags
 		module.hot.dispose(function() { update(); });
 	}
-
-/***/ },
-/* 294 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(268)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100vh;\n  background: #F1A85E; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100vh;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #023854;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  animation: remove 2s ease-in-out forwards; }\n\n@keyframes remove {\n  0% { }\n  85% {\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    transform: scale(1.2); }\n  100% {\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    transform: scale(0.8); }\n  50% {\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    transform: scale(1); } }\n", ""]);
-
-	// exports
-
 
 /***/ },
 /* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
+	exports = module.exports = __webpack_require__(268)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".notfound {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  width: 100%;\n  background: linear-gradient(360deg, #023854 0%, #03527a 100%); }\n  .notfound--card {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n    align-items: center;\n    -webkit-justify-content: center;\n    -ms-flex-pack: center;\n    justify-content: center;\n    -webkit-flex-direction: column;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    background: white;\n    height: 100px;\n    width: 30%;\n    padding: 20px;\n    min-width: 300px;\n    margin: auto;\n    border-radius: 3px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .notfound--text {\n    color: #023854; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(296);
+	var content = __webpack_require__(297);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32722,8 +32809,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32733,7 +32820,7 @@
 	}
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32741,7 +32828,47 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: #F1A85E;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: flex; }\n", ""]);
+	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100vh;\n  background: linear-gradient(360deg, #023854 0%, #03527a 100%); }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100vh;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #023854;\n  -webkit-animation: fade 0.2s ease-in-out forwards;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    -webkit-animation: grow 0.8s ease-in-out forwards;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  -webkit-animation: remove 2s ease-in-out forwards;\n  animation: remove 2s ease-in-out forwards; }\n\n@-webkit-keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@-webkit-keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@-webkit-keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(299);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(269)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(268)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: linear-gradient(360deg, #023854 0%, #03527a 100%);\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0; }\n", ""]);
 
 	// exports
 

@@ -8,7 +8,7 @@ class Header extends React.Component {
   constructor() {
       super();
       this.state = {
-        list: [],
+        list: []
       }
       this.openEditor = this.openEditor.bind(this);
   }
@@ -33,7 +33,7 @@ class Header extends React.Component {
     const username = this.props.title;
     return (
       <header class="header">
-        <div className="header--add-note" onClick={ this.openEditor }>
+        <div className="header--add-note" onClick={ this.props.triggerEditor }>
           <div className="contain-button">
             <span className="header--add-note--vertical"></span>
             <span className="header--add-note--horizontal"></span>

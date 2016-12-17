@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./style.scss');
+
 function Notes(props) {
   const details = props.details;
   return (

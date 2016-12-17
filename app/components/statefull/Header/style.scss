@@ -22,17 +22,27 @@
 	height: 80px;
 	font-family: $mainFont;
 	width: 100%;
+	@media screen and (max-width: $mobile) {
+		height: 60px;
+	}
 	&--title {
 		/*min-width: 100px;*/
 		padding: 10px 30px;
 		background: white;
 		border-radius: $corners;
 		box-shadow: $shadow;
-		color: $color--main;
+		color: $color--secondary;
 		text-transform: uppercase;
 		font-weight: $bold;
 		font-size: $font--medium;
 		text-align: center;
+		@media screen and (max-width: $mobile) {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			border-radius: 0;
+			line-height: 60px;
+		}
 	 }
 	.contain-button {
 		position: relative;
@@ -41,10 +51,24 @@
 	}
 	&--menu,
 	&--add-note {
+		cursor: pointer;
 		z-index: 9998;
-		position: fixed;
+		position: absolute;
 		top: 19px;
 		@extend %button;
+		&:hover {
+			transform: scale(1.1);
+			background: $color--secondary;
+			.header--add-note--vertical,
+			.header--add-note--horizontal,
+			.header--menu--vertical,
+			.header--menu--horizontal  {
+				background: white;
+			}
+		}
+		&:active {
+			transform: scale(0.9);
+		}
 	}
 	&--menu {
 		right: 19px;
@@ -53,7 +77,7 @@
 		}
 		&--horizontal {
 			position: absolute;
-			background: $color--main;
+			background: $color--secondary;
 			height: 2px;
 			width: 100%;
 			&:nth-child(2) {
@@ -71,7 +95,7 @@
 			top: 0;
 			left: 9px;
 			display: block;
-			background: $color--main;
+			background: $color--secondary;
 			width: 2px;
 			height: 100%;
 		}
@@ -80,9 +104,18 @@
 			top: 9px;
 			left: 0;
 			display: block;
-			background: $color--main;
+			background: $color--secondary;
 			height: 2px;
 			width: 100%;
+		}
+		@media screen and (max-width: $mobile) {
+			position: fixed;
+			top: auto;
+			left: auto;
+			height: 50px;
+			width: 50px;
+			bottom: 20px;
+			right: 20px;
 		}
 	}
 }

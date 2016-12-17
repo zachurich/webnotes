@@ -1,5 +1,9 @@
 @import '../components/variables';
 
+html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 body {
   background: $color--main;
   padding: 0;
@@ -11,4 +15,13 @@ body {
 
 .show {
   display: flex;
+}
+
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="password"] {
+     -webkit-appearance: none;
+     border-radius: 0;
 }

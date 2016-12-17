@@ -1,11 +1,7 @@
 var debug        = process.env.NODE_ENV !== "production";
 var webpack      = require('webpack');
 var path         = require('path');
-var variables    = require('postcss-simple-vars')
-var autoprefixer = require('autoprefixer');
-var precss       = require('precss');
-var minmax       = require('postcss-media-minmax');
-var nested       = require('postcss-nested');
+var autoprefixer = require('autoprefixer-loader');
 var $            = require('jquery');
 
 // Output to build folder
@@ -25,7 +21,7 @@ module.exports = {
     loaders: [
       {
        test: /\.scss$/,
-       loaders: ["style", "css", "sass"]
+       loaders: ["style", "css", "sass" ,"autoprefixer?browsers=last 4 versions"]
       },
       {
         test: /\.jsx?$/,
@@ -37,14 +33,6 @@ module.exports = {
         }
       }
     ]
-  },
-  postcss: function () {
-    return [
-      precss,
-      minmax,
-      nested,
-      autoprefixer
-    ];
   },
   output: {
     path: __dirname + "/build",

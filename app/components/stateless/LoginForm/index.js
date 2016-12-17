@@ -9,16 +9,16 @@ import Button from '../Button/'
 
 // import Login from '../../stateless/';
 
-require('./style.scss');
+require('../form.scss');
 
 function LoginForm(props) {
     const LoginMessage = "Login";
     return (
-        <div className="Login">
+        <div className="entry">
             <form
-              className="Login--form"
+              className="entry--form"
               onSubmit={props.userSubmit}>
-              <h1 className="Login--title" style={{
+              <h1 className="entry--title" style={{
                 letterSpacing: '0.0625em',
               }}>{LoginMessage}</h1>
                 <input
@@ -31,7 +31,7 @@ function LoginForm(props) {
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
-                <Button type="Login"/>
+                <Button color="#023854" type="Login"/>
             </form>
         </div>
     )
