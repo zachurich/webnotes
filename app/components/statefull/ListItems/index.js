@@ -28,7 +28,6 @@ class ListItems extends React.Component {
   }
   // Click updates state and passes item data
   handleOpen(item) {
-    console.log(item);
     this.setState({ showExpanded: true });
     this.passItemData(item);
   }
@@ -40,11 +39,7 @@ class ListItems extends React.Component {
   render() {
       // Get our list object
       const listEntries = this.props.entries;
-      console.log(listEntries);
 
-      // Map it using createTasks method
-
-      // const listItems = listEntries.map(this.createTasks);
       return (
         <div>
           <ReactCSSTransitionGroup

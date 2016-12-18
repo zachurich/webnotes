@@ -27,6 +27,13 @@
         &--note {
           padding-top: 10px;
           height: 200px;
+          @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+            flex: 1;
+            margin-bottom: 40px;
+          }
+        }
+        @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+          height: 100%;
         }
       }
   }

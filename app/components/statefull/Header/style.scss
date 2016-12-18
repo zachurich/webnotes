@@ -87,6 +87,16 @@
 				bottom: 0;
 			}
 		}
+		@media screen and (max-width: $mobile) {
+			position: absolute;
+			top: 10px;
+			left: auto;
+			// height: 50px;
+			// width: 50px;
+			// bottom: 20px;
+			right: 10px;
+			box-shadow: none;
+		}
 	}
 	&--add-note {
 		left: 19px;
@@ -108,6 +118,12 @@
 			height: 2px;
 			width: 100%;
 		}
+		&--vertical,
+		&--horizontal {
+			@media screen and (max-width: $mobile) {
+				background: white;
+			}
+		}
 		@media screen and (max-width: $mobile) {
 			position: fixed;
 			top: auto;
@@ -116,6 +132,7 @@
 			width: 50px;
 			bottom: 20px;
 			right: 20px;
+			background: $color--secondary;
 		}
 	}
 }

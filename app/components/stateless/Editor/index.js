@@ -20,7 +20,6 @@ function Editor (props) {
               onSubmit={props.addItem}>
                 <h1 className="modal--form--header">Write a note</h1>
                 <input
-                  onChange={props.updateText}
                   className="modal--form--title"
                   ref={props.inputTitle}
                   type="text"
@@ -28,6 +27,7 @@ function Editor (props) {
                   placeholder="Title"
                 />
                 <textarea
+                  onChange={props.updateText}
                   className="modal--form--note"
                   ref={props.inputText}
                   type="text"

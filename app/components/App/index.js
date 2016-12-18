@@ -31,10 +31,10 @@ class App extends React.Component {
       .auth()
       .onAuthStateChanged( (user) => {
           if (user) {
-              console.log(`${user.displayName} is signed in!`);
+              // console.log(`${user.displayName} is signed in!`);
               this.setState( { username: user.displayName } );
           } else {
-              console.log("A user is NOT signed in!");
+              // console.log("A user is NOT signed in!");
               this.context.router.push(`/404`);
           }
       });
