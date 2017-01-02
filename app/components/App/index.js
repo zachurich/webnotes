@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import base from '../../config/base';
 import { Link } from 'react-router';
 
-import Header from '../statefull/Header/';
+import Header from '../stateless/Header/';
 import ListContainer from '../statefull/ListContainer/';
 import NotFound from '../stateless/NotFound/';
 
@@ -18,7 +18,7 @@ class App extends React.Component {
         editor: false,
         error: true,
       }
-
+      // let unsubscribe = null;
       this.handleLogOut = this.handleLogOut.bind(this);
       this.handleName = this.handleName.bind(this);
       this.showEditor = this.showEditor.bind(this);
@@ -26,50 +26,60 @@ class App extends React.Component {
       this.handleButtonText = this.handleButtonText.bind(this);
     }
     componentWillMount() {
-      // check for user signed-in status
-      base
-      .auth()
-      .onAuthStateChanged( (user) => {
-          if (user) {
-              // console.log(`${user.displayName} is signed in!`);
-              this.setState( { username: user.displayName } );
-          } else {
-              // console.log("A user is NOT signed in!");
-              this.context.router.push(`/404`);
-          }
+      // firebase returns an unsubscribe function here
+      // when called, so we are saving a reference
+      // that is called on componentWillUnmount
+      this.unsubscribe = base.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ username: user.displayName });
+        }
       });
     }
-
-    handleName(username) {
-      console.log(username);
-      return username;
-    }
-
     componentDidMount() {
       document.addEventListener("touchstart", function() {},false);
       const welcome = document.querySelector('.welcome');
 
       setTimeout(() => {
         welcome.style.display = 'none';
-      }, 3000)
-    }
+      }, 3000);
 
+      /*
+      We're gonna check if the logged-in
+      user's url hash us equal to their
+      username
+      */
+      const str = window.location.hash;
+      const strFormat = str.lastIndexOf('/');
+      const urlHash = str.substring(strFormat + 1);
+
+      /*
+      if hash isn't equal, kick 'em to the 404.
+      this prevents the user from accessing/updating
+      someone else's notes
+      */
+      setTimeout(() => {
+        if(urlHash !== this.state.username) {
+          this.context.router.push('/404');
+        }
+      }, 300);
+    }
+    handleName(username) {
+      return username;
+    }
     handleLogOut() {
       base
         .auth()
           .signOut()
             .then(() => {
                 // Sign-out successful.
-                this.context.router.push('/');
+                this.context.router.push('/login');
             }, function(error) {
                 console.log(error);
             });
     }
-
     showEditor() {
       this.setState({ editor: true });
     }
-
     handleButtonText(e) {
       if (e.target.value) {
         this.setState({ error: false });
@@ -95,6 +105,7 @@ class App extends React.Component {
     }
     render() {
       const username = this.state.username;
+
       const welcomeText = `Welcome, ${ this.state.username }.`;
         // Render all our components here
         return (
@@ -112,6 +123,10 @@ class App extends React.Component {
                   url={ username }/>
             </div>
         );
+    }
+    componentWillUnmount() {
+      this.unsubscribe();
+      document.removeEventListener("touchstart", function() {},false);
     }
 }
 

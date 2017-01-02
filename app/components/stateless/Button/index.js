@@ -4,18 +4,16 @@ require('./style.scss');
 
 class Button extends React.Component {
   render() {
-
     const text = this.props.type;
     const color = this.props.color;
-
+    let style = {
+      height: '40px',
+      lineHeight: '38px',
+    }
     return (
       <button
         onClick={ this.props.close }
-        style={{
-        background: color,
-        height: '40px',
-        lineHeight: '40px',
-        }}
+        style={style}
         type="submit">
         {text}
       </button>

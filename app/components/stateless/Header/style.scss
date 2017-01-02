@@ -11,7 +11,7 @@
 	justify-content: center;
 	background: white;
 	box-shadow: $shadow;
-	transition: all 0.1s ease-in-out;
+	transition: $transition;
 }
 
 .header {
@@ -31,7 +31,7 @@
 		background: white;
 		border-radius: $corners;
 		box-shadow: $shadow;
-		color: $color--tertiary;
+		color: $color--main;
 		text-transform: uppercase;
 		font-weight: $bold;
 		font-size: $font--medium;

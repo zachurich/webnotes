@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background: $color--main;
+  background: rgba($color--tertiary, 1);
   padding: 0;
   margin: 0;
   font-size: 16px;
@@ -24,4 +24,5 @@ input[type="submit"],
 input[type="password"] {
      -webkit-appearance: none;
      border-radius: 0;
+     max-width: 420px;
 }

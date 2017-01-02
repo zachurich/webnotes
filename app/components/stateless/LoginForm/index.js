@@ -11,7 +11,7 @@ import Button from '../Button/'
 
 require('../form.scss');
 
-function LoginForm(props) {
+const LoginForm = (props) => {
     const LoginMessage = "Login";
     return (
         <div className="entry">

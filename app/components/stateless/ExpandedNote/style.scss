@@ -24,6 +24,7 @@
       margin: 0 0 50px;
     }
     &--form-close {
+      border-radius: 0 0 $corners $corners;
       position: absolute;
       background: $color--main;
       width: 100%;

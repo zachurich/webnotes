@@ -31004,7 +31004,7 @@
 	                         where the approiate actions occur to handle the user data
 	                         */
 
-	function RegisterForm(props) {
+	var RegisterForm = function RegisterForm(props) {
 	  var RegisterMessage = "Sign Up";
 	  return _react2.default.createElement(
 	    'div',
@@ -31052,7 +31052,7 @@
 	      )
 	    )
 	  );
-	}
+	};
 
 	exports.default = RegisterForm;
 
@@ -31094,19 +31094,17 @@
 	  _createClass(Button, [{
 	    key: 'render',
 	    value: function render() {
-
 	      var text = this.props.type;
 	      var color = this.props.color;
-
+	      var style = {
+	        height: '40px',
+	        lineHeight: '38px'
+	      };
 	      return _react2.default.createElement(
 	        'button',
 	        {
 	          onClick: this.props.close,
-	          style: {
-	            background: color,
-	            height: '40px',
-	            lineHeight: '40px'
-	          },
+	          style: style,
 	          type: 'submit' },
 	        text
 	      );
@@ -31153,7 +31151,7 @@
 
 
 	// module
-	exports.push([module.id, "button {\n  border-radius: 0 0 3px 3px;\n  position: absolute;\n  background: #EC644B;\n  width: 100%;\n  height: 30px;\n  line-height: 30px;\n  left: 0;\n  bottom: 0;\n  cursor: pointer;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-align: center;\n  text-transform: uppercase;\n  color: white; }\n\nbutton {\n  border: 0;\n  box-shadow: none;\n  outline: none; }\n", ""]);
+	exports.push([module.id, "button {\n  border-radius: 0 0 5px 5px;\n  border-top: 2px solid #F0F0F0;\n  position: absolute;\n  color: #EC644B;\n  background: white;\n  width: 100%;\n  height: 30px;\n  line-height: 30px;\n  left: 0;\n  bottom: 0;\n  cursor: pointer;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-align: center;\n  text-transform: uppercase;\n  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n  button:hover {\n    box-shadow: 0px -5px 0px 0px #ecb54b;\n    border-top: 2px solid transparent;\n    color: white;\n    background: #EC644B; }\n\nbutton {\n  border-left: 0;\n  border-right: 0;\n  border-bottom: 0;\n  box-shadow: none;\n  outline: none; }\n", ""]);
 
 	// exports
 
@@ -31501,7 +31499,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #ecb54b;\n    font-size: 1.1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    position: relative;\n    display: block;\n    padding: 40px 30px 80px;\n    border-radius: 3px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #4b83ec;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n  .entry--form, .entry--entry-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .entry--entry-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 3px; }\n    .entry--entry-link span {\n      color: #ecb54b; }\n", ""]);
+	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #ecb54b;\n    font-size: 1.1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    position: relative;\n    display: block;\n    padding: 40px 30px 80px;\n    border-radius: 5px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #4b83ec;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n  .entry--form, .entry--entry-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 50%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .entry--entry-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 5px; }\n    .entry--entry-link span {\n      color: #ecb54b; }\n", ""]);
 
 	// exports
 
@@ -31590,7 +31588,7 @@
 	        which resulted in 'this' being rebound
 	      */
 	      var authHandler = function authHandler(error, email) {
-	        if (error) console.log(error);else _this3.setupUserInfo();
+	        error ? console.log(error) : _this3.setupUserInfo();
 	      };
 
 	      // Simple email/password authentication
@@ -31655,7 +31653,7 @@
 
 	__webpack_require__(270);
 
-	function LoginForm(props) {
+	var LoginForm = function LoginForm(props) {
 	  var LoginMessage = "Login";
 	  return _react2.default.createElement(
 	    'div',
@@ -31685,7 +31683,7 @@
 	      _react2.default.createElement(_Button2.default, { color: '#4b83ec', type: 'Login' })
 	    )
 	  );
-	}
+	};
 
 	exports.default = LoginForm;
 
@@ -31764,7 +31762,7 @@
 	      editor: false,
 	      error: true
 	    };
-
+	    // let unsubscribe = null;
 	    _this.handleLogOut = _this.handleLogOut.bind(_this);
 	    _this.handleName = _this.handleName.bind(_this);
 	    _this.showEditor = _this.showEditor.bind(_this);
@@ -31778,41 +31776,60 @@
 	    value: function componentWillMount() {
 	      var _this2 = this;
 
-	      // check for user signed-in status
-	      _base2.default.auth().onAuthStateChanged(function (user) {
+	      // firebase returns an unsubscribe function here
+	      // when called, so we are saving a reference
+	      // that is called on componentWillUnmount
+	      this.unsubscribe = _base2.default.auth().onAuthStateChanged(function (user) {
 	        if (user) {
-	          // console.log(`${user.displayName} is signed in!`);
 	          _this2.setState({ username: user.displayName });
-	        } else {
-	          // console.log("A user is NOT signed in!");
-	          _this2.context.router.push('/404');
 	        }
 	      });
 	    }
 	  }, {
-	    key: 'handleName',
-	    value: function handleName(username) {
-	      console.log(username);
-	      return username;
-	    }
-	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this3 = this;
+
 	      document.addEventListener("touchstart", function () {}, false);
 	      var welcome = document.querySelector('.welcome');
 
 	      setTimeout(function () {
 	        welcome.style.display = 'none';
 	      }, 3000);
+
+	      /*
+	      We're gonna check if the logged-in
+	      user's url hash us equal to their
+	      username
+	      */
+	      var str = window.location.hash;
+	      var strFormat = str.lastIndexOf('/');
+	      var urlHash = str.substring(strFormat + 1);
+
+	      /*
+	      if hash isn't equal, kick 'em to the 404.
+	      this prevents the user from accessing/updating
+	      someone else's notes
+	      */
+	      setTimeout(function () {
+	        if (urlHash !== _this3.state.username) {
+	          _this3.context.router.push('/404');
+	        }
+	      }, 300);
+	    }
+	  }, {
+	    key: 'handleName',
+	    value: function handleName(username) {
+	      return username;
 	    }
 	  }, {
 	    key: 'handleLogOut',
 	    value: function handleLogOut() {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      _base2.default.auth().signOut().then(function () {
 	        // Sign-out successful.
-	        _this3.context.router.push('/');
+	        _this4.context.router.push('/login');
 	      }, function (error) {
 	        console.log(error);
 	      });
@@ -31840,6 +31857,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var username = this.state.username;
+
 	      var welcomeText = 'Welcome, ' + this.state.username + '.';
 	      // Render all our components here
 	      return _react2.default.createElement(
@@ -31857,6 +31875,12 @@
 	          close: this.closeEditor,
 	          url: username })
 	      );
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.unsubscribe();
+	      document.removeEventListener("touchstart", function () {}, false);
 	    }
 	  }]);
 
@@ -31879,94 +31903,50 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Header Component
+	__webpack_require__(276); // Header Component
 
 
-	__webpack_require__(276);
-
-	var Header = function (_React$Component) {
-	  _inherits(Header, _React$Component);
-
-	  function Header() {
-	    _classCallCheck(this, Header);
-
-	    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
-
-	    _this.state = {
-	      list: []
-	    };
-	    _this.openEditor = _this.openEditor.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(Header, [{
-	    key: 'openEditor',
-	    value: function openEditor() {
-	      var button = document.querySelector('.add-note');
-	      var editor = document.querySelector('.overlay');
-	      var submit = document.querySelector('button');
-
-	      var title = document.querySelector('.modal--form--title');
-	      var note = document.querySelector('.modal--form--note');
-
-	      editor.style.display = 'flex';
-	      submit.addEventListener('click', function () {
-	        if (title.value.length < 1 || note < 1) return;else editor.style.display = "none";
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var username = this.props.title;
-	      return _react2.default.createElement(
-	        'header',
-	        { className: 'header' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'header--add-note', onClick: this.props.triggerEditor },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'contain-button' },
-	            _react2.default.createElement('span', { className: 'header--add-note--vertical' }),
-	            _react2.default.createElement('span', { className: 'header--add-note--horizontal' })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'header--title', style: {
-	              letterSpacing: '0.0625em'
-	            } },
-	          username
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'header--menu', onClick: this.props.logout },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'contain-button' },
-	            _react2.default.createElement('span', { className: 'header--menu--horizontal' }),
-	            _react2.default.createElement('span', { className: 'header--menu--horizontal' }),
-	            _react2.default.createElement('span', { className: 'header--menu--horizontal' })
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Header;
-	}(_react2.default.Component);
+	var Header = function Header(props) {
+	  var username = props.title;
+	  return _react2.default.createElement(
+	    'header',
+	    { className: 'header' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'header--add-note', onClick: props.triggerEditor },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'contain-button' },
+	        _react2.default.createElement('span', { className: 'header--add-note--vertical' }),
+	        _react2.default.createElement('span', { className: 'header--add-note--horizontal' })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'header--title', style: {
+	          letterSpacing: '0.0625em'
+	        } },
+	      username
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'header--menu', onClick: props.logout },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'contain-button' },
+	        _react2.default.createElement('span', { className: 'header--menu--horizontal' }),
+	        _react2.default.createElement('span', { className: 'header--menu--horizontal' }),
+	        _react2.default.createElement('span', { className: 'header--menu--horizontal' })
+	      )
+	    )
+	  );
+	};
 
 	exports.default = Header;
 
@@ -32005,7 +31985,7 @@
 
 
 	// module
-	exports.push([module.id, ".header--menu, .header--add-note {\n  height: 42px;\n  width: 42px;\n  border-radius: 50%;\n  top: 0;\n  position: absolute;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  background: white;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n  transition: all 0.1s ease-in-out; }\n\n.header {\n  position: relative;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  height: 80px;\n  font-family: \"Open Sans\", sans-serif;\n  width: 100%; }\n  @media screen and (max-width: 660px) {\n    .header {\n      height: 60px; } }\n  .header--title {\n    /*min-width: 100px;*/\n    padding: 10px 30px;\n    background: white;\n    border-radius: 3px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    color: #4b83ec;\n    text-transform: uppercase;\n    font-weight: 700;\n    font-size: 1em;\n    text-align: center; }\n    @media screen and (max-width: 660px) {\n      .header--title {\n        width: 100%;\n        height: 100%;\n        padding: 0;\n        border-radius: 0;\n        line-height: 60px; } }\n  .header .contain-button {\n    position: relative;\n    width: 20px;\n    height: 20px; }\n  .header--menu, .header--add-note {\n    cursor: pointer;\n    z-index: 9998;\n    position: absolute;\n    top: 19px; }\n    .header--menu:hover, .header--add-note:hover {\n      -webkit-transform: scale(1.1);\n      -ms-transform: scale(1.1);\n      transform: scale(1.1);\n      background: #ecb54b; }\n      .header--menu:hover .header--add-note--vertical,\n      .header--menu:hover .header--add-note--horizontal,\n      .header--menu:hover .header--menu--vertical,\n      .header--menu:hover .header--menu--horizontal, .header--add-note:hover .header--add-note--vertical,\n      .header--add-note:hover .header--add-note--horizontal,\n      .header--add-note:hover .header--menu--vertical,\n      .header--add-note:hover .header--menu--horizontal {\n        background: white; }\n    .header--menu:active, .header--add-note:active {\n      -webkit-transform: scale(0.9);\n      -ms-transform: scale(0.9);\n      transform: scale(0.9); }\n  .header--menu {\n    right: 19px; }\n    .header--menu .contain-button {\n      height: 14px; }\n    .header--menu--horizontal {\n      position: absolute;\n      background: #ecb54b;\n      height: 2px;\n      width: 100%; }\n      .header--menu--horizontal:nth-child(2) {\n        top: 6px; }\n      .header--menu--horizontal:nth-child(3) {\n        bottom: 0; }\n    @media screen and (max-width: 660px) {\n      .header--menu {\n        position: absolute;\n        top: 10px;\n        left: auto;\n        right: 10px;\n        box-shadow: none; } }\n  .header--add-note {\n    left: 19px; }\n    .header--add-note--vertical {\n      position: absolute;\n      top: 0;\n      left: 9px;\n      display: block;\n      background: #ecb54b;\n      width: 2px;\n      height: 100%; }\n    .header--add-note--horizontal {\n      position: absolute;\n      top: 9px;\n      left: 0;\n      display: block;\n      background: #ecb54b;\n      height: 2px;\n      width: 100%; }\n    @media screen and (max-width: 660px) {\n      .header--add-note--vertical, .header--add-note--horizontal {\n        background: white; } }\n    @media screen and (max-width: 660px) {\n      .header--add-note {\n        position: fixed;\n        top: auto;\n        left: auto;\n        height: 50px;\n        width: 50px;\n        bottom: 20px;\n        right: 20px;\n        background: #ecb54b; } }\n", ""]);
+	exports.push([module.id, ".header--menu, .header--add-note {\n  height: 42px;\n  width: 42px;\n  border-radius: 50%;\n  top: 0;\n  position: absolute;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  background: white;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n  transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n\n.header {\n  position: relative;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  height: 80px;\n  font-family: \"Open Sans\", sans-serif;\n  width: 100%; }\n  @media screen and (max-width: 660px) {\n    .header {\n      height: 60px; } }\n  .header--title {\n    /*min-width: 100px;*/\n    padding: 10px 30px;\n    background: white;\n    border-radius: 5px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    color: #EC644B;\n    text-transform: uppercase;\n    font-weight: 700;\n    font-size: 1em;\n    text-align: center; }\n    @media screen and (max-width: 660px) {\n      .header--title {\n        width: 100%;\n        height: 100%;\n        padding: 0;\n        border-radius: 0;\n        line-height: 60px; } }\n  .header .contain-button {\n    position: relative;\n    width: 20px;\n    height: 20px; }\n  .header--menu, .header--add-note {\n    cursor: pointer;\n    z-index: 9998;\n    position: absolute;\n    top: 19px; }\n    .header--menu:hover, .header--add-note:hover {\n      -webkit-transform: scale(1.1);\n      -ms-transform: scale(1.1);\n      transform: scale(1.1);\n      background: #ecb54b; }\n      .header--menu:hover .header--add-note--vertical,\n      .header--menu:hover .header--add-note--horizontal,\n      .header--menu:hover .header--menu--vertical,\n      .header--menu:hover .header--menu--horizontal, .header--add-note:hover .header--add-note--vertical,\n      .header--add-note:hover .header--add-note--horizontal,\n      .header--add-note:hover .header--menu--vertical,\n      .header--add-note:hover .header--menu--horizontal {\n        background: white; }\n    .header--menu:active, .header--add-note:active {\n      -webkit-transform: scale(0.9);\n      -ms-transform: scale(0.9);\n      transform: scale(0.9); }\n  .header--menu {\n    right: 19px; }\n    .header--menu .contain-button {\n      height: 14px; }\n    .header--menu--horizontal {\n      position: absolute;\n      background: #ecb54b;\n      height: 2px;\n      width: 100%; }\n      .header--menu--horizontal:nth-child(2) {\n        top: 6px; }\n      .header--menu--horizontal:nth-child(3) {\n        bottom: 0; }\n    @media screen and (max-width: 660px) {\n      .header--menu {\n        position: absolute;\n        top: 10px;\n        left: auto;\n        right: 10px;\n        box-shadow: none; } }\n  .header--add-note {\n    left: 19px; }\n    .header--add-note--vertical {\n      position: absolute;\n      top: 0;\n      left: 9px;\n      display: block;\n      background: #ecb54b;\n      width: 2px;\n      height: 100%; }\n    .header--add-note--horizontal {\n      position: absolute;\n      top: 9px;\n      left: 0;\n      display: block;\n      background: #ecb54b;\n      height: 2px;\n      width: 100%; }\n    @media screen and (max-width: 660px) {\n      .header--add-note--vertical, .header--add-note--horizontal {\n        background: white; } }\n    @media screen and (max-width: 660px) {\n      .header--add-note {\n        position: fixed;\n        top: auto;\n        left: auto;\n        height: 50px;\n        width: 50px;\n        bottom: 20px;\n        right: 20px;\n        background: #ecb54b; } }\n", ""]);
 
 	// exports
 
@@ -32075,8 +32055,7 @@
 	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this, props));
 
 	    _this.state = {
-	      items: {},
-	      error: true
+	      items: {}
 	    };
 	    _this.addItem = _this.addItem.bind(_this);
 	    _this.removeItem = _this.removeItem.bind(_this);
@@ -32097,11 +32076,6 @@
 	        context: this,
 	        state: 'items'
 	      });
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      _base2.default.removeBinding(this.ref);
 	    }
 	  }, {
 	    key: 'componentWillUpdate',
@@ -32127,8 +32101,7 @@
 	      var title = this._inputTitle.value;
 	      var text = this._inputText.value;
 
-	      if (title.length > 1 || text.length > 1) {
-
+	      if (title.length > 1 && text.length > 1) {
 	        // this creates a new object in our state object titled 'note-uniqueID'
 	        // with all our details
 	        items['note-' + Date.now()] = {
@@ -32165,8 +32138,8 @@
 	          _reactAddonsCssTransitionGroup2.default,
 	          {
 	            transitionName: 'fade-in',
-	            transitionEnterTimeout: 300,
-	            transitionLeaveTimeout: 300 },
+	            transitionEnterTimeout: 150,
+	            transitionLeaveTimeout: 150 },
 	          this.props.editor ? _react2.default.createElement(_Editor2.default, {
 	            updateText: this.props.updateText,
 	            error: this.props.error,
@@ -32189,6 +32162,11 @@
 	          })
 	        )
 	      );
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      _base2.default.removeBinding(this.ref);
 	    }
 	  }]);
 
@@ -32308,8 +32286,8 @@
 	            _reactAddonsCssTransitionGroup2.default,
 	            {
 	              transitionName: 'pop-in',
-	              transitionEnterTimeout: 300,
-	              transitionLeaveTimeout: 300 },
+	              transitionEnterTimeout: 150,
+	              transitionLeaveTimeout: 150 },
 	            Object.keys(listEntries).map(function (key) {
 	              return _react2.default.createElement(_Notes2.default, {
 	                key: key,
@@ -32427,7 +32405,7 @@
 
 
 	// module
-	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: #4b83ec;\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    position: absolute;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(75, 131, 236, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 0 0 5px 5px;\n    position: absolute;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
 
 	// exports
 
@@ -32450,7 +32428,7 @@
 
 	__webpack_require__(284);
 
-	function Notes(props) {
+	var Notes = function Notes(props) {
 	  var details = props.details;
 	  return _react2.default.createElement(
 	    'li',
@@ -32489,7 +32467,7 @@
 	      'View Note'
 	    )
 	  );
-	}
+	};
 
 	exports.default = Notes;
 
@@ -32528,7 +32506,7 @@
 
 
 	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.2s ease-in-out; }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #4b83ec;\n      opacity: 0;\n      transition: all 0.2s ease-in-out; }\n    .list--items--title {\n      font-weight: 600;\n      color: #EC644B;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 20px;\n      height: 20px;\n      top: -10px;\n      left: -10px;\n      background: #ecb54b;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.2s ease-in-out; }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #EC644B;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items--title {\n      font-weight: 600;\n      color: #EC644B;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 20px;\n      height: 20px;\n      top: -10px;\n      left: -10px;\n      background: #ecb54b;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
 
 	// exports
 
@@ -32568,7 +32546,7 @@
 
 
 	// module
-	exports.push([module.id, ".pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+	exports.push([module.id, ".pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 150ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 150ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0.1; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 150ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 150ms ease-in-out; }\n", ""]);
 
 	// exports
 
@@ -32675,7 +32653,7 @@
 
 
 	// module
-	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: #4b83ec;\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 2px;\n  box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1;\n        margin-bottom: 40px; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
+	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(75, 131, 236, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
 
 	// exports
 
@@ -32690,8 +32668,6 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -32700,53 +32676,30 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	__webpack_require__(292);
 
-	var NotFound = function (_React$Component) {
-	  _inherits(NotFound, _React$Component);
-
-	  function NotFound() {
-	    _classCallCheck(this, NotFound);
-
-	    return _possibleConstructorReturn(this, (NotFound.__proto__ || Object.getPrototypeOf(NotFound)).apply(this, arguments));
-	  }
-
-	  _createClass(NotFound, [{
-	    key: 'render',
-	    value: function render() {
-	      // Props are defined here
-	      var LoginUser = this.props.params.LoginName;
-	      // Render all our components here
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'notfound' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'notfound--card' },
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'notfound--text' },
-	            'You need to create an account or login to access Webnotes.'
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            {
-	              to: '/login' },
-	            'Login'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return NotFound;
-	}(_react2.default.Component);
+	var NotFound = function NotFound() {
+	  // Render all our components here
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'notfound' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'notfound--card' },
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'notfound--text' },
+	        'You need to login to access Webnotes.'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        {
+	          to: '/login' },
+	        'Login'
+	      )
+	    )
+	  );
+	};
 
 	exports.default = NotFound;
 
@@ -32785,7 +32738,7 @@
 
 
 	// module
-	exports.push([module.id, ".notfound {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  width: 100%;\n  background: #EC644B; }\n  .notfound--card {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n    align-items: center;\n    -webkit-justify-content: center;\n    -ms-flex-pack: center;\n    justify-content: center;\n    -webkit-flex-direction: column;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    background: white;\n    height: 100px;\n    width: 30%;\n    padding: 20px;\n    min-width: 300px;\n    margin: auto;\n    border-radius: 3px;\n    box-shadow: 0px 12px 44px -6px rgba(0, 0, 0, 0.3); }\n  .notfound--text {\n    color: #EC644B; }\n", ""]);
+	exports.push([module.id, ".notfound {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  width: 100%;\n  background: #EC644B; }\n  .notfound--card {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n    align-items: center;\n    -webkit-justify-content: center;\n    -ms-flex-pack: center;\n    justify-content: center;\n    -webkit-flex-direction: column;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    background: white;\n    height: 100px;\n    width: 30%;\n    padding: 20px;\n    min-width: 300px;\n    margin: auto;\n    border-radius: 5px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .notfound--text {\n    color: #EC644B; }\n", ""]);
 
 	// exports
 
@@ -32825,7 +32778,7 @@
 
 
 	// module
-	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100%;\n  background: #EC644B; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100%;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #4b83ec;\n  -webkit-animation: fade 0.2s ease-in-out forwards;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    -webkit-animation: grow 0.8s ease-in-out forwards;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  -webkit-animation: remove 2s ease-in-out forwards;\n  animation: remove 2s ease-in-out forwards; }\n\n@-webkit-keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@-webkit-keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@-webkit-keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n", ""]);
+	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100%; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100%;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #4b83ec;\n  -webkit-animation: fade 0.2s ease-in-out forwards;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    -webkit-animation: grow 0.8s ease-in-out forwards;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  -webkit-animation: remove 2s ease-in-out forwards;\n  animation: remove 2s ease-in-out forwards; }\n\n@-webkit-keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@-webkit-keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@-webkit-keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n", ""]);
 
 	// exports
 
@@ -32865,7 +32818,7 @@
 
 
 	// module
-	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #EC644B;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0; }\n", ""]);
+	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4b83ec;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 420px; }\n", ""]);
 
 	// exports
 

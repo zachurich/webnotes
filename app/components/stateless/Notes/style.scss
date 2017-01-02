@@ -28,7 +28,7 @@
     position: relative;
     margin-bottom: 16px;
     position: relative;
-    transition: all 0.2s ease-in-out;
+    transition: $transition;
     &:hover,
     &:active {
       transform: scale(1.02);
@@ -65,7 +65,7 @@
       text-transform: uppercase;
       font-weight: $semi-bold;
       color: white;
-      background: $color--tertiary;
+      background: $color--main;
       opacity: 0;
       transition: $transition;
     }

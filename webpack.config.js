@@ -2,7 +2,6 @@ var debug        = process.env.NODE_ENV !== "production";
 var webpack      = require('webpack');
 var path         = require('path');
 var autoprefixer = require('autoprefixer-loader');
-var $            = require('jquery');
 
 // Output to build folder
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,7 +13,6 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: [
-      // "webpack/hot/only-dev-server",
       "./app/config/Root.js"
   ],
   module: {

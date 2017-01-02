@@ -22,7 +22,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: $color--tertiary;
+  background: rgba($color--tertiary, 0.9);
   position: fixed;
   z-index: 9998;
 }
@@ -35,9 +35,10 @@
   max-width: 30em;
   margin: 20px auto 0;
   background: white;
-  border-radius: 2px;
+  border-radius: $corners;
   box-shadow: $shadow;
   @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+    border-radius: 0;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -46,8 +47,10 @@
 
 %button {
   border-radius: 0 0 $corners $corners;
+  border-top: 2px solid $offWhite;
   position: absolute;
-  background: $color--main;
+  color: $color--main;
+  background: white;
   width: 100%;
   height: 30px;
   line-height: 30px;
@@ -58,5 +61,11 @@
   font-weight: $semi-bold;
   text-align: center;
   text-transform: uppercase;
-  color: white;
+  transition: $transition--button;
+  &:hover {
+    box-shadow: 0px -5px 0px 0px $color--secondary;
+    border-top: 2px solid transparent;
+    color: white;
+    background: $color--main;
+  }
 }

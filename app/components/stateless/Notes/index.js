@@ -2,7 +2,7 @@ import React from 'react';
 
 require('./style.scss');
 
-function Notes(props) {
+const Notes = (props) => {
   const details = props.details;
   return (
     <li

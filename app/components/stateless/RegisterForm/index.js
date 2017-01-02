@@ -12,7 +12,7 @@ import { Link } from 'react-router';
 
 require('../form.scss');
 
-function RegisterForm(props) {
+const RegisterForm = (props) => {
     const RegisterMessage = "Sign Up";
     return (
         <div className="entry">

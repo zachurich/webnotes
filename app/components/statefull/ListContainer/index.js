@@ -17,8 +17,7 @@ class ListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
-      error: true,
+      items: {}
     }
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -35,9 +34,6 @@ class ListContainer extends React.Component {
         context: this,
         state: 'items'
       });
-  }
-  componentWillUnmount() {
-    base.removeBinding(this.ref);
   }
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem(`user-${nextProps.url}`,
@@ -60,8 +56,7 @@ class ListContainer extends React.Component {
     const title = this._inputTitle.value;
     const text = this._inputText.value;
 
-    if (title.length > 1 || text.length > 1) {
-
+    if (title.length > 1 && text.length > 1) {
       // this creates a new object in our state object titled 'note-uniqueID'
       // with all our details
       items[`note-${Date.now()}`] = {
@@ -89,8 +84,8 @@ class ListContainer extends React.Component {
       }}>
         <ReactCSSTransitionGroup
           transitionName="fade-in"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
+          transitionEnterTimeout={150}
+          transitionLeaveTimeout={150}>
           { this.props.editor ?
             <Editor
               updateText={ this.props.updateText }
@@ -109,6 +104,9 @@ class ListContainer extends React.Component {
         </div>
       </div>
     );
+  }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
   }
 }
 

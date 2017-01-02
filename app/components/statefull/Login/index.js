@@ -38,8 +38,7 @@ class Login extends React.Component {
           which resulted in 'this' being rebound
         */
         const authHandler = (error, email) => {
-          if (error) console.log(error);
-            else this.setupUserInfo();
+          error ? console.log(error) : this.setupUserInfo();
         }
 
         // Simple email/password authentication
