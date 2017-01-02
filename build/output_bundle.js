@@ -69,15 +69,15 @@
 
 	var _Register2 = _interopRequireDefault(_Register);
 
-	var _Login = __webpack_require__(272);
+	var _Login = __webpack_require__(273);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _App = __webpack_require__(274);
+	var _App = __webpack_require__(275);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _NotFound = __webpack_require__(291);
+	var _NotFound = __webpack_require__(292);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -87,7 +87,7 @@
 	// This is the main component to load all components
 
 	// Lets start by importing all the stuff we need for React to work
-	__webpack_require__(296);
+	__webpack_require__(297);
 	// require('./reset.scss');
 
 	var Root = function Root() {
@@ -28997,6 +28997,8 @@
 
 	var _RegisterForm2 = _interopRequireDefault(_RegisterForm);
 
+	var _helpers = __webpack_require__(270);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29017,6 +29019,11 @@
 	    _classCallCheck(this, Register);
 
 	    var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this));
+
+	    _this.state = {
+	      validation: false,
+	      error: ''
+	    };
 
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
@@ -29044,36 +29051,34 @@
 	      var username = this.username.value;
 	      var email = this.email.value;
 	      var password = this.password.value;
-	      if (username.length > 1 && email.length > 10 && password.length > 3) {
-
+	      var errorCode = void 0;
+	      var errorMessage = void 0;
+	      if (username.length > 1) {
 	        _base2.default.auth().createUserWithEmailAndPassword(email, password)
 	        // Returns success
 	        .then(function (success) {
-	          console.log('Success!');
 	          var user = _base2.default.auth().currentUser;
 	          // Update profile's display name with 'username' input value
 	          user.updateProfile({
 	            displayName: username
-	          }).then(function () {
-	            if (user != null) {
-	              console.log(user);
-	              user.providerData.forEach(function (profile) {});
-	            }
-	          }, function (error) {
-	            document.write("This user cannot be updated at this time.");
 	          });
 	          _this2.context.router.push('/login');
 	        })
 	        // Returns Error
 	        .catch(function (error) {
-	          // Handle Errors here.
-	          var errorCode = error.code;
-	          var errorMessage = error.message;
-	          //
-	          // if (error) {
-	          //     console.log(errorCode);
-	          // }
-	          console.log(errorCode, errorMessage);
+	          console.log(error);
+	          // Handle Errors here
+	          errorCode = error.code;
+	          _this2.setState({
+	            validation: true,
+	            error: (0, _helpers.handleMessage)(errorCode)
+	          });
+	        });
+	      } else {
+	        errorMessage = "You must enter a username.";
+	        this.setState({
+	          validation: true,
+	          error: errorMessage
 	        });
 	      }
 	    }
@@ -29082,11 +29087,12 @@
 	    value: function render() {
 	      var _this3 = this;
 
-	      var RegisterMessage = "Enter Your Name to Begin";
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(_RegisterForm2.default, {
+	          validation: this.state.validation,
+	          errorMessage: this.state.error,
 	          userSubmit: this.handleSubmit,
 	          username: function username(input) {
 	            _this3.username = input;
@@ -30994,15 +31000,19 @@
 
 	var _reactRouter = __webpack_require__(184);
 
+	var _helpers = __webpack_require__(270);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// import Register from '../../stateless/';
 
-	__webpack_require__(270); /*
-	                         This component is the UI for the 'Register' container component.
-	                         Data poassed in though user input is sent up to the container
-	                         where the approiate actions occur to handle the user data
-	                         */
+	/*
+	This component is the UI for the 'Register' container component.
+	Data poassed in though user input is sent up to the container
+	where the approiate actions occur to handle the user data
+	*/
+
+	__webpack_require__(271);
 
 	var RegisterForm = function RegisterForm(props) {
 	  var RegisterMessage = "Sign Up";
@@ -31016,9 +31026,7 @@
 	        onSubmit: props.userSubmit },
 	      _react2.default.createElement(
 	        'h1',
-	        { className: 'entry--title', style: {
-	            letterSpacing: '0.0625em'
-	          } },
+	        { className: 'entry--title' },
 	        RegisterMessage
 	      ),
 	      _react2.default.createElement('input', {
@@ -31036,7 +31044,10 @@
 	        placeholder: 'Password',
 	        type: 'password',
 	        ref: props.password }),
-	      _react2.default.createElement(_Button2.default, { color: '#4b83ec', type: 'Register' })
+	      _react2.default.createElement(_Button2.default, {
+	        color: '#4b83ec',
+	        type: (0, _helpers.handleValidation)('Login', props.errorMessage, props.validation)
+	      })
 	    ),
 	    _react2.default.createElement(
 	      _reactRouter.Link,
@@ -31151,7 +31162,7 @@
 
 
 	// module
-	exports.push([module.id, "button {\n  border-radius: 0 0 5px 5px;\n  border-top: 2px solid #F0F0F0;\n  position: absolute;\n  color: #EC644B;\n  background: white;\n  width: 100%;\n  height: 30px;\n  line-height: 30px;\n  left: 0;\n  bottom: 0;\n  cursor: pointer;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-align: center;\n  text-transform: uppercase;\n  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n  button:hover {\n    box-shadow: 0px -5px 0px 0px #ecb54b;\n    border-top: 2px solid transparent;\n    color: white;\n    background: #EC644B; }\n\nbutton {\n  border-left: 0;\n  border-right: 0;\n  border-bottom: 0;\n  box-shadow: none;\n  outline: none; }\n", ""]);
+	exports.push([module.id, "button {\n  border-radius: 0 0 5px 5px;\n  border-top: 2px solid #F0F0F0;\n  position: absolute;\n  color: #EC644B;\n  background: white;\n  width: 100%;\n  height: 30px;\n  line-height: 30px;\n  left: 0;\n  bottom: 0;\n  cursor: pointer;\n  font-size: 0.8em;\n  font-weight: 600;\n  text-align: center;\n  text-transform: uppercase;\n  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n  button:hover, button:active {\n    box-shadow: 0px -5px 0px 0px #ecb54b;\n    border-top: 2px solid transparent;\n    color: white;\n    background: #EC644B; }\n\nbutton {\n  border-left: 0;\n  border-right: 0;\n  border-bottom: 0;\n  box-shadow: none;\n  outline: none; }\n", ""]);
 
 	// exports
 
@@ -31466,12 +31477,49 @@
 
 /***/ },
 /* 270 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.handleValidation = handleValidation;
+	exports.handleMessage = handleMessage;
+	// This passes the message to the button to be displayed
+	function handleValidation(initial, message, validation) {
+	  if (validation === true) {
+	    return message;
+	  }
+	  return initial;
+	}
+
+	// This is used to decide what message to display
+	// in the button validation
+	function handleMessage(error) {
+	  if (error === 'auth/email-already-in-use') {
+	    return 'Email already registered.';
+	  }
+	  if (error === 'auth/weak-password') {
+	    return 'Password must be atleast 6 characters.';
+	  }
+	  if (error === 'auth/invalid-email') {
+	    return 'You must enter a valid email.';
+	  }
+	  if (error === "auth/wrong-password") {
+	    return 'Please enter a valid password.';
+	  }
+	  return initial;
+	}
+
+/***/ },
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -31491,7 +31539,7 @@
 	}
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -31505,7 +31553,7 @@
 
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31528,9 +31576,11 @@
 
 	var _base2 = _interopRequireDefault(_base);
 
-	var _LoginForm = __webpack_require__(273);
+	var _LoginForm = __webpack_require__(274);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
+
+	var _helpers = __webpack_require__(270);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31553,7 +31603,13 @@
 
 	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 
+	    _this.state = {
+	      validation: false,
+	      error: ''
+	    };
+
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.setupUserInfo = _this.setupUserInfo.bind(_this);
 	    return _this;
 	  }
 
@@ -31582,13 +31638,18 @@
 	      // get the data from the input
 	      var email = this.email.value;
 	      var password = this.password.value;
+
+	      // if (password > 4)
 	      /*
 	        Using an arrow function here allows 'this' to remain properly bound.
 	        The syntax used before was 'cont authHandler = function authHandler(...)'
 	        which resulted in 'this' being rebound
 	      */
 	      var authHandler = function authHandler(error, email) {
-	        error ? console.log(error) : _this3.setupUserInfo();
+	        error ? _this3.setState({
+	          validation: true,
+	          error: (0, _helpers.handleMessage)(error.code)
+	        }) : _this3.setupUserInfo();
 	      };
 
 	      // Simple email/password authentication
@@ -31602,15 +31663,20 @@
 	    value: function render() {
 	      var _this4 = this;
 
-	      return _react2.default.createElement(_LoginForm2.default, {
-	        userSubmit: this.handleSubmit,
-	        email: function email(input) {
-	          _this4.email = input;
-	        },
-	        password: function password(input) {
-	          _this4.password = input;
-	        }
-	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_LoginForm2.default, {
+	          validation: this.state.validation,
+	          errorMessage: this.state.error,
+	          userSubmit: this.handleSubmit,
+	          email: function email(input) {
+	            _this4.email = input;
+	          },
+	          password: function password(input) {
+	            _this4.password = input;
+	          } })
+	      );
 	    }
 	  }]);
 
@@ -31624,7 +31690,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31641,20 +31707,19 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _helpers = __webpack_require__(270);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// import Login from '../../stateless/';
 
-	/*
-	This component is the UI for the 'Login' container component.
-	Data poassed in though user input is sent up to the container
-	where the approiate actions occur to handle the user data
-	*/
-
-	__webpack_require__(270);
+	__webpack_require__(271); /*
+	                         This component is the UI for the 'Login' container component.
+	                         Data poassed in though user input is sent up to the container
+	                         where the approiate actions occur to handle the user data
+	                         */
 
 	var LoginForm = function LoginForm(props) {
-	  var LoginMessage = "Login";
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'entry' },
@@ -31665,10 +31730,8 @@
 	        onSubmit: props.userSubmit },
 	      _react2.default.createElement(
 	        'h1',
-	        { className: 'entry--title', style: {
-	            letterSpacing: '0.0625em'
-	          } },
-	        LoginMessage
+	        { className: 'entry--title' },
+	        'Login'
 	      ),
 	      _react2.default.createElement('input', {
 	        className: 'input--username',
@@ -31680,7 +31743,9 @@
 	        placeholder: 'Password',
 	        type: 'password',
 	        ref: props.password }),
-	      _react2.default.createElement(_Button2.default, { color: '#4b83ec', type: 'Login' })
+	      _react2.default.createElement(_Button2.default, {
+	        color: '#4b83ec',
+	        type: (0, _helpers.handleValidation)('Login', props.errorMessage, props.validation) })
 	    )
 	  );
 	};
@@ -31688,7 +31753,7 @@
 	exports.default = LoginForm;
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31713,15 +31778,15 @@
 
 	var _reactRouter = __webpack_require__(184);
 
-	var _Header = __webpack_require__(275);
+	var _Header = __webpack_require__(276);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListContainer = __webpack_require__(278);
+	var _ListContainer = __webpack_require__(279);
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _NotFound = __webpack_require__(291);
+	var _NotFound = __webpack_require__(292);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -31733,7 +31798,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(294);
+	__webpack_require__(295);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -31762,7 +31827,6 @@
 	      editor: false,
 	      error: true
 	    };
-	    // let unsubscribe = null;
 	    _this.handleLogOut = _this.handleLogOut.bind(_this);
 	    _this.handleName = _this.handleName.bind(_this);
 	    _this.showEditor = _this.showEditor.bind(_this);
@@ -31894,7 +31958,7 @@
 	exports.default = App;
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31909,7 +31973,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(276); // Header Component
+	__webpack_require__(277); // Header Component
 
 
 	var Header = function Header(props) {
@@ -31951,13 +32015,13 @@
 	exports.default = Header;
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(277);
+	var content = __webpack_require__(278);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -31977,7 +32041,7 @@
 	}
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -31991,7 +32055,7 @@
 
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32012,11 +32076,11 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _ListItems = __webpack_require__(279);
+	var _ListItems = __webpack_require__(280);
 
 	var _ListItems2 = _interopRequireDefault(_ListItems);
 
-	var _Editor = __webpack_require__(288);
+	var _Editor = __webpack_require__(289);
 
 	var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -32024,7 +32088,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ExpandedNote = __webpack_require__(280);
+	var _ExpandedNote = __webpack_require__(281);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
@@ -32044,7 +32108,7 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	__webpack_require__(286);
+	__webpack_require__(287);
 
 	var ListContainer = function (_React$Component) {
 	  _inherits(ListContainer, _React$Component);
@@ -32176,7 +32240,7 @@
 	exports.default = ListContainer;
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32191,11 +32255,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ExpandedNote = __webpack_require__(280);
+	var _ExpandedNote = __webpack_require__(281);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
-	var _Notes = __webpack_require__(283);
+	var _Notes = __webpack_require__(284);
 
 	var _Notes2 = _interopRequireDefault(_Notes);
 
@@ -32214,7 +32278,7 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	__webpack_require__(286);
+	__webpack_require__(287);
 
 	var ListItems = function (_React$Component) {
 	  _inherits(ListItems, _React$Component);
@@ -32310,7 +32374,7 @@
 	exports.default = ListItems;
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32332,7 +32396,7 @@
 	/*
 	This component takes our inputed data, and outputs it to the DOM
 	*/
-	__webpack_require__(281);
+	__webpack_require__(282);
 
 	function ExpandedNote(props) {
 	  return _react2.default.createElement(
@@ -32371,13 +32435,13 @@
 	exports.default = ExpandedNote;
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(282);
+	var content = __webpack_require__(283);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32397,7 +32461,7 @@
 	}
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32411,7 +32475,7 @@
 
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32426,7 +32490,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(284);
+	__webpack_require__(285);
 
 	var Notes = function Notes(props) {
 	  var details = props.details;
@@ -32472,13 +32536,13 @@
 	exports.default = Notes;
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(285);
+	var content = __webpack_require__(286);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32498,7 +32562,7 @@
 	}
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32512,13 +32576,13 @@
 
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(287);
+	var content = __webpack_require__(288);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32538,7 +32602,7 @@
 	}
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32552,7 +32616,7 @@
 
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32575,7 +32639,7 @@
 
 
 	*/
-	__webpack_require__(289);
+	__webpack_require__(290);
 
 	function Editor(props) {
 	  var conditionalText = '';
@@ -32619,13 +32683,13 @@
 	exports.default = Editor;
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(290);
+	var content = __webpack_require__(291);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32645,7 +32709,7 @@
 	}
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32659,7 +32723,7 @@
 
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32676,7 +32740,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(292);
+	__webpack_require__(293);
 
 	var NotFound = function NotFound() {
 	  // Render all our components here
@@ -32704,13 +32768,13 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(293);
+	var content = __webpack_require__(294);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32730,7 +32794,7 @@
 	}
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32744,13 +32808,13 @@
 
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(295);
+	var content = __webpack_require__(296);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32770,7 +32834,7 @@
 	}
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();
@@ -32784,13 +32848,13 @@
 
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(297);
+	var content = __webpack_require__(298);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(269)(content, {});
@@ -32810,7 +32874,7 @@
 	}
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(268)();

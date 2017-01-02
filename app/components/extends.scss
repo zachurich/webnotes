@@ -62,7 +62,8 @@
   text-align: center;
   text-transform: uppercase;
   transition: $transition--button;
-  &:hover {
+  &:hover,
+  &:active {
     box-shadow: 0px -5px 0px 0px $color--secondary;
     border-top: 2px solid transparent;
     color: white;

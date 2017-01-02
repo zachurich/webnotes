@@ -11,7 +11,7 @@ import ExpandedNote from '../../stateless/ExpandedNote';
 
 import base from '../../../config/base';
 
-require('../../transitions.scss');
+import '../../transitions.scss';
 
 class ListContainer extends React.Component {
   constructor(props) {

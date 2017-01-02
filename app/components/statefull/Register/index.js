@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 import base from '../../../config/base';
 import RegisterForm from '../../stateless/RegisterForm/';
 
-import { handleMessage } from '../../helpers';
+import { handleMessage, transition } from '../../helpers';
 
 class Register extends React.Component {
     constructor() {
@@ -25,14 +25,7 @@ class Register extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-      const elem = ReactDOM.findDOMNode(this);
-      elem.style.opacity = 0;
-      elem.style.transform = "translateY(100px)";
-      window.requestAnimationFrame(function() {
-          elem.style.transition = "all 500ms";
-          elem.style.opacity = 1;
-          elem.style.transform = "translateY(0px)";
-      });
+      transition(this);
     }
     handleSubmit(e) {
         e.preventDefault();

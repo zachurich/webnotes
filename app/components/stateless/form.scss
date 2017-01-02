@@ -11,7 +11,7 @@
         padding: 0;
         margin: 0;
         color: $color--secondary;
-        font-size: $font--large;
+        font-size: $font--medium;
         font-family: $mainFont;
         text-align: center;
         text-transform: uppercase;
@@ -40,6 +40,9 @@
                 box-sizing: border-box;
             }
         }
+        @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+          font-size: 1.1em;
+        }
     }
 
     &--form,
@@ -47,7 +50,7 @@
         box-sizing: border-box;
         max-width: 400px;
         min-width: 300px;
-        width: 50%;
+        width: 90%;
         color: inherit;
         background: white;
         box-shadow: $shadow;

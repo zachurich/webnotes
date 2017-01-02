@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import base from '../../../config/base';
 import LoginForm from '../../stateless/LoginForm/';
 
-import { handleMessage } from '../../helpers';
+import { handleMessage, transition } from '../../helpers';
 
 class Login extends React.Component {
     constructor() {
@@ -23,6 +23,9 @@ class Login extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setupUserInfo = this.setupUserInfo.bind(this);
+    }
+    componentDidMount() {
+      transition(this);
     }
     setupUserInfo() {
       const user = base.auth().currentUser;

@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom';
+
 // This passes the message to the button to be displayed
 export function handleValidation (initial, message, validation) {
   if ( validation === true ) {
@@ -22,4 +24,16 @@ export function handleMessage (error) {
     return 'Please enter a valid password.';
   }
   return initial;
+}
+
+// plug this into a componentDidMount and pass in 'this'
+export function transition (component) {
+  const elem = ReactDOM.findDOMNode(component);
+  elem.style.opacity = 0;
+  elem.style.transform = "translateY(100px)";
+  window.requestAnimationFrame(function() {
+      elem.style.transition = "all 500ms";
+      elem.style.opacity = 1;
+      elem.style.transform = "translateY(0px)";
+  });
 }

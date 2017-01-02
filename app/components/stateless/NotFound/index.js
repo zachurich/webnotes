@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-require('./style.scss');
+import './style.scss';
 
 const NotFound = () => {
     // Render all our components here
