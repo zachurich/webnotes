@@ -15,7 +15,7 @@ class Button extends React.Component {
         onClick={ this.props.close }
         style={style}
         type="submit">
-        {text}
+        { text }
       </button>
     )
   }

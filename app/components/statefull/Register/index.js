@@ -9,11 +9,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import base from '../../../config/base';
-import RegisterForm from '../../stateless/RegisterForm/'
+import RegisterForm from '../../stateless/RegisterForm/';
+
+import { handleMessage } from '../../helpers';
 
 class Register extends React.Component {
     constructor() {
       super();
+
+      this.state = {
+        validation: false,
+        error: ''
+      }
+
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
@@ -32,47 +40,44 @@ class Register extends React.Component {
         const username = this.username.value;
         const email = this.email.value;
         const password = this.password.value;
-        if( username.length > 1 && email.length > 10 && password.length > 3) {
-
+        let errorCode;
+        let errorMessage;
+        if (username.length > 1) {
           base.auth()
             .createUserWithEmailAndPassword(email, password)
               // Returns success
               .then((success) => {
-                console.log('Success!');
                 const user = base.auth().currentUser;
                 // Update profile's display name with 'username' input value
                 user.updateProfile({
                     displayName: username,
                   })
-                .then(() => {
-                  if (user != null) {
-                    console.log(user);
-                    user.providerData.forEach( (profile) => {});
-                  }
-                },
-                function(error) {
-                  document.write("This user cannot be updated at this time.");
-                });
                 this.context.router.push(`/login`);
               })
               // Returns Error
               .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                //
-                // if (error) {
-                //     console.log(errorCode);
-                // }
-                console.log(errorCode, errorMessage);
+                console.log(error);
+                // Handle Errors here
+                errorCode = error.code;
+                this.setState({
+                  validation: true,
+                  error: handleMessage(errorCode)
+                });
               });
+        } else {
+          errorMessage = "You must enter a username."
+          this.setState({
+            validation: true,
+            error: errorMessage
+          });
         }
     }
     render() {
-        const RegisterMessage = "Enter Your Name to Begin";
         return (
             <div>
                 <RegisterForm
+                  validation={ this.state.validation }
+                  errorMessage={ this.state.error }
                   userSubmit={this.handleSubmit}
                   username={(input) => { this.username = input }}
                   email={(input) => { this.email = input }}

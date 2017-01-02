@@ -18,7 +18,6 @@ class App extends React.Component {
         editor: false,
         error: true,
       }
-      // let unsubscribe = null;
       this.handleLogOut = this.handleLogOut.bind(this);
       this.handleName = this.handleName.bind(this);
       this.showEditor = this.showEditor.bind(this);

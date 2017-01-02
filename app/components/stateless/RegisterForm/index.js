@@ -8,6 +8,8 @@ import React from 'react';
 import Button from '../Button/'
 import { Link } from 'react-router';
 
+import { handleValidation } from '../../helpers';
+
 // import Register from '../../stateless/';
 
 require('../form.scss');
@@ -19,9 +21,7 @@ const RegisterForm = (props) => {
             <form
               className="entry--form"
               onSubmit={props.userSubmit}>
-                <h1 class="entry--title" style={{
-                  letterSpacing: '0.0625em',
-                }}>{RegisterMessage}</h1>
+                <h1 class="entry--title">{RegisterMessage}</h1>
                 <input
                   className="input--username"
                   placeholder="Name"
@@ -37,7 +37,10 @@ const RegisterForm = (props) => {
                   placeholder="Password"
                   type="password"
                   ref={props.password}/>
-                <Button color="#4b83ec" type="Register"/>
+                <Button
+                  color="#4b83ec"
+                  type={ handleValidation('Login', props.errorMessage, props.validation) }
+                />
             </form>
             <Link
               className="entry--entry-link"
