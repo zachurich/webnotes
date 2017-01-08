@@ -15,9 +15,13 @@ class App extends React.Component {
 
       this.state = {
         username: '',
+        email: '',
+        menu: false,
         editor: false,
         error: true,
       }
+
+      this.showMenu = this.showMenu.bind(this);
       this.handleLogOut = this.handleLogOut.bind(this);
       this.handleName = this.handleName.bind(this);
       this.showEditor = this.showEditor.bind(this);
@@ -30,7 +34,10 @@ class App extends React.Component {
       // that is called on componentWillUnmount
       this.unsubscribe = base.auth().onAuthStateChanged((user) => {
         if (user) {
-          this.setState({ username: user.displayName });
+          this.setState({
+            username: user.displayName,
+            email: user.email
+          });
         }
       });
     }
@@ -76,21 +83,31 @@ class App extends React.Component {
                 console.log(error);
             });
     }
+    showMenu() {
+      this.setState((prevState, props) => {
+         return { menu: !prevState.menu }
+      });
+    }
     showEditor() {
-      this.setState({ editor: true });
+      this.setState((prevState, props) => {
+        return { editor: !prevState.editor }
+      });
     }
     handleButtonText(e) {
-      if (e.target.value) {
+      if(e.target.nodeName === "TEXTAREA" || e.target.nodeName === "INPUT") {
         this.setState({ error: false });
       } else {
         this.setState({ error: true });
       }
+      // if (e.target.value) {
+      //   this.setState({ error: false });
+      // } else {
+      //   this.setState({ error: true });
+      // }
     }
-
     closeEditor() {
       this.setState({ editor: false, error: true })
     }
-
     displayWelcome = (welcome) => {
       return (
         <div
@@ -104,6 +121,7 @@ class App extends React.Component {
     }
     render() {
       const username = this.state.username;
+      const email = this.state.email;
 
       const welcomeText = `Welcome, ${ this.state.username }.`;
         // Render all our components here
@@ -111,14 +129,17 @@ class App extends React.Component {
             <div className="app-contents">
                 { this.displayWelcome(welcomeText) }
                 <Header
-                  triggerEditor={this.showEditor}
+                  userEmail={ email }
+                  menu={ this.state.menu }
+                  triggerMenu={ this.showMenu }
+                  triggerEditor={ this.showEditor }
                   title={ username }
-                  logout={this.handleLogOut}/>
+                  logout={ this.handleLogOut }/>
                 <ListContainer
-                  error={this.state.error}
+                  error={ this.state.error }
                   updateText={ this.handleButtonText }
-                  editor={this.state.editor}
-                  close={this.closeEditor}
+                  editor={ this.state.editor }
+                  close={ this.closeEditor }
                   url={ username }/>
             </div>
         );

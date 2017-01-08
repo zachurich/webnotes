@@ -1,6 +1,6 @@
 import React from 'react';
 
-require('./style.scss');
+import './style.scss';
 
 const Notes = (props) => {
   const details = props.details;
@@ -10,24 +10,24 @@ const Notes = (props) => {
     >
         <div
           className="list--items--erase"
-          onClick={props.remove}
+          onClick={ props.remove }
           >
         </div>
         <h2
           className="list--items--title">
-          {details.title}
+          { details.title }
         </h2>
         <p
           className="list--items--date">
-          {details.date}
+          { details.date }
         </p>
         <p
           className="list--items--note-content">
-          {details.text}
+          { details.text }
         </p>
         <div
           className="list--items--read-more"
-          onClick={() => props.open(details)}>
+          onClick={ () => props.open(details) }>
           View Note
         </div>
     </li>

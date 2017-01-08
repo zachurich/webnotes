@@ -54,8 +54,8 @@ class ListItems extends React.Component {
           <ul className="list">
             <ReactCSSTransitionGroup
               transitionName="pop-in"
-              transitionEnterTimeout={150}
-              transitionLeaveTimeout={150}>
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
               {
                 Object
                   .keys(listEntries)

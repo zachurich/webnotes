@@ -20,10 +20,11 @@ function Editor (props) {
               onSubmit={props.addItem}>
                 <h1 className="modal--form--header">Write a note</h1>
                 <input
+                  onChange={props.updateText}
                   className="modal--form--title"
                   ref={props.inputTitle}
                   type="text"
-                  maxLength="10"
+                  maxLength="12"
                   placeholder="Title"
                 />
                 <textarea

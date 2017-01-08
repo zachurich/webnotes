@@ -18,8 +18,11 @@ module.exports = {
   module: {
     loaders: [
       {
-       test: /\.scss$/,
-       loaders: ["style", "css", "sass" ,"autoprefixer?browsers=last 4 versions"]
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass" ,"autoprefixer?browsers=last 4 versions"]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/app/icons/[name].[ext]"
       },
       {
         test: /\.jsx?$/,

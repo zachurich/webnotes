@@ -1,0 +1,49 @@
+@import '../../variables';
+
+.menu {
+  position: relative;
+  background: $offWhite;
+  box-shadow: $shadow;
+  border-radius: $corners;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  right: 20px;
+  top: 80px;
+  z-index: 2;
+  @media screen and (max-width: $mobile) {
+    right: 12px;
+  }
+    &:before {
+      position: absolute;
+      top: -10px;
+      left: 80%;
+      height: 0;
+      width: 0;
+      content: ' ';
+      border-right: 10px solid transparent;
+      border-left: 10px solid transparent;
+      border-bottom: 10px solid $offWhite;
+    }
+  &--item {
+    padding: 10px 20px;
+    text-align: center;
+    &:nth-child(1) {
+      color: $color--secondary;
+      border-bottom: 1px solid #d0d0d0;
+    }
+    &:nth-child(2) {
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: $font--small;
+      transition: $transition--button;
+      &:hover,
+      &:active {
+        border-radius: 0 0 $corners $corners;
+        background: $color--secondary;
+        color: white;
+      }
+    }
+  }
+}

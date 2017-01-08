@@ -56,7 +56,7 @@ class ListContainer extends React.Component {
     const title = this._inputTitle.value;
     const text = this._inputText.value;
 
-    if (title.length > 1 && text.length > 1) {
+    if (title.length > 0 && text.length > 0) {
       // this creates a new object in our state object titled 'note-uniqueID'
       // with all our details
       items[`note-${Date.now()}`] = {
@@ -84,8 +84,8 @@ class ListContainer extends React.Component {
       }}>
         <ReactCSSTransitionGroup
           transitionName="fade-in"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={150}>
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={200}>
           { this.props.editor ?
             <Editor
               updateText={ this.props.updateText }

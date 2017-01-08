@@ -1,5 +1,8 @@
 // This is the main component to load all components
 
+// removes 300ms delay in iOS webapps
+import 'react-fastclick';
+
 // Lets start by importing all the stuff we need for React to work
 import React from 'react';
 import { render } from 'react-dom';
