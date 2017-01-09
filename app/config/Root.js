@@ -1,5 +1,8 @@
 // This is the main component to load all components
 
+// removes 300ms delay in iOS webapps
+import 'react-fastclick';
+
 // Lets start by importing all the stuff we need for React to work
 import React from 'react';
 import { render } from 'react-dom';
@@ -7,20 +10,22 @@ import {Router, Route, hashHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Import all our components to be accessible to Router
-import Entry from '../components/containers/Entry/';
+import Register from '../components/statefull/Register/';
+import Entry from '../components/statefull/Login/';
 import App from '../components/App/';
-import NotFound from '../components/presentationals/NotFound/';
+import NotFound from '../components/stateless/NotFound/';
 
-require('./style.css');
-require('./reset.css');
+require('./style.scss');
+// require('./reset.scss');
 
 const Root = () => {
   return (
     <Router history={hashHistory}>
       <div>
-        <Route path="/" component={Entry} />
+        <Route path="/" component={Register} />
+        <Route path="/login" component={Entry} />
         <Route path="/notes/:username" component={App} />
-        <Route component={NotFound}/>
+        <Route path="/404" component={NotFound}/>
       </div>
     </Router>
   )

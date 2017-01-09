@@ -1,0 +1,72 @@
+%input {
+ outline: 0;
+ border: 0;
+ border: 1px solid $offWhite;
+ border-radius: 0;
+ -webkit-appearance: none;
+ -webkit-border-radius:0px;
+ font-size: $font--medium;
+ color: $textColor;
+ box-sizing: border-box;
+ width: 100%;
+ padding-left: 10px;
+ margin-bottom: 20px;
+}
+
+%overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($color--tertiary, 0.9);
+  position: fixed;
+  z-index: 9998;
+}
+
+%modal {
+  position: relative;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 30em;
+  margin: 20px auto 0;
+  background: white;
+  border-radius: $corners;
+  box-shadow: $shadow;
+  @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+}
+
+%button {
+  border-radius: 0 0 $corners $corners;
+  border-top: 2px solid $offWhite;
+  position: absolute;
+  color: $color--main;
+  background: white;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  left: 0;
+  bottom: 0;
+  cursor: pointer;
+  font-size: $font--small;
+  font-weight: $semi-bold;
+  text-align: center;
+  text-transform: uppercase;
+  transition: $transition--button;
+  &:hover,
+  &:active {
+    box-shadow: 0px -5px 0px 0px $color--secondary;
+    border-top: 2px solid transparent;
+    color: white;
+    background: $color--main;
+  }
+}

@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+@import '../../extends.scss';
+
+  .overlay {
+    @extend %overlay;
+    .modal {
+      @extend %modal;
+      &--form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        &--header {
+          color: $color--secondary;
+          font-family: $mainFont;
+          font-size: $font--large;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        &--title,
+        &--note {
+          @extend %input;
+        }
+        &--title {
+          height: 40px;
+        }
+        &--note {
+          padding-top: 10px;
+          height: 200px;
+          margin-bottom: 40px;
+          @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+            flex: 1;
+          }
+        }
+        @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+          height: 100%;
+        }
+      }
+  }
+  }

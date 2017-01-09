@@ -1,0 +1,138 @@
+@import '../../variables.scss';
+
+%button {
+	height: 42px;
+	width: 42px;
+	border-radius: 50%;
+	top: 0;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	box-shadow: $shadow;
+	transition: $transition;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80px;
+	font-family: $mainFont;
+	width: 100%;
+	@media screen and (max-width: $mobile) {
+		height: 60px;
+	}
+	&--title {
+		/*min-width: 100px;*/
+		padding: 10px 30px;
+		background: white;
+		border-radius: $corners;
+		box-shadow: $shadow;
+		color: $color--main;
+		text-transform: uppercase;
+		font-weight: $bold;
+		font-size: $font--medium;
+		text-align: center;
+		@media screen and (max-width: $mobile) {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			border-radius: 0;
+			line-height: 60px;
+		}
+	 }
+	.contain-button {
+		position: relative;
+		width: 20px;
+		height: 20px;
+	}
+	&--menu,
+	&--add-note {
+		cursor: pointer;
+		z-index: 9998;
+		position: absolute;
+		top: 19px;
+		@extend %button;
+		&:hover {
+			transform: scale(1.1);
+			background: $color--secondary;
+			.header--add-note--vertical,
+			.header--add-note--horizontal,
+			.header--menu--vertical,
+			.header--menu--horizontal  {
+				background: white;
+			}
+		}
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+	&--menu {
+		right: 19px;
+		.contain-button {
+			height: 14px;
+		}
+		&--horizontal {
+			position: absolute;
+			background: $color--secondary;
+			height: 2px;
+			width: 100%;
+			&:nth-child(2) {
+				top: 6px;
+			}
+			&:nth-child(3) {
+				bottom: 0;
+			}
+		}
+		@media screen and (max-width: $mobile) {
+			position: absolute;
+			top: 10px;
+			left: auto;
+			// height: 50px;
+			// width: 50px;
+			// bottom: 20px;
+			right: 10px;
+			box-shadow: none;
+		}
+	}
+	&--add-note {
+		left: 19px;
+		&--vertical {
+			position: absolute;
+			top: 0;
+			left: 9px;
+			display: block;
+			background: $color--secondary;
+			width: 2px;
+			height: 100%;
+		}
+		&--horizontal {
+			position: absolute;
+			top: 9px;
+			left: 0;
+			display: block;
+			background: $color--secondary;
+			height: 2px;
+			width: 100%;
+		}
+		&--vertical,
+		&--horizontal {
+			@media screen and (max-width: $mobile) {
+				background: white;
+			}
+		}
+		@media screen and (max-width: $mobile) {
+			position: fixed;
+			top: auto;
+			left: auto;
+			height: 50px;
+			width: 50px;
+			bottom: 20px;
+			right: 20px;
+			background: $color--secondary;
+		}
+	}
+}

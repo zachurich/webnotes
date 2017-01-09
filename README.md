@@ -1,6 +1,10 @@
-## Another Todo/list App
-* I'm using Webpack for loading all my components and bundling everything together
-* Trying out postcss - plugin-based css based on C rather than SASS's ruby foundation
+## Webnotes - A notes app made with React for the browser
+
+### This project uses:
+* React
+* Webpack
+* SASS/SCSS
+* [Google's Firebase](https://www.firebase.com/) ([re-base](https://github.com/tylermcginnis/re-base))
 
 ### Get Started
 Make sure you have Node.js installed. Then, take the following steps to get up and running:
@@ -14,7 +18,4 @@ npm run dev
 
 ```
 
-### Things left to do:
-
-* Build out menu
-* Set up user authentication
+#### Checkout the app running [here](http://http://webnotes.surge.sh/)

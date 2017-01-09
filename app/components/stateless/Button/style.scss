@@ -1,0 +1,11 @@
+@import '../../variables.scss';
+@import '../../extends.scss';
+
+button {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  box-shadow: none;
+  outline: none;
+  @extend %button;
+}

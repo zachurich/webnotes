@@ -1,0 +1,166 @@
+@import '../../variables.scss';
+
+.list {
+  padding: 0;
+  display: flex;
+  width: 100%;
+  span {
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap-reverse;
+    margin: 25px 0 0;
+    @media screen and (max-width: 1090px) {
+      justify-content: center;
+    }
+  }
+  &--items {
+    background: white;
+    width: 265px;
+    display: inline-block;
+    padding: 25px 25px 0;
+    height: 130px;
+    border-radius: 2px;
+    box-shadow: $shadow;
+    // overflow: hidden;
+    margin: 2px 8px;
+    position: relative;
+    margin-bottom: 16px;
+    position: relative;
+    transition: $transition;
+    &:hover,
+    &:active {
+      transform: scale(1.02);
+      box-shadow: $shadow;
+    }
+    @media screen and (max-width: $tablet) {
+      width: 40%;
+      max-width: 420px;
+    }
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      max-width: 450px;
+    }
+    @media screen and (max-width: $mobile) {
+      margin: 0px 0 15px;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: none;
+      height: 150px;
+    }
+    @media screen and (max-width: 320px) {
+      width: 100%;
+    }
+    &--read-more {
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      font-size: $font--small;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: $semi-bold;
+      color: white;
+      background: $color--main;
+      opacity: 0;
+      transition: $transition;
+    }
+    &--title {
+      font-weight: 600;
+      color: $color--main;
+      margin: 0 0 20px;
+      font-size: 18px;
+      padding-bottom: $padding;
+    }
+    &--date {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      margin: 0;
+      color: $textColor;
+      font-size: 1rem;
+      font-weight: 600;
+      padding-bottom: $padding;
+    }
+    &--note-content {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin: 0;
+      font-size: 1rem;
+      padding-bottom: $padding;
+    }
+    &--erase {
+      cursor: pointer;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      top: -10px;
+      left: -10px;
+      background: url('../../../icons/delete.svg') transparent;
+      border-radius: 50%;
+      padding: 2px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: $transition;
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+    &:hover {
+      .list--items--read-more {
+        opacity: 1;
+      }
+      .list--items--erase {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+.pop-in-enter {
+  opacity: 0.01;
+  transform: scale(0.8);
+}
+
+.pop-in-enter.pop-in-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms ease-in-out;
+}
+
+.pop-in-leave {
+  opacity: 1;
+}
+
+.pop-in-leave.fade-in-leave-active {
+  opacity: 0.01;
+  transition: all 300ms ease-in-out;
+}
+
+.fade-in-enter {
+  opacity: 0;
+  // transform: scale(0.8);
+}
+
+.fade-in-enter.fade-in-enter-active {
+  opacity: 1;
+  // transform: scale(1);
+  transition: all 300ms ease-in-out;
+}
+
+.fade-in-leave {
+  opacity: 1;
+}
+
+.fade-in-leave.fade-in-leave-active {
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
