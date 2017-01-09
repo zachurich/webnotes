@@ -79,7 +79,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _NotFound = __webpack_require__(293);
+	var _NotFound = __webpack_require__(297);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -89,7 +89,7 @@
 
 
 	// Lets start by importing all the stuff we need for React to work
-	__webpack_require__(298);
+	__webpack_require__(302);
 	// require('./reset.scss');
 
 	// This is the main component to load all components
@@ -31811,7 +31811,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #ecb54b;\n    font-size: 1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    position: relative;\n    display: block;\n    padding: 40px 30px 80px;\n    border-radius: 5px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #4b83ec;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .entry--form {\n        font-size: 1.1em; } }\n  .entry--form, .entry--entry-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 90%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .entry--entry-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 5px; }\n    .entry--entry-link span {\n      color: #ecb54b; }\n", ""]);
+	exports.push([module.id, ".entry {\n  height: 100vh;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .entry--title {\n    padding: 0;\n    margin: 0;\n    color: #ecb54b;\n    font-size: 1em;\n    font-family: \"Open Sans\", sans-serif;\n    text-align: center;\n    text-transform: uppercase;\n    margin-bottom: 20px; }\n  .entry--form {\n    position: relative;\n    display: block;\n    padding: 40px 30px 80px;\n    border-radius: 5px; }\n    .entry--form .input {\n      border-radius: 0; }\n      .entry--form .input--email, .entry--form .input--password, .entry--form .input--username {\n        font-size: 0.8em;\n        color: inherit;\n        height: 100%;\n        width: 100%;\n        outline: 0;\n        padding: 10px 0;\n        border: 0;\n        border-bottom: 2px solid #4076CC;\n        margin-bottom: 20px;\n        box-sizing: border-box; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .entry--form {\n        font-size: 1.1em; } }\n  .entry--form, .entry--entry-link {\n    box-sizing: border-box;\n    max-width: 400px;\n    min-width: 300px;\n    width: 90%;\n    color: inherit;\n    background: white;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .entry--entry-link {\n    padding: 20px 0;\n    display: block;\n    margin-top: 20px;\n    font-size: 0.8em;\n    text-align: center;\n    text-decoration: none;\n    border-radius: 5px; }\n    .entry--entry-link span {\n      color: #ecb54b; }\n", ""]);
 
 	// exports
 
@@ -32051,11 +32051,11 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListContainer = __webpack_require__(280);
+	var _ListContainer = __webpack_require__(285);
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _NotFound = __webpack_require__(293);
+	var _NotFound = __webpack_require__(297);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -32067,7 +32067,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(296);
+	__webpack_require__(300);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -32093,9 +32093,13 @@
 
 	    _this.state = {
 	      username: '',
+	      email: '',
+	      menu: false,
 	      editor: false,
 	      error: true
 	    };
+
+	    _this.showMenu = _this.showMenu.bind(_this);
 	    _this.handleLogOut = _this.handleLogOut.bind(_this);
 	    _this.handleName = _this.handleName.bind(_this);
 	    _this.showEditor = _this.showEditor.bind(_this);
@@ -32114,7 +32118,10 @@
 	      // that is called on componentWillUnmount
 	      this.unsubscribe = _base2.default.auth().onAuthStateChanged(function (user) {
 	        if (user) {
-	          _this2.setState({ username: user.displayName });
+	          _this2.setState({
+	            username: user.displayName,
+	            email: user.email
+	          });
 	        }
 	      });
 	    }
@@ -32168,9 +32175,18 @@
 	      });
 	    }
 	  }, {
+	    key: 'showMenu',
+	    value: function showMenu() {
+	      this.setState(function (prevState, props) {
+	        return { menu: !prevState.menu };
+	      });
+	    }
+	  }, {
 	    key: 'showEditor',
 	    value: function showEditor() {
-	      this.setState({ editor: true });
+	      this.setState(function (prevState, props) {
+	        return { editor: !prevState.editor };
+	      });
 	    }
 	  }, {
 	    key: 'handleButtonText',
@@ -32190,6 +32206,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var username = this.state.username;
+	      var email = this.state.email;
 
 	      var welcomeText = 'Welcome, ' + this.state.username + '.';
 	      // Render all our components here
@@ -32198,6 +32215,9 @@
 	        { className: 'app-contents' },
 	        this.displayWelcome(welcomeText),
 	        _react2.default.createElement(_Header2.default, {
+	          userEmail: email,
+	          menu: this.state.menu,
+	          triggerMenu: this.showMenu,
 	          triggerEditor: this.showEditor,
 	          title: username,
 	          logout: this.handleLogOut }),
@@ -32240,13 +32260,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactAddonsCssTransitionGroup = __webpack_require__(241);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _Menu = __webpack_require__(278);
+
+	var _Menu2 = _interopRequireDefault(_Menu);
+
+	__webpack_require__(281);
+
+	__webpack_require__(283);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	__webpack_require__(278); // Header Component
-
 
 	var Header = function Header(props) {
 	  var username = props.title;
+	  console.log(props.email);
 	  return _react2.default.createElement(
 	    'header',
 	    { className: 'header' },
@@ -32269,7 +32299,7 @@
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'header--menu', onClick: props.logout },
+	      { className: 'header--menu', onClick: props.triggerMenu },
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'contain-button' },
@@ -32277,20 +32307,67 @@
 	        _react2.default.createElement('span', { className: 'header--menu--horizontal' }),
 	        _react2.default.createElement('span', { className: 'header--menu--horizontal' })
 	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactAddonsCssTransitionGroup2.default,
+	      {
+	        transitionName: 'drop-down',
+	        transitionEnterTimeout: 300,
+	        transitionLeaveTimeout: 300 },
+	      props.menu ? _react2.default.createElement(_Menu2.default, {
+	        email: props.userEmail,
+	        logout: props.logout
+	      }) : null
 	    )
 	  );
-	};
-
+	}; // Header Component
 	exports.default = Header;
 
 /***/ },
 /* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	__webpack_require__(279);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Menu = function Menu(props) {
+	  return _react2.default.createElement(
+	    'ul',
+	    { className: 'menu' },
+	    _react2.default.createElement(
+	      'li',
+	      { className: 'menu--item' },
+	      props.email
+	    ),
+	    _react2.default.createElement(
+	      'li',
+	      { className: 'menu--item', onClick: props.logout },
+	      'Logout'
+	    )
+	  );
+	};
+
+	exports.default = Menu;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(279);
+	var content = __webpack_require__(280);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -32310,7 +32387,47 @@
 	}
 
 /***/ },
-/* 279 */
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".menu {\n  position: relative;\n  background: #F0F0F0;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n  border-radius: 5px;\n  list-style-type: none;\n  padding: 0;\n  position: absolute;\n  right: 20px;\n  top: 80px;\n  z-index: 2; }\n  @media screen and (max-width: 660px) {\n    .menu {\n      right: 12px; } }\n  .menu:before {\n    position: absolute;\n    top: -10px;\n    left: 80%;\n    height: 0;\n    width: 0;\n    content: ' ';\n    border-right: 10px solid transparent;\n    border-left: 10px solid transparent;\n    border-bottom: 10px solid #F0F0F0; }\n  .menu--item {\n    padding: 10px 20px;\n    text-align: center; }\n    .menu--item:nth-child(1) {\n      color: #ecb54b;\n      border-bottom: 1px solid #d0d0d0; }\n    .menu--item:nth-child(2) {\n      cursor: pointer;\n      text-transform: uppercase;\n      font-weight: 600;\n      font-size: 0.8em;\n      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n      .menu--item:nth-child(2):hover, .menu--item:nth-child(2):active {\n        border-radius: 0 0 5px 5px;\n        background: #ecb54b;\n        color: white; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(282);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -32324,7 +32441,47 @@
 
 
 /***/ },
-/* 280 */
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(284);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./transitions.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./transitions.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 284 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".drop-down-enter {\n  opacity: 0.01;\n  -webkit-transform: translateY(-20px);\n  -ms-transform: translateY(-20px);\n  transform: translateY(-20px); }\n\n.drop-down-enter.drop-down-enter-active {\n  opacity: 1;\n  -webkit-transform: translateY(0px);\n  -ms-transform: translateY(0px);\n  transform: translateY(0px);\n  transition: all 300ms ease; }\n\n.drop-down-leave {\n  opacity: 1;\n  -webkit-transform: translateY(0px);\n  -ms-transform: translateY(0px);\n  transform: translateY(0px); }\n\n.drop-down-leave.drop-down-leave-active {\n  opacity: 0.01;\n  -webkit-transform: translateY(-20px);\n  -ms-transform: translateY(-20px);\n  transform: translateY(-20px);\n  transition: all 300ms ease; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 500ms ease; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.pop-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease; }\n\n.fade-in-enter {\n  opacity: 0.1;\n  -webkit-transform: translateY(20px);\n  -ms-transform: translateY(20px);\n  transform: translateY(20px); }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  -webkit-transform: translateY(0px);\n  -ms-transform: translateY(0px);\n  transform: translateY(0px);\n  transition: all 500ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1;\n  -webkit-transform: translateY(0px);\n  -ms-transform: translateY(0px);\n  transform: translateY(0px); }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  -webkit-transform: translateY(20px);\n  -ms-transform: translateY(20px);\n  transform: translateY(20px);\n  transition: all 200ms ease-in-out; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32345,11 +32502,11 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _ListItems = __webpack_require__(281);
+	var _ListItems = __webpack_require__(286);
 
 	var _ListItems2 = _interopRequireDefault(_ListItems);
 
-	var _Editor = __webpack_require__(290);
+	var _Editor = __webpack_require__(294);
 
 	var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -32357,7 +32514,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ExpandedNote = __webpack_require__(282);
+	var _ExpandedNote = __webpack_require__(287);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
@@ -32365,7 +32522,7 @@
 
 	var _base2 = _interopRequireDefault(_base);
 
-	__webpack_require__(288);
+	__webpack_require__(283);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32433,13 +32590,13 @@
 	      // Add list items to end of array 'items'
 	      var title = this._inputTitle.value;
 	      var text = this._inputText.value;
-
-	      if (title.length > 1 && text.length > 1) {
+	      if (text.length > 0) {
+	        title.length > 0 ? title : title = 'Title';
 	        // this creates a new object in our state object titled 'note-uniqueID'
 	        // with all our details
 	        items['note-' + Date.now()] = {
-	          title: this._inputTitle.value,
-	          text: this._inputText.value,
+	          title: title,
+	          text: text,
 	          id: Date.now(),
 	          // key: Date.now(),
 	          date: dateGet()
@@ -32471,8 +32628,8 @@
 	          _reactAddonsCssTransitionGroup2.default,
 	          {
 	            transitionName: 'fade-in',
-	            transitionEnterTimeout: 150,
-	            transitionLeaveTimeout: 150 },
+	            transitionEnterTimeout: 500,
+	            transitionLeaveTimeout: 200 },
 	          this.props.editor ? _react2.default.createElement(_Editor2.default, {
 	            updateText: this.props.updateText,
 	            error: this.props.error,
@@ -32509,7 +32666,7 @@
 	exports.default = ListContainer;
 
 /***/ },
-/* 281 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32524,11 +32681,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ExpandedNote = __webpack_require__(282);
+	var _ExpandedNote = __webpack_require__(287);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
-	var _Notes = __webpack_require__(285);
+	var _Notes = __webpack_require__(290);
 
 	var _Notes2 = _interopRequireDefault(_Notes);
 
@@ -32547,7 +32704,7 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	__webpack_require__(288);
+	__webpack_require__(283);
 
 	var ListItems = function (_React$Component) {
 	  _inherits(ListItems, _React$Component);
@@ -32619,8 +32776,8 @@
 	            _reactAddonsCssTransitionGroup2.default,
 	            {
 	              transitionName: 'pop-in',
-	              transitionEnterTimeout: 150,
-	              transitionLeaveTimeout: 150 },
+	              transitionEnterTimeout: 500,
+	              transitionLeaveTimeout: 300 },
 	            Object.keys(listEntries).map(function (key) {
 	              return _react2.default.createElement(_Notes2.default, {
 	                key: key,
@@ -32643,7 +32800,7 @@
 	exports.default = ListItems;
 
 /***/ },
-/* 282 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32665,7 +32822,7 @@
 	/*
 	This component takes our inputed data, and outputs it to the DOM
 	*/
-	__webpack_require__(283);
+	__webpack_require__(288);
 
 	function ExpandedNote(props) {
 	  return _react2.default.createElement(
@@ -32704,13 +32861,13 @@
 	exports.default = ExpandedNote;
 
 /***/ },
-/* 283 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(289);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -32730,7 +32887,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -32738,13 +32895,13 @@
 
 
 	// module
-	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(75, 131, 236, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 0 0 5px 5px;\n    position: absolute;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 0 0 5px 5px;\n    position: absolute;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 285 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32757,9 +32914,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	__webpack_require__(291);
 
-	__webpack_require__(286);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Notes = function Notes(props) {
 	  var details = props.details;
@@ -32805,153 +32962,6 @@
 	exports.default = Notes;
 
 /***/ },
-/* 286 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(287);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 287 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(269)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #EC644B;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items--title {\n      font-weight: 600;\n      color: #EC644B;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 20px;\n      height: 20px;\n      top: -10px;\n      left: -10px;\n      background: #ecb54b;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 288 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(289);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./transitions.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./transitions.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 289 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(269)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 150ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 150ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0.1; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 150ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 150ms ease-in-out; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 290 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Button = __webpack_require__(266);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/*
-
-
-	*/
-	__webpack_require__(291);
-
-	function Editor(props) {
-	  var conditionalText = '';
-	  props.error == true ? conditionalText = 'Close Editor' : conditionalText = 'Add Note';
-
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'overlay' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'modal' },
-	      _react2.default.createElement(
-	        'form',
-	        {
-	          className: 'modal--form',
-	          onSubmit: props.addItem },
-	        _react2.default.createElement(
-	          'h1',
-	          { className: 'modal--form--header' },
-	          'Write a note'
-	        ),
-	        _react2.default.createElement('input', {
-	          className: 'modal--form--title',
-	          ref: props.inputTitle,
-	          type: 'text',
-	          maxLength: '10',
-	          placeholder: 'Title'
-	        }),
-	        _react2.default.createElement('textarea', {
-	          onChange: props.updateText,
-	          className: 'modal--form--note',
-	          ref: props.inputText,
-	          type: 'text',
-	          placeholder: 'Note' }),
-	        _react2.default.createElement(_Button2.default, { color: '#EC644B', type: conditionalText, close: props.close })
-	      )
-	    )
-	  );
-	}
-
-	exports.default = Editor;
-
-/***/ },
 /* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32986,13 +32996,126 @@
 
 
 	// module
-	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(75, 131, 236, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #EC644B;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items--title {\n      font-weight: 600;\n      color: #EC644B;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 25px;\n      height: 25px;\n      top: -10px;\n      left: -10px;\n      background: url(" + __webpack_require__(293) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--erase:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
 
 	// exports
 
 
 /***/ },
 /* 293 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "/app/icons/delete.svg";
+
+/***/ },
+/* 294 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(266);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+
+
+	*/
+	__webpack_require__(295);
+
+	function Editor(props) {
+	  var conditionalText = '';
+	  props.error == true ? conditionalText = 'Close Editor' : conditionalText = 'Add Note';
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'overlay' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'modal' },
+	      _react2.default.createElement(
+	        'form',
+	        {
+	          className: 'modal--form',
+	          onSubmit: props.addItem },
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'modal--form--header' },
+	          'Write a note'
+	        ),
+	        _react2.default.createElement('input', {
+	          className: 'modal--form--title',
+	          ref: props.inputTitle,
+	          type: 'text',
+	          maxLength: '12',
+	          placeholder: 'Title'
+	        }),
+	        _react2.default.createElement('textarea', {
+	          onChange: props.updateText,
+	          className: 'modal--form--note',
+	          ref: props.inputText,
+	          type: 'text',
+	          placeholder: 'Note' }),
+	        _react2.default.createElement(_Button2.default, { color: '#EC644B', type: conditionalText, close: props.close })
+	      )
+	    )
+	  );
+	}
+
+	exports.default = Editor;
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(296);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33007,7 +33130,7 @@
 
 	var _reactRouter = __webpack_require__(185);
 
-	__webpack_require__(294);
+	__webpack_require__(298);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33037,13 +33160,13 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 294 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(295);
+	var content = __webpack_require__(299);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33063,7 +33186,7 @@
 	}
 
 /***/ },
-/* 295 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33071,19 +33194,19 @@
 
 
 	// module
-	exports.push([module.id, ".notfound {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  width: 100%;\n  background: #EC644B; }\n  .notfound--card {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n    align-items: center;\n    -webkit-justify-content: center;\n    -ms-flex-pack: center;\n    justify-content: center;\n    -webkit-flex-direction: column;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    background: white;\n    height: 100px;\n    width: 30%;\n    padding: 20px;\n    min-width: 300px;\n    margin: auto;\n    border-radius: 5px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    text-align: center; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .notfound--card {\n        box-sizing: border-box;\n        border-radius: 0;\n        width: 100%;\n        height: 100%;\n        margin: 0; } }\n  .notfound--text {\n    color: #EC644B; }\n  .notfound a {\n    font-size: 0.9rem;\n    text-transform: uppercase;\n    border-radius: 5px;\n    color: #4b83ec;\n    text-decoration: none;\n    font-weight: 600;\n    padding: 5px 15px;\n    border: 2px solid #F0F0F0;\n    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n    .notfound a:hover, .notfound a:active {\n      border: 2px solid #4b83ec;\n      background: #4b83ec;\n      color: white; }\n", ""]);
+	exports.push([module.id, ".notfound {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  width: 100%;\n  background: #EC644B; }\n  .notfound--card {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n    align-items: center;\n    -webkit-justify-content: center;\n    -ms-flex-pack: center;\n    justify-content: center;\n    -webkit-flex-direction: column;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    background: white;\n    height: 100px;\n    width: 30%;\n    padding: 20px;\n    min-width: 300px;\n    margin: auto;\n    border-radius: 5px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    text-align: center; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .notfound--card {\n        box-sizing: border-box;\n        border-radius: 0;\n        width: 100%;\n        height: 100%;\n        margin: 0; } }\n  .notfound--text {\n    color: #EC644B; }\n  .notfound a {\n    font-size: 0.9rem;\n    text-transform: uppercase;\n    border-radius: 5px;\n    color: #4076CC;\n    text-decoration: none;\n    font-weight: 600;\n    padding: 5px 15px;\n    border: 2px solid #F0F0F0;\n    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n    .notfound a:hover, .notfound a:active {\n      border: 2px solid #4076CC;\n      background: #4076CC;\n      color: white; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 296 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(297);
+	var content = __webpack_require__(301);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33103,7 +33226,7 @@
 	}
 
 /***/ },
-/* 297 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33111,19 +33234,19 @@
 
 
 	// module
-	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100%; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100%;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #4b83ec;\n  -webkit-animation: fade 0.2s ease-in-out forwards;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    -webkit-animation: grow 0.8s ease-in-out forwards;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  -webkit-animation: remove 2s ease-in-out forwards;\n  animation: remove 2s ease-in-out forwards; }\n\n@-webkit-keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@-webkit-keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@-webkit-keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n", ""]);
+	exports.push([module.id, ".app-contents {\n  position: relative;\n  min-height: 100%; }\n\n.container {\n  display: block;\n  max-width: 1000px;\n  margin: 0 auto;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090;\n  position: relative; }\n\n.welcome {\n  position: fixed;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  z-index: 9999;\n  height: 100%;\n  width: 100%;\n  left: 0;\n  right: 0;\n  background: #4076CC;\n  -webkit-animation: fade 0.2s ease-in-out forwards;\n  animation: fade 0.2s ease-in-out forwards; }\n  .welcome--text {\n    color: white;\n    font-size: 1.5em;\n    -webkit-animation: grow 0.8s ease-in-out forwards;\n    animation: grow 0.8s ease-in-out forwards; }\n\n.remove {\n  -webkit-animation: remove 2s ease-in-out forwards;\n  animation: remove 2s ease-in-out forwards; }\n\n@-webkit-keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@keyframes remove {\n  0% { }\n  85% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1; }\n  90% {\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5);\n    opacity: 0; } }\n\n@-webkit-keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes fade {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(1.2);\n    transform: scale(1.2); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@-webkit-keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n\n@keyframes grow {\n  0% {\n    opacity: 0;\n    -webkit-transform: scale(0.8);\n    transform: scale(0.8); }\n  50% {\n    -webkit-transform: scale(1.5);\n    transform: scale(1.5); }\n  100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1); } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 298 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(299);
+	var content = __webpack_require__(303);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33143,7 +33266,7 @@
 	}
 
 /***/ },
-/* 299 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33151,7 +33274,7 @@
 
 
 	// module
-	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4b83ec;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 420px; }\n", ""]);
+	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4076cc;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 420px; }\n", ""]);
 
 	// exports
 

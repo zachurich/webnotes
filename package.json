@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --colors . --history-api-fallback",
-    "deploy": "surge -p build -d notes-app.surge.sh",
+    "deploy": "surge -p build -d webnotes.surge.sh",
     "build": "NODE_ENV=production webpack",
     "push": "npm run build && npm run deploy"
   },
