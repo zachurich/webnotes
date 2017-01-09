@@ -94,16 +94,11 @@ class App extends React.Component {
       });
     }
     handleButtonText(e) {
-      if(e.target.nodeName === "TEXTAREA" || e.target.nodeName === "INPUT") {
+      if (e.target.value) {
         this.setState({ error: false });
       } else {
         this.setState({ error: true });
       }
-      // if (e.target.value) {
-      //   this.setState({ error: false });
-      // } else {
-      //   this.setState({ error: true });
-      // }
     }
     closeEditor() {
       this.setState({ editor: false, error: true })

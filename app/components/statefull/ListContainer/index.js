@@ -53,15 +53,15 @@ class ListContainer extends React.Component {
       return curr_month + "/" + curr_date + "/" + curr_year;
     }
     // Add list items to end of array 'items'
-    const title = this._inputTitle.value;
+    let title = this._inputTitle.value;
     const text = this._inputText.value;
-
-    if (title.length > 0 && text.length > 0) {
+    if (text.length > 0) {
+      title.length > 0 ? title : title = 'Title';
       // this creates a new object in our state object titled 'note-uniqueID'
       // with all our details
       items[`note-${Date.now()}`] = {
-          title: this._inputTitle.value,
-          text: this._inputText.value,
+          title: title,
+          text: text,
           id: Date.now(),
           // key: Date.now(),
           date: dateGet()
