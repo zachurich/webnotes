@@ -18,4 +18,4 @@ npm run dev
 
 ```
 
-#### Checkout the app running [here](http://http://webnotes.surge.sh/)
+#### Checkout the app running [here](http://webnotes.surge.sh/)
