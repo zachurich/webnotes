@@ -31246,17 +31246,9 @@
 
 	var _helpers = __webpack_require__(271);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// import Register from '../../stateless/';
-
-	/*
-	This component is the UI for the 'Register' container component.
-	Data poassed in though user input is sent up to the container
-	where the approiate actions occur to handle the user data
-	*/
-
 	__webpack_require__(272);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var RegisterForm = function RegisterForm(props) {
 	  var RegisterMessage = "Sign Up";
@@ -31309,6 +31301,14 @@
 	  );
 	};
 
+	// import Register from '../../stateless/';
+
+	/*
+	This component is the UI for the 'Register' container component.
+	Data poassed in though user input is sent up to the container
+	where the approiate actions occur to handle the user data
+	*/
+
 	exports.default = RegisterForm;
 
 /***/ },
@@ -31327,6 +31327,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	__webpack_require__(267);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31334,8 +31336,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(267);
 
 	var Button = function (_React$Component) {
 	  _inherits(Button, _React$Component);
@@ -31978,15 +31978,15 @@
 
 	var _helpers = __webpack_require__(271);
 
+	__webpack_require__(272);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Login from '../../stateless/';
-
-	__webpack_require__(272); /*
-	                         This component is the UI for the 'Login' container component.
-	                         Data poassed in though user input is sent up to the container
-	                         where the approiate actions occur to handle the user data
-	                         */
+	/*
+	This component is the UI for the 'Login' container component.
+	Data poassed in though user input is sent up to the container
+	where the approiate actions occur to handle the user data
+	*/
 
 	var LoginForm = function LoginForm(props) {
 	  return _react2.default.createElement(
@@ -32018,6 +32018,8 @@
 	    )
 	  );
 	};
+
+	// import Login from '../../stateless/';
 
 	exports.default = LoginForm;
 
@@ -32059,6 +32061,8 @@
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
+	__webpack_require__(300);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32066,8 +32070,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(300);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -32693,6 +32695,8 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
+	__webpack_require__(283);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32703,8 +32707,6 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               This component takes our inputed data, and outputs it to the DOM
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
-
-	__webpack_require__(283);
 
 	var ListItems = function (_React$Component) {
 	  _inherits(ListItems, _React$Component);
@@ -32817,12 +32819,9 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/*
-	This component takes our inputed data, and outputs it to the DOM
-	*/
 	__webpack_require__(288);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function ExpandedNote(props) {
 	  return _react2.default.createElement(
@@ -32856,8 +32855,9 @@
 	      )
 	    )
 	  );
-	}
-
+	} /*
+	  This component takes our inputed data, and outputs it to the DOM
+	  */
 	exports.default = ExpandedNote;
 
 /***/ },
@@ -33025,13 +33025,9 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/*
-
-
-	*/
 	__webpack_require__(295);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Editor(props) {
 	  var conditionalText = '';
@@ -33070,8 +33066,10 @@
 	      )
 	    )
 	  );
-	}
-
+	} /*
+	  
+	  
+	  */
 	exports.default = Editor;
 
 /***/ },
