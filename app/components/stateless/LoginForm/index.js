@@ -11,7 +11,7 @@ import { handleValidation } from '../../helpers';
 
 // import Login from '../../stateless/';
 
-require('../form.scss');
+import '../form.scss';
 
 const LoginForm = (props) => {
     return (

@@ -4,7 +4,7 @@ This component takes our inputed data, and outputs it to the DOM
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-require('./style.scss');
+import './style.scss';
 
 function ExpandedNote(props) {
     return (

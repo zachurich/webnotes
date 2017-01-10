@@ -6,7 +6,7 @@ import React from 'react';
 
 import Button from '../Button/';
 
-require('./style.scss');
+import './style.scss';
 
 function Editor (props) {
   let conditionalText = '';

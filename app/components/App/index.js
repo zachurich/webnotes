@@ -7,7 +7,7 @@ import Header from '../stateless/Header/';
 import ListContainer from '../statefull/ListContainer/';
 import NotFound from '../stateless/NotFound/';
 
-require('./style.scss');
+import './style.scss';
 
 class App extends React.Component {
     constructor() {

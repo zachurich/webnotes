@@ -6,7 +6,7 @@ import ExpandedNote from '../../stateless/ExpandedNote/';
 import Notes from '../../stateless/Notes/'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-require('../../transitions.scss');
+import '../../transitions.scss';
 
 class ListItems extends React.Component {
   constructor(props) {

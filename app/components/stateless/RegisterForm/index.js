@@ -12,7 +12,7 @@ import { handleValidation } from '../../helpers';
 
 // import Register from '../../stateless/';
 
-require('../form.scss');
+import '../form.scss';
 
 const RegisterForm = (props) => {
     const RegisterMessage = "Sign Up";
