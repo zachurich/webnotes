@@ -24,8 +24,7 @@
       margin: 0 0 50px;
     }
     &--form-close {
-      border-radius: 0 0 $corners $corners;
-      position: absolute;
+      border-radius: $corners;
       background: $color--main;
       width: 100%;
       height: 30px;
@@ -38,6 +37,10 @@
       text-align: center;
       text-transform: uppercase;
       color: white;
+      transition: $transition--button;
+      &:hover {
+        background: $color--secondary;
+      }
     }
   }
 }

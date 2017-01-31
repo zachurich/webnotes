@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 import base from '../../../config/base';
 import RegisterForm from '../../stateless/RegisterForm/';
 
-import { handleMessage, transition } from '../../helpers';
+import { transition, errCatch, secureUsername } from '../../helpers';
 
 class Register extends React.Component {
     constructor() {
@@ -30,7 +30,7 @@ class Register extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const username = this.username.value;
+        const username = this.username.value.toLowerCase();
         const email = this.email.value;
         const password = this.password.value;
         let errorCode;
@@ -43,20 +43,12 @@ class Register extends React.Component {
                 const user = base.auth().currentUser;
                 // Update profile's display name with 'username' input value
                 user.updateProfile({
-                    displayName: username,
-                  })
+                    displayName: secureUsername(username),
+                })
                 this.context.router.push(`/login`);
               })
               // Returns Error
-              .catch((error) => {
-                console.log(error);
-                // Handle Errors here
-                errorCode = error.code;
-                this.setState({
-                  validation: true,
-                  error: handleMessage(errorCode)
-                });
-              });
+              .catch((error) => this.setState(errCatch(error)));
         } else {
           errorMessage = "You must enter a username."
           this.setState({
@@ -71,10 +63,10 @@ class Register extends React.Component {
                 <RegisterForm
                   validation={ this.state.validation }
                   errorMessage={ this.state.error }
-                  userSubmit={this.handleSubmit}
-                  username={(input) => { this.username = input }}
-                  email={(input) => { this.email = input }}
-                  password={(input) => { this.password = input }} />
+                  userSubmit={ this.handleSubmit }
+                  username={ (input) => this.username = input }
+                  email={ (input) => this.email = input }
+                  password={ (input) => this.password = input } />
             </div>
         )
     }

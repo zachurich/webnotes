@@ -1,0 +1,43 @@
+@import '../../variables';
+
+.tooltip {
+  position: relative;
+  padding: 10px 15px;
+  display: inline-block;
+  color: white;
+  background: $color--secondary;
+  border-radius: $corners;
+  box-shadow: $shadow;
+  &:before {
+    bottom: 100%;
+  	left: 5%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+    border-color: rgba(194, 225, 245, 0);
+	  border-bottom-color: $color--secondary;
+	  border-width: 10px;
+  }
+  @media screen and (max-width: $mobile) {
+    background: $color--main;
+    position: fixed;
+    right: 20px;
+    bottom: 75px;
+    &:before {
+      top: 100%;
+    	left: 80%;
+    	border: solid transparent;
+    	content: " ";
+    	height: 0;
+    	width: 0;
+    	position: absolute;
+    	pointer-events: none;
+      border-color: rgba(194, 225, 245, 0);
+  	  border-top-color: $color--main;
+  	  border-width: 10px;
+    }
+  }
+}

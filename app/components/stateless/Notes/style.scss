@@ -64,14 +64,19 @@
       text-align: center;
       text-transform: uppercase;
       font-weight: $semi-bold;
-      color: white;
-      background: $color--main;
+      color: $textColor;
+      border-top: 1px solid #C9C9C9;
+      background: $offWhite;
       opacity: 0;
-      transition: $transition;
+      transition: $transition--button;
+      &:hover,
+      &:active {
+        color: $color--tertiary;
+      }
     }
     &--title {
       font-weight: 600;
-      color: $color--main;
+      color: $color--tertiary;
       margin: 0 0 20px;
       font-size: 18px;
       padding-bottom: $padding;
@@ -99,11 +104,28 @@
     &--erase {
       cursor: pointer;
       position: absolute;
-      width: 25px;
-      height: 25px;
-      top: -10px;
-      left: -10px;
+      width: 30px;
+      height: 30px;
+      top: -12px;
+      left: -12px;
       background: url('../../../icons/delete.svg') transparent;
+      border-radius: 50%;
+      padding: 2px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: $transition;
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+    &--edit {
+      cursor: pointer;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: -12px;
+      right: -12px;
+      background: url('../../../icons/edit.svg') transparent;
       border-radius: 50%;
       padding: 2px;
       box-sizing: border-box;
@@ -117,7 +139,8 @@
       .list--items--read-more {
         opacity: 1;
       }
-      .list--items--erase {
+      .list--items--erase,
+      .list--items--edit {
         opacity: 1;
       }
     }

@@ -8,7 +8,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import '../../transitions.scss';
 
-class ListItems extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
 
@@ -61,6 +61,7 @@ class ListItems extends React.Component {
                   .keys(listEntries)
                     .map(key =>
                         <Notes
+                          edit={ this.props.triggerEditor }
                           key={key}
                           index={key}
                           details={listEntries[key]}
@@ -75,4 +76,4 @@ class ListItems extends React.Component {
     }
 }
 
-export default ListItems;
+export default List;

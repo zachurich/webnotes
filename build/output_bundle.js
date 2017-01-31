@@ -79,7 +79,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _NotFound = __webpack_require__(297);
+	var _NotFound = __webpack_require__(305);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -89,7 +89,7 @@
 
 
 	// Lets start by importing all the stuff we need for React to work
-	__webpack_require__(302);
+	__webpack_require__(310);
 	// require('./reset.scss');
 
 	// This is the main component to load all components
@@ -29292,7 +29292,7 @@
 
 	      e.preventDefault();
 
-	      var username = this.username.value;
+	      var username = this.username.value.toLowerCase();
 	      var email = this.email.value;
 	      var password = this.password.value;
 	      var errorCode = void 0;
@@ -29304,19 +29304,13 @@
 	          var user = _base2.default.auth().currentUser;
 	          // Update profile's display name with 'username' input value
 	          user.updateProfile({
-	            displayName: username
+	            displayName: (0, _helpers.secureUsername)(username)
 	          });
 	          _this2.context.router.push('/login');
 	        })
 	        // Returns Error
 	        .catch(function (error) {
-	          console.log(error);
-	          // Handle Errors here
-	          errorCode = error.code;
-	          _this2.setState({
-	            validation: true,
-	            error: (0, _helpers.handleMessage)(errorCode)
-	          });
+	          return _this2.setState((0, _helpers.errCatch)(error));
 	        });
 	      } else {
 	        errorMessage = "You must enter a username.";
@@ -29339,13 +29333,13 @@
 	          errorMessage: this.state.error,
 	          userSubmit: this.handleSubmit,
 	          username: function username(input) {
-	            _this3.username = input;
+	            return _this3.username = input;
 	          },
 	          email: function email(input) {
-	            _this3.email = input;
+	            return _this3.email = input;
 	          },
 	          password: function password(input) {
-	            _this3.password = input;
+	            return _this3.password = input;
 	          } })
 	      );
 	    }
@@ -31267,7 +31261,7 @@
 	      ),
 	      _react2.default.createElement('input', {
 	        className: 'input--username',
-	        placeholder: 'Name',
+	        placeholder: 'Username',
 	        type: 'text',
 	        ref: props.username }),
 	      _react2.default.createElement('input', {
@@ -31731,6 +31725,10 @@
 	exports.handleValidation = handleValidation;
 	exports.handleMessage = handleMessage;
 	exports.transition = transition;
+	exports.errCatch = errCatch;
+	exports.secureUsername = secureUsername;
+	exports.displayUsername = displayUsername;
+	exports.formatTitle = formatTitle;
 
 	var _reactDom = __webpack_require__(34);
 
@@ -31765,6 +31763,7 @@
 	}
 
 	// plug this into a componentDidMount and pass in 'this'
+	// light alternative to ReactCSSTransitionGroup route animations
 	function transition(component) {
 	  var elem = _reactDom2.default.findDOMNode(component);
 	  elem.style.opacity = 0;
@@ -31774,6 +31773,36 @@
 	    elem.style.opacity = 1;
 	    elem.style.transform = "translateY(0px)";
 	  });
+	}
+
+	// used for catching promise Errors
+	// and updating validation message state
+	function errCatch(error) {
+	  console.log(error);
+	  // Handle Errors here
+	  return {
+	    validation: true,
+	    error: handleMessage(error.code)
+	  };
+	}
+
+	// Used for appending a unique string to
+	// the username to prevent
+	// accessing another user's notes
+	function secureUsername(username) {
+	  return username = username.toLowerCase() + '-' + Date.now();
+	}
+
+	// Deconstruct secureusername into the user's
+	// original input for frontend purposes
+	function displayUsername(username) {
+	  var pos = username.lastIndexOf('-');
+	  return username.split('', pos).join('');
+	}
+
+	function formatTitle(text) {
+	  var textArr = text.split(' ');
+	  return textArr[0];
 	}
 
 /***/ },
@@ -31892,8 +31921,7 @@
 	      // user's unique notes route
 	      if (user != null) {
 	        user.providerData.forEach(function (profile) {
-	          var username = profile.displayName;
-	          _this2.context.router.push('/notes/' + username);
+	          _this2.context.router.push('/notes/' + profile.displayName);
 	        });
 	      }
 	    }
@@ -31908,7 +31936,6 @@
 	      var email = this.email.value;
 	      var password = this.password.value;
 
-	      // if (password > 4)
 	      /*
 	        Using an arrow function here allows 'this' to remain properly bound.
 	        The syntax used before was 'cont authHandler = function authHandler(...)'
@@ -32057,11 +32084,13 @@
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _NotFound = __webpack_require__(297);
+	var _NotFound = __webpack_require__(305);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
-	__webpack_require__(300);
+	var _helpers = __webpack_require__(271);
+
+	__webpack_require__(308);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32098,7 +32127,8 @@
 	      email: '',
 	      menu: false,
 	      editor: false,
-	      error: true
+	      error: true,
+	      itemData: ''
 	    };
 
 	    _this.showMenu = _this.showMenu.bind(_this);
@@ -32185,10 +32215,22 @@
 	    }
 	  }, {
 	    key: 'showEditor',
-	    value: function showEditor() {
-	      this.setState(function (prevState, props) {
-	        return { editor: !prevState.editor };
-	      });
+	    value: function showEditor(flag, data) {
+	      if (flag === 'Editing') {
+	        this.setState(function (prevState, props) {
+	          return {
+	            editor: !prevState.editor,
+	            itemData: data
+	          };
+	        });
+	      } else {
+	        this.setState(function (prevState, props) {
+	          return {
+	            editor: !prevState.editor,
+	            itemData: ''
+	          };
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'handleButtonText',
@@ -32210,7 +32252,7 @@
 	      var username = this.state.username;
 	      var email = this.state.email;
 
-	      var welcomeText = 'Welcome, ' + this.state.username + '.';
+	      var welcomeText = 'Welcome, ' + (0, _helpers.displayUsername)(username) + '.';
 	      // Render all our components here
 	      return _react2.default.createElement(
 	        'div',
@@ -32221,12 +32263,15 @@
 	          menu: this.state.menu,
 	          triggerMenu: this.showMenu,
 	          triggerEditor: this.showEditor,
-	          title: username,
+	          title: (0, _helpers.displayUsername)(username),
 	          logout: this.handleLogOut }),
 	        _react2.default.createElement(_ListContainer2.default, {
+	          itemData: this.state.itemData,
 	          error: this.state.error,
 	          updateText: this.handleButtonText,
 	          editor: this.state.editor,
+	          editing: this.state.editing,
+	          triggerEditor: this.showEditor,
 	          close: this.closeEditor,
 	          url: username })
 	      );
@@ -32277,8 +32322,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Header = function Header(props) {
-	  var username = props.title;
-	  console.log(props.email);
 	  return _react2.default.createElement(
 	    'header',
 	    { className: 'header' },
@@ -32295,9 +32338,9 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'header--title', style: {
-	          letterSpacing: '0.0625em'
+	          letterSpacing: '0.0125em'
 	        } },
-	      username
+	      props.title
 	    ),
 	    _react2.default.createElement(
 	      'div',
@@ -32504,11 +32547,15 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _ListItems = __webpack_require__(286);
+	var _marked = __webpack_require__(286);
 
-	var _ListItems2 = _interopRequireDefault(_ListItems);
+	var _marked2 = _interopRequireDefault(_marked);
 
-	var _Editor = __webpack_require__(294);
+	var _List = __webpack_require__(287);
+
+	var _List2 = _interopRequireDefault(_List);
+
+	var _Editor = __webpack_require__(298);
 
 	var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -32516,9 +32563,15 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ExpandedNote = __webpack_require__(287);
+	var _ExpandedNote = __webpack_require__(288);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
+
+	var _Annotations = __webpack_require__(301);
+
+	var _Annotations2 = _interopRequireDefault(_Annotations);
+
+	var _helpers = __webpack_require__(271);
 
 	var _base = __webpack_require__(256);
 
@@ -32550,6 +32603,7 @@
 	      items: {}
 	    };
 	    _this.addItem = _this.addItem.bind(_this);
+	    _this.editItem = _this.editItem.bind(_this);
 	    _this.removeItem = _this.removeItem.bind(_this);
 	    return _this;
 	  }
@@ -32582,6 +32636,7 @@
 	      // Store our items in components 'items' state
 	      var items = _extends({}, this.state.items);
 
+	      // Function for formating our dates
 	      function dateGet() {
 	        var d = new Date();
 	        var curr_date = d.getDate();
@@ -32589,20 +32644,41 @@
 	        var curr_year = d.getFullYear();
 	        return curr_month + "/" + curr_date + "/" + curr_year;
 	      }
+
 	      // Add list items to end of array 'items'
 	      var title = this._inputTitle.value;
 	      var text = this._inputText.value;
 	      if (text.length > 0) {
-	        title.length > 0 ? title : title = 'Title';
+	        title.length > 0 ? title : title = (0, _helpers.formatTitle)(text);
 	        // this creates a new object in our state object titled 'note-uniqueID'
 	        // with all our details
 	        items['note-' + Date.now()] = {
 	          title: title,
 	          text: text,
 	          id: Date.now(),
-	          // key: Date.now(),
 	          date: dateGet()
 	        };
+	        this.setState({ items: items });
+	      }
+	    }
+	  }, {
+	    key: 'editItem',
+	    value: function editItem(e, key) {
+	      e.preventDefault();
+	      var items = _extends({}, this.state.items);
+
+	      var title = this._inputTitle.value;
+	      var text = this._inputText.value;
+
+	      if (text.length > 0) {
+	        title.length > 0 ? title : title = (0, _helpers.formatTitle)(text);
+
+	        // Make 'copy' of existing items
+	        items['note-' + key] = {
+	          title: title,
+	          text: text
+	        };
+
 	        this.setState({ items: items });
 	      }
 	    }
@@ -32632,9 +32708,12 @@
 	            transitionName: 'fade-in',
 	            transitionEnterTimeout: 500,
 	            transitionLeaveTimeout: 200 },
+	          Object.keys(this.state.items).length < 1 ? _react2.default.createElement(_Annotations2.default, { action: 'to add a note' }) : null,
 	          this.props.editor ? _react2.default.createElement(_Editor2.default, {
+	            data: this.props.itemData,
 	            updateText: this.props.updateText,
 	            error: this.props.error,
+	            editItem: this.editItem,
 	            addItem: this.addItem,
 	            close: this.props.close,
 	            inputTitle: function inputTitle(a) {
@@ -32647,7 +32726,9 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
-	          _react2.default.createElement(_ListItems2.default, {
+	          _react2.default.createElement(_List2.default, {
+	            edit: this.editItem,
+	            triggerEditor: this.props.triggerEditor,
 	            params: this.props.url,
 	            entries: this.state.items,
 	            removeItem: this.removeItem
@@ -32671,6 +32752,1299 @@
 /* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * marked - a markdown parser
+	 * Copyright (c) 2011-2014, Christopher Jeffrey. (MIT Licensed)
+	 * https://github.com/chjj/marked
+	 */
+
+	;(function() {
+
+	/**
+	 * Block-Level Grammar
+	 */
+
+	var block = {
+	  newline: /^\n+/,
+	  code: /^( {4}[^\n]+\n*)+/,
+	  fences: noop,
+	  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+	  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
+	  nptable: noop,
+	  lheading: /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,
+	  blockquote: /^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/,
+	  list: /^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+	  html: /^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,
+	  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+	  table: noop,
+	  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
+	  text: /^[^\n]+/
+	};
+
+	block.bullet = /(?:[*+-]|\d+\.)/;
+	block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
+	block.item = replace(block.item, 'gm')
+	  (/bull/g, block.bullet)
+	  ();
+
+	block.list = replace(block.list)
+	  (/bull/g, block.bullet)
+	  ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
+	  ('def', '\\n+(?=' + block.def.source + ')')
+	  ();
+
+	block.blockquote = replace(block.blockquote)
+	  ('def', block.def)
+	  ();
+
+	block._tag = '(?!(?:'
+	  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
+	  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
+	  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
+
+	block.html = replace(block.html)
+	  ('comment', /<!--[\s\S]*?-->/)
+	  ('closed', /<(tag)[\s\S]+?<\/\1>/)
+	  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
+	  (/tag/g, block._tag)
+	  ();
+
+	block.paragraph = replace(block.paragraph)
+	  ('hr', block.hr)
+	  ('heading', block.heading)
+	  ('lheading', block.lheading)
+	  ('blockquote', block.blockquote)
+	  ('tag', '<' + block._tag)
+	  ('def', block.def)
+	  ();
+
+	/**
+	 * Normal Block Grammar
+	 */
+
+	block.normal = merge({}, block);
+
+	/**
+	 * GFM Block Grammar
+	 */
+
+	block.gfm = merge({}, block.normal, {
+	  fences: /^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
+	  paragraph: /^/,
+	  heading: /^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/
+	});
+
+	block.gfm.paragraph = replace(block.paragraph)
+	  ('(?!', '(?!'
+	    + block.gfm.fences.source.replace('\\1', '\\2') + '|'
+	    + block.list.source.replace('\\1', '\\3') + '|')
+	  ();
+
+	/**
+	 * GFM + Tables Block Grammar
+	 */
+
+	block.tables = merge({}, block.gfm, {
+	  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
+	  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
+	});
+
+	/**
+	 * Block Lexer
+	 */
+
+	function Lexer(options) {
+	  this.tokens = [];
+	  this.tokens.links = {};
+	  this.options = options || marked.defaults;
+	  this.rules = block.normal;
+
+	  if (this.options.gfm) {
+	    if (this.options.tables) {
+	      this.rules = block.tables;
+	    } else {
+	      this.rules = block.gfm;
+	    }
+	  }
+	}
+
+	/**
+	 * Expose Block Rules
+	 */
+
+	Lexer.rules = block;
+
+	/**
+	 * Static Lex Method
+	 */
+
+	Lexer.lex = function(src, options) {
+	  var lexer = new Lexer(options);
+	  return lexer.lex(src);
+	};
+
+	/**
+	 * Preprocessing
+	 */
+
+	Lexer.prototype.lex = function(src) {
+	  src = src
+	    .replace(/\r\n|\r/g, '\n')
+	    .replace(/\t/g, '    ')
+	    .replace(/\u00a0/g, ' ')
+	    .replace(/\u2424/g, '\n');
+
+	  return this.token(src, true);
+	};
+
+	/**
+	 * Lexing
+	 */
+
+	Lexer.prototype.token = function(src, top, bq) {
+	  var src = src.replace(/^ +$/gm, '')
+	    , next
+	    , loose
+	    , cap
+	    , bull
+	    , b
+	    , item
+	    , space
+	    , i
+	    , l;
+
+	  while (src) {
+	    // newline
+	    if (cap = this.rules.newline.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      if (cap[0].length > 1) {
+	        this.tokens.push({
+	          type: 'space'
+	        });
+	      }
+	    }
+
+	    // code
+	    if (cap = this.rules.code.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      cap = cap[0].replace(/^ {4}/gm, '');
+	      this.tokens.push({
+	        type: 'code',
+	        text: !this.options.pedantic
+	          ? cap.replace(/\n+$/, '')
+	          : cap
+	      });
+	      continue;
+	    }
+
+	    // fences (gfm)
+	    if (cap = this.rules.fences.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'code',
+	        lang: cap[2],
+	        text: cap[3] || ''
+	      });
+	      continue;
+	    }
+
+	    // heading
+	    if (cap = this.rules.heading.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'heading',
+	        depth: cap[1].length,
+	        text: cap[2]
+	      });
+	      continue;
+	    }
+
+	    // table no leading pipe (gfm)
+	    if (top && (cap = this.rules.nptable.exec(src))) {
+	      src = src.substring(cap[0].length);
+
+	      item = {
+	        type: 'table',
+	        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+	        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+	        cells: cap[3].replace(/\n$/, '').split('\n')
+	      };
+
+	      for (i = 0; i < item.align.length; i++) {
+	        if (/^ *-+: *$/.test(item.align[i])) {
+	          item.align[i] = 'right';
+	        } else if (/^ *:-+: *$/.test(item.align[i])) {
+	          item.align[i] = 'center';
+	        } else if (/^ *:-+ *$/.test(item.align[i])) {
+	          item.align[i] = 'left';
+	        } else {
+	          item.align[i] = null;
+	        }
+	      }
+
+	      for (i = 0; i < item.cells.length; i++) {
+	        item.cells[i] = item.cells[i].split(/ *\| */);
+	      }
+
+	      this.tokens.push(item);
+
+	      continue;
+	    }
+
+	    // lheading
+	    if (cap = this.rules.lheading.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'heading',
+	        depth: cap[2] === '=' ? 1 : 2,
+	        text: cap[1]
+	      });
+	      continue;
+	    }
+
+	    // hr
+	    if (cap = this.rules.hr.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'hr'
+	      });
+	      continue;
+	    }
+
+	    // blockquote
+	    if (cap = this.rules.blockquote.exec(src)) {
+	      src = src.substring(cap[0].length);
+
+	      this.tokens.push({
+	        type: 'blockquote_start'
+	      });
+
+	      cap = cap[0].replace(/^ *> ?/gm, '');
+
+	      // Pass `top` to keep the current
+	      // "toplevel" state. This is exactly
+	      // how markdown.pl works.
+	      this.token(cap, top, true);
+
+	      this.tokens.push({
+	        type: 'blockquote_end'
+	      });
+
+	      continue;
+	    }
+
+	    // list
+	    if (cap = this.rules.list.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      bull = cap[2];
+
+	      this.tokens.push({
+	        type: 'list_start',
+	        ordered: bull.length > 1
+	      });
+
+	      // Get each top-level item.
+	      cap = cap[0].match(this.rules.item);
+
+	      next = false;
+	      l = cap.length;
+	      i = 0;
+
+	      for (; i < l; i++) {
+	        item = cap[i];
+
+	        // Remove the list item's bullet
+	        // so it is seen as the next token.
+	        space = item.length;
+	        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
+
+	        // Outdent whatever the
+	        // list item contains. Hacky.
+	        if (~item.indexOf('\n ')) {
+	          space -= item.length;
+	          item = !this.options.pedantic
+	            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+	            : item.replace(/^ {1,4}/gm, '');
+	        }
+
+	        // Determine whether the next list item belongs here.
+	        // Backpedal if it does not belong in this list.
+	        if (this.options.smartLists && i !== l - 1) {
+	          b = block.bullet.exec(cap[i + 1])[0];
+	          if (bull !== b && !(bull.length > 1 && b.length > 1)) {
+	            src = cap.slice(i + 1).join('\n') + src;
+	            i = l - 1;
+	          }
+	        }
+
+	        // Determine whether item is loose or not.
+	        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
+	        // for discount behavior.
+	        loose = next || /\n\n(?!\s*$)/.test(item);
+	        if (i !== l - 1) {
+	          next = item.charAt(item.length - 1) === '\n';
+	          if (!loose) loose = next;
+	        }
+
+	        this.tokens.push({
+	          type: loose
+	            ? 'loose_item_start'
+	            : 'list_item_start'
+	        });
+
+	        // Recurse.
+	        this.token(item, false, bq);
+
+	        this.tokens.push({
+	          type: 'list_item_end'
+	        });
+	      }
+
+	      this.tokens.push({
+	        type: 'list_end'
+	      });
+
+	      continue;
+	    }
+
+	    // html
+	    if (cap = this.rules.html.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: this.options.sanitize
+	          ? 'paragraph'
+	          : 'html',
+	        pre: !this.options.sanitizer
+	          && (cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style'),
+	        text: cap[0]
+	      });
+	      continue;
+	    }
+
+	    // def
+	    if ((!bq && top) && (cap = this.rules.def.exec(src))) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.links[cap[1].toLowerCase()] = {
+	        href: cap[2],
+	        title: cap[3]
+	      };
+	      continue;
+	    }
+
+	    // table (gfm)
+	    if (top && (cap = this.rules.table.exec(src))) {
+	      src = src.substring(cap[0].length);
+
+	      item = {
+	        type: 'table',
+	        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+	        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+	        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
+	      };
+
+	      for (i = 0; i < item.align.length; i++) {
+	        if (/^ *-+: *$/.test(item.align[i])) {
+	          item.align[i] = 'right';
+	        } else if (/^ *:-+: *$/.test(item.align[i])) {
+	          item.align[i] = 'center';
+	        } else if (/^ *:-+ *$/.test(item.align[i])) {
+	          item.align[i] = 'left';
+	        } else {
+	          item.align[i] = null;
+	        }
+	      }
+
+	      for (i = 0; i < item.cells.length; i++) {
+	        item.cells[i] = item.cells[i]
+	          .replace(/^ *\| *| *\| *$/g, '')
+	          .split(/ *\| */);
+	      }
+
+	      this.tokens.push(item);
+
+	      continue;
+	    }
+
+	    // top-level paragraph
+	    if (top && (cap = this.rules.paragraph.exec(src))) {
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'paragraph',
+	        text: cap[1].charAt(cap[1].length - 1) === '\n'
+	          ? cap[1].slice(0, -1)
+	          : cap[1]
+	      });
+	      continue;
+	    }
+
+	    // text
+	    if (cap = this.rules.text.exec(src)) {
+	      // Top-level should never reach here.
+	      src = src.substring(cap[0].length);
+	      this.tokens.push({
+	        type: 'text',
+	        text: cap[0]
+	      });
+	      continue;
+	    }
+
+	    if (src) {
+	      throw new
+	        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+	    }
+	  }
+
+	  return this.tokens;
+	};
+
+	/**
+	 * Inline-Level Grammar
+	 */
+
+	var inline = {
+	  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
+	  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
+	  url: noop,
+	  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
+	  link: /^!?\[(inside)\]\(href\)/,
+	  reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
+	  nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
+	  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
+	  em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+	  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
+	  br: /^ {2,}\n(?!\s*$)/,
+	  del: noop,
+	  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+	};
+
+	inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
+	inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+
+	inline.link = replace(inline.link)
+	  ('inside', inline._inside)
+	  ('href', inline._href)
+	  ();
+
+	inline.reflink = replace(inline.reflink)
+	  ('inside', inline._inside)
+	  ();
+
+	/**
+	 * Normal Inline Grammar
+	 */
+
+	inline.normal = merge({}, inline);
+
+	/**
+	 * Pedantic Inline Grammar
+	 */
+
+	inline.pedantic = merge({}, inline.normal, {
+	  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+	  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
+	});
+
+	/**
+	 * GFM Inline Grammar
+	 */
+
+	inline.gfm = merge({}, inline.normal, {
+	  escape: replace(inline.escape)('])', '~|])')(),
+	  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
+	  del: /^~~(?=\S)([\s\S]*?\S)~~/,
+	  text: replace(inline.text)
+	    (']|', '~]|')
+	    ('|', '|https?://|')
+	    ()
+	});
+
+	/**
+	 * GFM + Line Breaks Inline Grammar
+	 */
+
+	inline.breaks = merge({}, inline.gfm, {
+	  br: replace(inline.br)('{2,}', '*')(),
+	  text: replace(inline.gfm.text)('{2,}', '*')()
+	});
+
+	/**
+	 * Inline Lexer & Compiler
+	 */
+
+	function InlineLexer(links, options) {
+	  this.options = options || marked.defaults;
+	  this.links = links;
+	  this.rules = inline.normal;
+	  this.renderer = this.options.renderer || new Renderer;
+	  this.renderer.options = this.options;
+
+	  if (!this.links) {
+	    throw new
+	      Error('Tokens array requires a `links` property.');
+	  }
+
+	  if (this.options.gfm) {
+	    if (this.options.breaks) {
+	      this.rules = inline.breaks;
+	    } else {
+	      this.rules = inline.gfm;
+	    }
+	  } else if (this.options.pedantic) {
+	    this.rules = inline.pedantic;
+	  }
+	}
+
+	/**
+	 * Expose Inline Rules
+	 */
+
+	InlineLexer.rules = inline;
+
+	/**
+	 * Static Lexing/Compiling Method
+	 */
+
+	InlineLexer.output = function(src, links, options) {
+	  var inline = new InlineLexer(links, options);
+	  return inline.output(src);
+	};
+
+	/**
+	 * Lexing/Compiling
+	 */
+
+	InlineLexer.prototype.output = function(src) {
+	  var out = ''
+	    , link
+	    , text
+	    , href
+	    , cap;
+
+	  while (src) {
+	    // escape
+	    if (cap = this.rules.escape.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += cap[1];
+	      continue;
+	    }
+
+	    // autolink
+	    if (cap = this.rules.autolink.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      if (cap[2] === '@') {
+	        text = cap[1].charAt(6) === ':'
+	          ? this.mangle(cap[1].substring(7))
+	          : this.mangle(cap[1]);
+	        href = this.mangle('mailto:') + text;
+	      } else {
+	        text = escape(cap[1]);
+	        href = text;
+	      }
+	      out += this.renderer.link(href, null, text);
+	      continue;
+	    }
+
+	    // url (gfm)
+	    if (!this.inLink && (cap = this.rules.url.exec(src))) {
+	      src = src.substring(cap[0].length);
+	      text = escape(cap[1]);
+	      href = text;
+	      out += this.renderer.link(href, null, text);
+	      continue;
+	    }
+
+	    // tag
+	    if (cap = this.rules.tag.exec(src)) {
+	      if (!this.inLink && /^<a /i.test(cap[0])) {
+	        this.inLink = true;
+	      } else if (this.inLink && /^<\/a>/i.test(cap[0])) {
+	        this.inLink = false;
+	      }
+	      src = src.substring(cap[0].length);
+	      out += this.options.sanitize
+	        ? this.options.sanitizer
+	          ? this.options.sanitizer(cap[0])
+	          : escape(cap[0])
+	        : cap[0]
+	      continue;
+	    }
+
+	    // link
+	    if (cap = this.rules.link.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      this.inLink = true;
+	      out += this.outputLink(cap, {
+	        href: cap[2],
+	        title: cap[3]
+	      });
+	      this.inLink = false;
+	      continue;
+	    }
+
+	    // reflink, nolink
+	    if ((cap = this.rules.reflink.exec(src))
+	        || (cap = this.rules.nolink.exec(src))) {
+	      src = src.substring(cap[0].length);
+	      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
+	      link = this.links[link.toLowerCase()];
+	      if (!link || !link.href) {
+	        out += cap[0].charAt(0);
+	        src = cap[0].substring(1) + src;
+	        continue;
+	      }
+	      this.inLink = true;
+	      out += this.outputLink(cap, link);
+	      this.inLink = false;
+	      continue;
+	    }
+
+	    // strong
+	    if (cap = this.rules.strong.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.strong(this.output(cap[2] || cap[1]));
+	      continue;
+	    }
+
+	    // em
+	    if (cap = this.rules.em.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.em(this.output(cap[2] || cap[1]));
+	      continue;
+	    }
+
+	    // code
+	    if (cap = this.rules.code.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.codespan(escape(cap[2], true));
+	      continue;
+	    }
+
+	    // br
+	    if (cap = this.rules.br.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.br();
+	      continue;
+	    }
+
+	    // del (gfm)
+	    if (cap = this.rules.del.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.del(this.output(cap[1]));
+	      continue;
+	    }
+
+	    // text
+	    if (cap = this.rules.text.exec(src)) {
+	      src = src.substring(cap[0].length);
+	      out += this.renderer.text(escape(this.smartypants(cap[0])));
+	      continue;
+	    }
+
+	    if (src) {
+	      throw new
+	        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+	    }
+	  }
+
+	  return out;
+	};
+
+	/**
+	 * Compile Link
+	 */
+
+	InlineLexer.prototype.outputLink = function(cap, link) {
+	  var href = escape(link.href)
+	    , title = link.title ? escape(link.title) : null;
+
+	  return cap[0].charAt(0) !== '!'
+	    ? this.renderer.link(href, title, this.output(cap[1]))
+	    : this.renderer.image(href, title, escape(cap[1]));
+	};
+
+	/**
+	 * Smartypants Transformations
+	 */
+
+	InlineLexer.prototype.smartypants = function(text) {
+	  if (!this.options.smartypants) return text;
+	  return text
+	    // em-dashes
+	    .replace(/---/g, '\u2014')
+	    // en-dashes
+	    .replace(/--/g, '\u2013')
+	    // opening singles
+	    .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
+	    // closing singles & apostrophes
+	    .replace(/'/g, '\u2019')
+	    // opening doubles
+	    .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
+	    // closing doubles
+	    .replace(/"/g, '\u201d')
+	    // ellipses
+	    .replace(/\.{3}/g, '\u2026');
+	};
+
+	/**
+	 * Mangle Links
+	 */
+
+	InlineLexer.prototype.mangle = function(text) {
+	  if (!this.options.mangle) return text;
+	  var out = ''
+	    , l = text.length
+	    , i = 0
+	    , ch;
+
+	  for (; i < l; i++) {
+	    ch = text.charCodeAt(i);
+	    if (Math.random() > 0.5) {
+	      ch = 'x' + ch.toString(16);
+	    }
+	    out += '&#' + ch + ';';
+	  }
+
+	  return out;
+	};
+
+	/**
+	 * Renderer
+	 */
+
+	function Renderer(options) {
+	  this.options = options || {};
+	}
+
+	Renderer.prototype.code = function(code, lang, escaped) {
+	  if (this.options.highlight) {
+	    var out = this.options.highlight(code, lang);
+	    if (out != null && out !== code) {
+	      escaped = true;
+	      code = out;
+	    }
+	  }
+
+	  if (!lang) {
+	    return '<pre><code>'
+	      + (escaped ? code : escape(code, true))
+	      + '\n</code></pre>';
+	  }
+
+	  return '<pre><code class="'
+	    + this.options.langPrefix
+	    + escape(lang, true)
+	    + '">'
+	    + (escaped ? code : escape(code, true))
+	    + '\n</code></pre>\n';
+	};
+
+	Renderer.prototype.blockquote = function(quote) {
+	  return '<blockquote>\n' + quote + '</blockquote>\n';
+	};
+
+	Renderer.prototype.html = function(html) {
+	  return html;
+	};
+
+	Renderer.prototype.heading = function(text, level, raw) {
+	  return '<h'
+	    + level
+	    + ' id="'
+	    + this.options.headerPrefix
+	    + raw.toLowerCase().replace(/[^\w]+/g, '-')
+	    + '">'
+	    + text
+	    + '</h'
+	    + level
+	    + '>\n';
+	};
+
+	Renderer.prototype.hr = function() {
+	  return this.options.xhtml ? '<hr/>\n' : '<hr>\n';
+	};
+
+	Renderer.prototype.list = function(body, ordered) {
+	  var type = ordered ? 'ol' : 'ul';
+	  return '<' + type + '>\n' + body + '</' + type + '>\n';
+	};
+
+	Renderer.prototype.listitem = function(text) {
+	  return '<li>' + text + '</li>\n';
+	};
+
+	Renderer.prototype.paragraph = function(text) {
+	  return '<p>' + text + '</p>\n';
+	};
+
+	Renderer.prototype.table = function(header, body) {
+	  return '<table>\n'
+	    + '<thead>\n'
+	    + header
+	    + '</thead>\n'
+	    + '<tbody>\n'
+	    + body
+	    + '</tbody>\n'
+	    + '</table>\n';
+	};
+
+	Renderer.prototype.tablerow = function(content) {
+	  return '<tr>\n' + content + '</tr>\n';
+	};
+
+	Renderer.prototype.tablecell = function(content, flags) {
+	  var type = flags.header ? 'th' : 'td';
+	  var tag = flags.align
+	    ? '<' + type + ' style="text-align:' + flags.align + '">'
+	    : '<' + type + '>';
+	  return tag + content + '</' + type + '>\n';
+	};
+
+	// span level renderer
+	Renderer.prototype.strong = function(text) {
+	  return '<strong>' + text + '</strong>';
+	};
+
+	Renderer.prototype.em = function(text) {
+	  return '<em>' + text + '</em>';
+	};
+
+	Renderer.prototype.codespan = function(text) {
+	  return '<code>' + text + '</code>';
+	};
+
+	Renderer.prototype.br = function() {
+	  return this.options.xhtml ? '<br/>' : '<br>';
+	};
+
+	Renderer.prototype.del = function(text) {
+	  return '<del>' + text + '</del>';
+	};
+
+	Renderer.prototype.link = function(href, title, text) {
+	  if (this.options.sanitize) {
+	    try {
+	      var prot = decodeURIComponent(unescape(href))
+	        .replace(/[^\w:]/g, '')
+	        .toLowerCase();
+	    } catch (e) {
+	      return '';
+	    }
+	    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
+	      return '';
+	    }
+	  }
+	  var out = '<a href="' + href + '"';
+	  if (title) {
+	    out += ' title="' + title + '"';
+	  }
+	  out += '>' + text + '</a>';
+	  return out;
+	};
+
+	Renderer.prototype.image = function(href, title, text) {
+	  var out = '<img src="' + href + '" alt="' + text + '"';
+	  if (title) {
+	    out += ' title="' + title + '"';
+	  }
+	  out += this.options.xhtml ? '/>' : '>';
+	  return out;
+	};
+
+	Renderer.prototype.text = function(text) {
+	  return text;
+	};
+
+	/**
+	 * Parsing & Compiling
+	 */
+
+	function Parser(options) {
+	  this.tokens = [];
+	  this.token = null;
+	  this.options = options || marked.defaults;
+	  this.options.renderer = this.options.renderer || new Renderer;
+	  this.renderer = this.options.renderer;
+	  this.renderer.options = this.options;
+	}
+
+	/**
+	 * Static Parse Method
+	 */
+
+	Parser.parse = function(src, options, renderer) {
+	  var parser = new Parser(options, renderer);
+	  return parser.parse(src);
+	};
+
+	/**
+	 * Parse Loop
+	 */
+
+	Parser.prototype.parse = function(src) {
+	  this.inline = new InlineLexer(src.links, this.options, this.renderer);
+	  this.tokens = src.reverse();
+
+	  var out = '';
+	  while (this.next()) {
+	    out += this.tok();
+	  }
+
+	  return out;
+	};
+
+	/**
+	 * Next Token
+	 */
+
+	Parser.prototype.next = function() {
+	  return this.token = this.tokens.pop();
+	};
+
+	/**
+	 * Preview Next Token
+	 */
+
+	Parser.prototype.peek = function() {
+	  return this.tokens[this.tokens.length - 1] || 0;
+	};
+
+	/**
+	 * Parse Text Tokens
+	 */
+
+	Parser.prototype.parseText = function() {
+	  var body = this.token.text;
+
+	  while (this.peek().type === 'text') {
+	    body += '\n' + this.next().text;
+	  }
+
+	  return this.inline.output(body);
+	};
+
+	/**
+	 * Parse Current Token
+	 */
+
+	Parser.prototype.tok = function() {
+	  switch (this.token.type) {
+	    case 'space': {
+	      return '';
+	    }
+	    case 'hr': {
+	      return this.renderer.hr();
+	    }
+	    case 'heading': {
+	      return this.renderer.heading(
+	        this.inline.output(this.token.text),
+	        this.token.depth,
+	        this.token.text);
+	    }
+	    case 'code': {
+	      return this.renderer.code(this.token.text,
+	        this.token.lang,
+	        this.token.escaped);
+	    }
+	    case 'table': {
+	      var header = ''
+	        , body = ''
+	        , i
+	        , row
+	        , cell
+	        , flags
+	        , j;
+
+	      // header
+	      cell = '';
+	      for (i = 0; i < this.token.header.length; i++) {
+	        flags = { header: true, align: this.token.align[i] };
+	        cell += this.renderer.tablecell(
+	          this.inline.output(this.token.header[i]),
+	          { header: true, align: this.token.align[i] }
+	        );
+	      }
+	      header += this.renderer.tablerow(cell);
+
+	      for (i = 0; i < this.token.cells.length; i++) {
+	        row = this.token.cells[i];
+
+	        cell = '';
+	        for (j = 0; j < row.length; j++) {
+	          cell += this.renderer.tablecell(
+	            this.inline.output(row[j]),
+	            { header: false, align: this.token.align[j] }
+	          );
+	        }
+
+	        body += this.renderer.tablerow(cell);
+	      }
+	      return this.renderer.table(header, body);
+	    }
+	    case 'blockquote_start': {
+	      var body = '';
+
+	      while (this.next().type !== 'blockquote_end') {
+	        body += this.tok();
+	      }
+
+	      return this.renderer.blockquote(body);
+	    }
+	    case 'list_start': {
+	      var body = ''
+	        , ordered = this.token.ordered;
+
+	      while (this.next().type !== 'list_end') {
+	        body += this.tok();
+	      }
+
+	      return this.renderer.list(body, ordered);
+	    }
+	    case 'list_item_start': {
+	      var body = '';
+
+	      while (this.next().type !== 'list_item_end') {
+	        body += this.token.type === 'text'
+	          ? this.parseText()
+	          : this.tok();
+	      }
+
+	      return this.renderer.listitem(body);
+	    }
+	    case 'loose_item_start': {
+	      var body = '';
+
+	      while (this.next().type !== 'list_item_end') {
+	        body += this.tok();
+	      }
+
+	      return this.renderer.listitem(body);
+	    }
+	    case 'html': {
+	      var html = !this.token.pre && !this.options.pedantic
+	        ? this.inline.output(this.token.text)
+	        : this.token.text;
+	      return this.renderer.html(html);
+	    }
+	    case 'paragraph': {
+	      return this.renderer.paragraph(this.inline.output(this.token.text));
+	    }
+	    case 'text': {
+	      return this.renderer.paragraph(this.parseText());
+	    }
+	  }
+	};
+
+	/**
+	 * Helpers
+	 */
+
+	function escape(html, encode) {
+	  return html
+	    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+	    .replace(/</g, '&lt;')
+	    .replace(/>/g, '&gt;')
+	    .replace(/"/g, '&quot;')
+	    .replace(/'/g, '&#39;');
+	}
+
+	function unescape(html) {
+		// explicitly match decimal, hex, and named HTML entities 
+	  return html.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g, function(_, n) {
+	    n = n.toLowerCase();
+	    if (n === 'colon') return ':';
+	    if (n.charAt(0) === '#') {
+	      return n.charAt(1) === 'x'
+	        ? String.fromCharCode(parseInt(n.substring(2), 16))
+	        : String.fromCharCode(+n.substring(1));
+	    }
+	    return '';
+	  });
+	}
+
+	function replace(regex, opt) {
+	  regex = regex.source;
+	  opt = opt || '';
+	  return function self(name, val) {
+	    if (!name) return new RegExp(regex, opt);
+	    val = val.source || val;
+	    val = val.replace(/(^|[^\[])\^/g, '$1');
+	    regex = regex.replace(name, val);
+	    return self;
+	  };
+	}
+
+	function noop() {}
+	noop.exec = noop;
+
+	function merge(obj) {
+	  var i = 1
+	    , target
+	    , key;
+
+	  for (; i < arguments.length; i++) {
+	    target = arguments[i];
+	    for (key in target) {
+	      if (Object.prototype.hasOwnProperty.call(target, key)) {
+	        obj[key] = target[key];
+	      }
+	    }
+	  }
+
+	  return obj;
+	}
+
+
+	/**
+	 * Marked
+	 */
+
+	function marked(src, opt, callback) {
+	  if (callback || typeof opt === 'function') {
+	    if (!callback) {
+	      callback = opt;
+	      opt = null;
+	    }
+
+	    opt = merge({}, marked.defaults, opt || {});
+
+	    var highlight = opt.highlight
+	      , tokens
+	      , pending
+	      , i = 0;
+
+	    try {
+	      tokens = Lexer.lex(src, opt)
+	    } catch (e) {
+	      return callback(e);
+	    }
+
+	    pending = tokens.length;
+
+	    var done = function(err) {
+	      if (err) {
+	        opt.highlight = highlight;
+	        return callback(err);
+	      }
+
+	      var out;
+
+	      try {
+	        out = Parser.parse(tokens, opt);
+	      } catch (e) {
+	        err = e;
+	      }
+
+	      opt.highlight = highlight;
+
+	      return err
+	        ? callback(err)
+	        : callback(null, out);
+	    };
+
+	    if (!highlight || highlight.length < 3) {
+	      return done();
+	    }
+
+	    delete opt.highlight;
+
+	    if (!pending) return done();
+
+	    for (; i < tokens.length; i++) {
+	      (function(token) {
+	        if (token.type !== 'code') {
+	          return --pending || done();
+	        }
+	        return highlight(token.text, token.lang, function(err, code) {
+	          if (err) return done(err);
+	          if (code == null || code === token.text) {
+	            return --pending || done();
+	          }
+	          token.text = code;
+	          token.escaped = true;
+	          --pending || done();
+	        });
+	      })(tokens[i]);
+	    }
+
+	    return;
+	  }
+	  try {
+	    if (opt) opt = merge({}, marked.defaults, opt);
+	    return Parser.parse(Lexer.lex(src, opt), opt);
+	  } catch (e) {
+	    e.message += '\nPlease report this to https://github.com/chjj/marked.';
+	    if ((opt || marked.defaults).silent) {
+	      return '<p>An error occured:</p><pre>'
+	        + escape(e.message + '', true)
+	        + '</pre>';
+	    }
+	    throw e;
+	  }
+	}
+
+	/**
+	 * Options
+	 */
+
+	marked.options =
+	marked.setOptions = function(opt) {
+	  merge(marked.defaults, opt);
+	  return marked;
+	};
+
+	marked.defaults = {
+	  gfm: true,
+	  tables: true,
+	  breaks: false,
+	  pedantic: false,
+	  sanitize: false,
+	  sanitizer: null,
+	  mangle: true,
+	  smartLists: false,
+	  silent: false,
+	  highlight: null,
+	  langPrefix: 'lang-',
+	  smartypants: false,
+	  headerPrefix: '',
+	  renderer: new Renderer,
+	  xhtml: false
+	};
+
+	/**
+	 * Expose
+	 */
+
+	marked.Parser = Parser;
+	marked.parser = Parser.parse;
+
+	marked.Renderer = Renderer;
+
+	marked.Lexer = Lexer;
+	marked.lexer = Lexer.lex;
+
+	marked.InlineLexer = InlineLexer;
+	marked.inlineLexer = InlineLexer.output;
+
+	marked.parse = marked;
+
+	if (true) {
+	  module.exports = marked;
+	} else if (typeof define === 'function' && define.amd) {
+	  define(function() { return marked; });
+	} else {
+	  this.marked = marked;
+	}
+
+	}).call(function() {
+	  return this || (typeof window !== 'undefined' ? window : global);
+	}());
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32683,11 +34057,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ExpandedNote = __webpack_require__(287);
+	var _ExpandedNote = __webpack_require__(288);
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
-	var _Notes = __webpack_require__(290);
+	var _Notes = __webpack_require__(293);
 
 	var _Notes2 = _interopRequireDefault(_Notes);
 
@@ -32708,14 +34082,14 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
-	var ListItems = function (_React$Component) {
-	  _inherits(ListItems, _React$Component);
+	var List = function (_React$Component) {
+	  _inherits(List, _React$Component);
 
-	  function ListItems(props) {
-	    _classCallCheck(this, ListItems);
+	  function List(props) {
+	    _classCallCheck(this, List);
 
 	    // This will be used to pass data to expanded component
-	    var _this = _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
 
 	    var itemData = '';
 
@@ -32729,7 +34103,7 @@
 	  // Pass item data from click
 
 
-	  _createClass(ListItems, [{
+	  _createClass(List, [{
 	    key: 'passItemData',
 	    value: function passItemData(item) {
 	      // itemData updated with data from click
@@ -32782,6 +34156,7 @@
 	              transitionLeaveTimeout: 300 },
 	            Object.keys(listEntries).map(function (key) {
 	              return _react2.default.createElement(_Notes2.default, {
+	                edit: _this2.props.triggerEditor,
 	                key: key,
 	                index: key,
 	                details: listEntries[key],
@@ -32796,13 +34171,13 @@
 	    }
 	  }]);
 
-	  return ListItems;
+	  return List;
 	}(_react2.default.Component);
 
-	exports.default = ListItems;
+	exports.default = List;
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32819,9 +34194,30 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	__webpack_require__(288);
+	var _marked = __webpack_require__(286);
+
+	var _marked2 = _interopRequireDefault(_marked);
+
+	__webpack_require__(289);
+
+	__webpack_require__(291);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Marked config
+	_marked2.default.setOptions({
+	  renderer: new _marked2.default.Renderer(),
+	  gfm: true,
+	  tables: true,
+	  breaks: false,
+	  pedantic: false,
+	  sanitize: false,
+	  smartLists: true,
+	  smartypants: false
+	}); /*
+	    This component takes our inputed data, and outputs it to the DOM
+	    */
+
 
 	function ExpandedNote(props) {
 	  return _react2.default.createElement(
@@ -32841,11 +34237,9 @@
 	        props.data.date
 	      ),
 	      _react2.default.createElement('span', { className: 'divider' }),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'expanded--modal--form-note' },
-	        props.data.text
-	      ),
+	      _react2.default.createElement('div', {
+	        className: 'expanded--modal--form-note',
+	        dangerouslySetInnerHTML: { __html: (0, _marked2.default)(props.data.text) } }),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'expanded--modal--form-close',
@@ -32855,19 +34249,18 @@
 	      )
 	    )
 	  );
-	} /*
-	  This component takes our inputed data, and outputs it to the DOM
-	  */
+	}
+
 	exports.default = ExpandedNote;
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(289);
+	var content = __webpack_require__(290);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -32887,7 +34280,7 @@
 	}
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -32895,71 +34288,10 @@
 
 
 	// module
-	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 0 0 5px 5px;\n    position: absolute;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 35em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 5px;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white;\n    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n    .expanded--overlay .expanded--modal--form-close:hover {\n      background: #ecb54b; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
 
 	// exports
 
-
-/***/ },
-/* 290 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	__webpack_require__(291);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Notes = function Notes(props) {
-	  var details = props.details;
-	  return _react2.default.createElement(
-	    'li',
-	    {
-	      className: 'list--items'
-	    },
-	    _react2.default.createElement('div', {
-	      className: 'list--items--erase',
-	      onClick: props.remove
-	    }),
-	    _react2.default.createElement(
-	      'h2',
-	      {
-	        className: 'list--items--title' },
-	      details.title
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      {
-	        className: 'list--items--date' },
-	      details.date
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      {
-	        className: 'list--items--note-content' },
-	      details.text
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      {
-	        className: 'list--items--read-more',
-	        onClick: function onClick() {
-	          return props.open(details);
-	        } },
-	      'View Note'
-	    )
-	  );
-	};
-
-	exports.default = Notes;
 
 /***/ },
 /* 291 */
@@ -32977,8 +34309,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./typography.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./typography.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32996,19 +34328,13 @@
 
 
 	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: white;\n      background: #EC644B;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items--title {\n      font-weight: 600;\n      color: #EC644B;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 25px;\n      height: 25px;\n      top: -10px;\n      left: -10px;\n      background: url(" + __webpack_require__(293) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--erase:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n.expanded--modal--form-note h1, .expanded--modal--form-note h2, .expanded--modal--form-note h3, .expanded--modal--form-note h4, .expanded--modal--form-note h5, .expanded--modal--form-note h6,\n.expanded--modal--form-note p, .expanded--modal--form-note a, .expanded--modal--form-note ul, .expanded--modal--form-note ol, .expanded--modal--form-note img, .expanded--modal--form-note div,\n.expanded--modal--form-note span, .expanded--modal--form-note blockquote, .expanded--modal--form-note pre {\n  margin: 0 0 20px; }\n\n.expanded--modal--form-note h1 {\n  font-size: 1.2em;\n  color: #4076CC; }\n\n.expanded--modal--form-note h2 {\n  font-size: 1.1em;\n  color: #ecb54b; }\n\n.expanded--modal--form-note h3 {\n  font-size: 1.05em;\n  color: #EC644B; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.02em; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.01em; }\n\n.expanded--modal--form-note a {\n  text-decoration: none;\n  color: #4076CC; }\n\n.expanded--modal--form-note img,\n.expanded--modal--form-note video {\n  max-width: 100%; }\n\n.expanded--modal--form-note ul {\n  list-style: none;\n  padding: 0; }\n\n.expanded--modal--form-note li {\n  margin-bottom: 10px;\n  padding-left: 1em;\n  text-indent: -.7em; }\n\n.expanded--modal--form-note li:before {\n  content: \"\\2022   \"; }\n\n.expanded--modal--form-note li:nth-child(1n):before {\n  color: #EC644B;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(2n):before {\n  color: #ecb54b;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(3n):before {\n  color: #4076CC;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note blockquote {\n  font-style: italic;\n  padding-left: 20px;\n  border-left: 4px solid #ecb54b; }\n\n.expanded--modal--form-note pre {\n  overflow: auto;\n  word-break: normal;\n  background: #F0F0F0;\n  padding: 20px; }\n\n.expanded--modal--form-note code {\n  padding: 5px 10px;\n  background: #F0F0F0; }\n", ""]);
 
 	// exports
 
 
 /***/ },
 /* 293 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "/app/icons/delete.svg";
-
-/***/ },
-/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33021,65 +34347,71 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(266);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	__webpack_require__(295);
+	__webpack_require__(294);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function Editor(props) {
-	  var conditionalText = '';
-	  props.error == true ? conditionalText = 'Close Editor' : conditionalText = 'Add Note';
+	var Notes = function Notes(props) {
+	  var details = props.details;
 
+	  // Keep any special character from showing in the excerpt due to markdown
+	  var str = details.text;
+	  var formatted = str.trim().replace(/[^a-z0-9]+/gi, ' ');
 	  return _react2.default.createElement(
-	    'div',
-	    { className: 'overlay' },
+	    'li',
+	    {
+	      className: 'list--items'
+	    },
+	    _react2.default.createElement('div', {
+	      className: 'list--items--erase',
+	      onClick: props.remove
+	    }),
+	    _react2.default.createElement('div', {
+	      className: 'list--items--edit',
+	      onClick: function onClick() {
+	        return props.edit('Editing', details);
+	      }
+	    }),
+	    _react2.default.createElement(
+	      'h2',
+	      {
+	        className: 'list--items--title' },
+	      details.title
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      {
+	        className: 'list--items--date' },
+	      details.date
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      {
+	        className: 'list--items--note-content' },
+	      formatted
+	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'modal' },
-	      _react2.default.createElement(
-	        'form',
-	        {
-	          className: 'modal--form',
-	          onSubmit: props.addItem },
-	        _react2.default.createElement(
-	          'h1',
-	          { className: 'modal--form--header' },
-	          'Write a note'
-	        ),
-	        _react2.default.createElement('input', {
-	          className: 'modal--form--title',
-	          ref: props.inputTitle,
-	          type: 'text',
-	          maxLength: '12',
-	          placeholder: 'Title'
-	        }),
-	        _react2.default.createElement('textarea', {
-	          onChange: props.updateText,
-	          className: 'modal--form--note',
-	          ref: props.inputText,
-	          type: 'text',
-	          placeholder: 'Note' }),
-	        _react2.default.createElement(_Button2.default, { color: '#EC644B', type: conditionalText, close: props.close })
-	      )
+	      {
+	        className: 'list--items--read-more',
+	        onClick: function onClick() {
+	          return props.open(details);
+	        } },
+	      'View Note'
 	    )
 	  );
-	} /*
-	  
-	  
-	  */
-	exports.default = Editor;
+	};
+
+	exports.default = Notes;
 
 /***/ },
-/* 295 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(296);
+	var content = __webpack_require__(295);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33099,7 +34431,7 @@
 	}
 
 /***/ },
-/* 296 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33107,13 +34439,214 @@
 
 
 	// module
-	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-width: 30em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #909090;\n      border-top: 1px solid #C9C9C9;\n      background: #F0F0F0;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n      .list--items--read-more:hover, .list--items--read-more:active {\n        color: #4076CC; }\n    .list--items--title {\n      font-weight: 600;\n      color: #4076CC;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      left: -12px;\n      background: url(" + __webpack_require__(296) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--erase:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items--edit {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      right: -12px;\n      background: url(" + __webpack_require__(297) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--edit:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase,\n    .list--items:hover .list--items--edit {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
 
 	// exports
 
 
 /***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "/app/icons/delete.svg";
+
+/***/ },
 /* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "/app/icons/edit.svg";
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(266);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	__webpack_require__(299);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Editor(props) {
+	  var conditionalText = '';
+	  props.error == true ? conditionalText = 'Close Editor' : conditionalText = 'Submit';
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'overlay' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'modal' },
+	      _react2.default.createElement(
+	        'form',
+	        {
+	          className: 'modal--form',
+	          onSubmit: props.data ? function (e) {
+	            return props.editItem(e, props.data.id);
+	          } : props.addItem },
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'modal--form--header' },
+	          'Write a note'
+	        ),
+	        _react2.default.createElement('input', {
+	          className: 'modal--form--title',
+	          ref: props.inputTitle,
+	          type: 'text',
+	          maxLength: '12',
+	          placeholder: 'Title',
+	          defaultValue: props.data.title
+	        }),
+	        _react2.default.createElement('textarea', {
+	          onChange: props.updateText,
+	          className: 'modal--form--note',
+	          ref: props.inputText,
+	          type: 'text',
+	          placeholder: 'Note',
+	          defaultValue: props.data.text }),
+	        _react2.default.createElement(_Button2.default, { color: '#EC644B', type: conditionalText, close: props.close })
+	      )
+	    )
+	  );
+	} /*
+	  
+	  
+	  */
+	exports.default = Editor;
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(300);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 35em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _desktopAnnotations = __webpack_require__(302);
+
+	var _desktopAnnotations2 = _interopRequireDefault(_desktopAnnotations);
+
+	__webpack_require__(303);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Annotations = function Annotations(props) {
+	  var text = void 0;
+	  window.innerWidth >= 662 ? text = "Click" : text = "Tap";
+	  return _react2.default.createElement(
+	    'p',
+	    { className: 'tooltip' },
+	    text + ' ' + props.action
+	  );
+	};
+
+	exports.default = Annotations;
+
+/***/ },
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "/app/icons/desktop-annotations.svg";
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(304);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".tooltip {\n  position: relative;\n  padding: 10px 15px;\n  display: inline-block;\n  color: white;\n  background: #ecb54b;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .tooltip:before {\n    bottom: 100%;\n    left: 5%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n    border-color: rgba(194, 225, 245, 0);\n    border-bottom-color: #ecb54b;\n    border-width: 10px; }\n  @media screen and (max-width: 660px) {\n    .tooltip {\n      background: #EC644B;\n      position: fixed;\n      right: 20px;\n      bottom: 75px; }\n      .tooltip:before {\n        top: 100%;\n        left: 80%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n        border-color: rgba(194, 225, 245, 0);\n        border-top-color: #EC644B;\n        border-width: 10px; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33128,7 +34661,7 @@
 
 	var _reactRouter = __webpack_require__(185);
 
-	__webpack_require__(298);
+	__webpack_require__(306);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33158,13 +34691,13 @@
 	exports.default = NotFound;
 
 /***/ },
-/* 298 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(299);
+	var content = __webpack_require__(307);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33184,7 +34717,7 @@
 	}
 
 /***/ },
-/* 299 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33198,13 +34731,13 @@
 
 
 /***/ },
-/* 300 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(301);
+	var content = __webpack_require__(309);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33224,7 +34757,7 @@
 	}
 
 /***/ },
-/* 301 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33238,13 +34771,13 @@
 
 
 /***/ },
-/* 302 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(303);
+	var content = __webpack_require__(311);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -33264,7 +34797,7 @@
 	}
 
 /***/ },
-/* 303 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -33272,7 +34805,7 @@
 
 
 	// module
-	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4076cc;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 420px; }\n", ""]);
+	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4076cc;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 500px;\n  max-height: 475px; }\n", ""]);
 
 	// exports
 

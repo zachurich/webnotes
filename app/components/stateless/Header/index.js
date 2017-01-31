@@ -9,8 +9,6 @@ import '../../transitions.scss';
 
 
 const Header = (props) => {
-    const username = props.title;
-    console.log(props.email);
     return (
       <header class="header">
         <div className="header--add-note" onClick={ props.triggerEditor }>
@@ -20,8 +18,8 @@ const Header = (props) => {
           </div>
         </div>
         <div className="header--title" style={{
-          letterSpacing: '0.0625em',
-        }}>{username}</div>
+          letterSpacing: '0.0125em',
+        }}>{ props.title }</div>
         <div className="header--menu" onClick={ props.triggerMenu }>
           <div className="contain-button">
             <span className="header--menu--horizontal"></span>

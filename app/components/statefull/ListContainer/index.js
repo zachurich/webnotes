@@ -4,10 +4,14 @@ through 'ListItems'
 */
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ListItems from '../ListItems/';
+import marked from 'marked';
+import List from '../List/';
 import Editor from '../../stateless/Editor/';
 import Button from '../../stateless/Button/';
 import ExpandedNote from '../../stateless/ExpandedNote';
+import Annotations from '../../stateless/Annotations';
+
+import { formatTitle } from '../../helpers';
 
 import base from '../../../config/base';
 
@@ -17,9 +21,10 @@ class ListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {}
+      items: {},
     }
     this.addItem = this.addItem.bind(this);
+    this.editItem = this.editItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
   }
 
@@ -45,6 +50,7 @@ class ListContainer extends React.Component {
     // Store our items in components 'items' state
     let items = {...this.state.items};
 
+    // Function for formating our dates
     function dateGet() {
       const d = new Date();
       const curr_date = d.getDate();
@@ -52,20 +58,39 @@ class ListContainer extends React.Component {
       const curr_year = d.getFullYear();
       return curr_month + "/" + curr_date + "/" + curr_year;
     }
+
     // Add list items to end of array 'items'
     let title = this._inputTitle.value;
     const text = this._inputText.value;
     if (text.length > 0) {
-      title.length > 0 ? title : title = 'Title';
+      title.length > 0 ? title : title = formatTitle(text);
       // this creates a new object in our state object titled 'note-uniqueID'
       // with all our details
       items[`note-${Date.now()}`] = {
           title: title,
           text: text,
           id: Date.now(),
-          // key: Date.now(),
           date: dateGet()
       };
+      this.setState({ items: items });
+    }
+  }
+  editItem(e, key) {
+    e.preventDefault();
+    let items = {...this.state.items};
+
+    let title = this._inputTitle.value;
+    const text = this._inputText.value
+
+    if (text.length > 0) {
+      title.length > 0 ? title : title = formatTitle(text);
+
+      // Make 'copy' of existing items
+      items[`note-${key}`] = {
+        title: title,
+        text: text
+      };
+
       this.setState({ items: items });
     }
   }
@@ -86,17 +111,24 @@ class ListContainer extends React.Component {
           transitionName="fade-in"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={200}>
+          { Object.keys(this.state.items).length < 1 ?
+            <Annotations action="to add a note"/> : 
+            null }
           { this.props.editor ?
             <Editor
+              data={ this.props.itemData }
               updateText={ this.props.updateText }
               error={ this.props.error }
+              editItem={ this.editItem }
               addItem={ this.addItem }
               close={ this.props.close }
               inputTitle={ (a) => this._inputTitle = a }
               inputText={ (a) => this._inputText = a }/> : null }
         </ReactCSSTransitionGroup>
         <div className="container">
-          <ListItems
+          <List
+            edit={ this.editItem }
+            triggerEditor={ this.props.triggerEditor }
             params={ this.props.url }
             entries={ this.state.items }
             removeItem={ this.removeItem }

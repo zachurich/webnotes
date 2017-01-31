@@ -27,6 +27,7 @@ export function handleMessage (error) {
 }
 
 // plug this into a componentDidMount and pass in 'this'
+// light alternative to ReactCSSTransitionGroup route animations
 export function transition (component) {
   const elem = ReactDOM.findDOMNode(component);
   elem.style.opacity = 0;
@@ -36,4 +37,34 @@ export function transition (component) {
       elem.style.opacity = 1;
       elem.style.transform = "translateY(0px)";
   });
+}
+
+// used for catching promise Errors
+// and updating validation message state
+export function errCatch(error) {
+    console.log(error);
+    // Handle Errors here
+    return {
+      validation: true,
+      error: handleMessage(error.code)
+    };
+}
+
+// Used for appending a unique string to
+// the username to prevent
+// accessing another user's notes
+export function secureUsername(username) {
+  return username = `${username.toLowerCase()}-${Date.now()}`;
+}
+
+// Deconstruct secureusername into the user's
+// original input for frontend purposes
+export function displayUsername(username) {
+  const pos = username.lastIndexOf('-');
+  return username.split('', pos).join('');
+}
+
+export function formatTitle(text) {
+  const textArr = text.split(' ');
+  return textArr[0];
 }

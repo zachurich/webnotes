@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
                 <h1 class="entry--title">{RegisterMessage}</h1>
                 <input
                   className="input--username"
-                  placeholder="Name"
+                  placeholder="Username"
                   type="text"
                   ref={props.username}/>
                 <input

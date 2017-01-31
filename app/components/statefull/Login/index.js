@@ -33,8 +33,7 @@ class Login extends React.Component {
       // user's unique notes route
       if (user != null) {
         user.providerData.forEach( profile => {
-          const username = profile.displayName;
-          this.context.router.push(`/notes/${username}`);
+          this.context.router.push(`/notes/${profile.displayName}`);
         });
       }
     }
@@ -45,7 +44,6 @@ class Login extends React.Component {
         const email = this.email.value;
         const password = this.password.value;
 
-        // if (password > 4)
         /*
           Using an arrow function here allows 'this' to remain properly bound.
           The syntax used before was 'cont authHandler = function authHandler(...)'

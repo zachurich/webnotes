@@ -1,7 +1,6 @@
 var debug        = process.env.NODE_ENV !== "production";
 var webpack      = require('webpack');
 var path         = require('path');
-var autoprefixer = require('autoprefixer-loader');
 
 // Output to build folder
 var HtmlWebpackPlugin = require('html-webpack-plugin');

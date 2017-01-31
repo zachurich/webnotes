@@ -1,0 +1,72 @@
+@import '../../variables';
+
+.expanded--modal--form-note {
+  h1, h2, h3, h4, h5, h6,
+  p, a, ul, ol, img, div,
+  span, blockquote, pre {
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-size: 1.2em;
+    color: $color--tertiary;
+  }
+  h2 {
+    font-size: 1.1em;
+    color: $color--secondary;
+  }
+  h3 {
+    font-size: 1.05em;
+    color: $color--main;
+  }
+  h4 {
+    font-size: 1.02em;
+  }
+  h4 {
+    font-size: 1.01em;
+  }
+  a {
+    text-decoration: none;
+    color: $color--tertiary;
+  }
+  img,
+  video {
+    max-width: 100%;
+  }
+  ul {
+    list-style: none;
+    padding:0;
+  }
+  li {
+    margin-bottom: 10px;
+    padding-left: 1em;
+    text-indent: -.7em;
+  }
+  li:before {
+    content: "• ";
+  }
+  li:nth-child(1n):before {
+    color: $color--main; /* or whatever color you prefer */
+  }
+  li:nth-child(2n):before {
+    color: $color--secondary; /* or whatever color you prefer */
+  }
+  li:nth-child(3n):before {
+    color: $color--tertiary; /* or whatever color you prefer */
+  }
+  blockquote {
+    font-style: italic;
+    padding-left: 20px;
+    border-left: 4px solid $color--secondary;
+  }
+  pre {
+    overflow: auto;
+    word-break: normal;
+    // overflow-wrap: break-word;
+    background: $offWhite;
+    padding: 20px;
+  }
+  code {
+    padding: 5px 10px;
+    background: $offWhite;
+  }
+}

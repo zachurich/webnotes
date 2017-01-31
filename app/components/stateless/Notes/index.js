@@ -4,6 +4,10 @@ import './style.scss';
 
 const Notes = (props) => {
   const details = props.details;
+
+  // Keep any special character from showing in the excerpt due to markdown
+  const str = details.text;
+  const formatted = str.trim().replace(/[^a-z0-9]+/gi, ' ');
   return (
     <li
       className="list--items"
@@ -11,6 +15,11 @@ const Notes = (props) => {
         <div
           className="list--items--erase"
           onClick={ props.remove }
+          >
+        </div>
+        <div
+          className="list--items--edit"
+          onClick={ () => props.edit('Editing', details) }
           >
         </div>
         <h2
@@ -23,7 +32,7 @@ const Notes = (props) => {
         </p>
         <p
           className="list--items--note-content">
-          { details.text }
+          { formatted }
         </p>
         <div
           className="list--items--read-more"

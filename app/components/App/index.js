@@ -7,6 +7,8 @@ import Header from '../stateless/Header/';
 import ListContainer from '../statefull/ListContainer/';
 import NotFound from '../stateless/NotFound/';
 
+import { displayUsername } from '../helpers';
+
 import './style.scss';
 
 class App extends React.Component {
@@ -19,6 +21,7 @@ class App extends React.Component {
         menu: false,
         editor: false,
         error: true,
+        itemData: ''
       }
 
       this.showMenu = this.showMenu.bind(this);
@@ -88,10 +91,22 @@ class App extends React.Component {
          return { menu: !prevState.menu }
       });
     }
-    showEditor() {
-      this.setState((prevState, props) => {
-        return { editor: !prevState.editor }
-      });
+    showEditor(flag, data) {
+      if(flag === 'Editing') {
+        this.setState((prevState, props) => {
+          return {
+            editor: !prevState.editor,
+            itemData: data
+          }
+        });
+      } else {
+        this.setState((prevState, props) => {
+          return {
+            editor: !prevState.editor,
+            itemData: ''
+          }
+        });
+      }
     }
     handleButtonText(e) {
       if (e.target.value) {
@@ -118,7 +133,7 @@ class App extends React.Component {
       const username = this.state.username;
       const email = this.state.email;
 
-      const welcomeText = `Welcome, ${ this.state.username }.`;
+      const welcomeText = `Welcome, ${ displayUsername(username) }.`;
         // Render all our components here
         return (
             <div className="app-contents">
@@ -128,12 +143,15 @@ class App extends React.Component {
                   menu={ this.state.menu }
                   triggerMenu={ this.showMenu }
                   triggerEditor={ this.showEditor }
-                  title={ username }
+                  title={ displayUsername(username) }
                   logout={ this.handleLogOut }/>
                 <ListContainer
+                  itemData={ this.state.itemData }
                   error={ this.state.error }
                   updateText={ this.handleButtonText }
                   editor={ this.state.editor }
+                  editing={ this.state.editing }
+                  triggerEditor={ this.showEditor }
                   close={ this.closeEditor }
                   url={ username }/>
             </div>

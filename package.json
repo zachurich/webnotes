@@ -25,6 +25,7 @@
     "history": "^1.17.0",
     "html-webpack-plugin": "^2.22.0",
     "keygenerator": "^1.0.4",
+    "marked": "^0.3.6",
     "re-base": "^2.2.0",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
