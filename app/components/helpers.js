@@ -68,3 +68,20 @@ export function formatTitle(text) {
   const textArr = text.split(' ');
   return textArr[0];
 }
+
+// used for tooltip text output
+export function decideString(str) {
+  console.log(str);
+  switch(str) {
+    case 'add':
+      return 'to add a note.';
+    case 'edit':
+      return 'to edit a note.';
+    case 'remove':
+      return 'to delete a note.';
+    case 'hover':
+      return "to see options to remove, edit, or view a note's contents.";
+    default:
+      return '';
+  }
+}

@@ -18,7 +18,7 @@ function Editor (props) {
             <form
               className="modal--form"
               onSubmit={ props.data ? (e) => props.editItem(e, props.data.id) : props.addItem }>
-                <h1 className="modal--form--header">Write a note</h1>
+                <h1 className="modal--form--header">{ props.data ? `Edit` : `Write a note` }</h1>
                 <input
                   className="modal--form--title"
                   ref={props.inputTitle}

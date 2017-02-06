@@ -31729,6 +31729,7 @@
 	exports.secureUsername = secureUsername;
 	exports.displayUsername = displayUsername;
 	exports.formatTitle = formatTitle;
+	exports.decideString = decideString;
 
 	var _reactDom = __webpack_require__(34);
 
@@ -31803,6 +31804,23 @@
 	function formatTitle(text) {
 	  var textArr = text.split(' ');
 	  return textArr[0];
+	}
+
+	// used for tooltip text output
+	function decideString(str) {
+	  console.log(str);
+	  switch (str) {
+	    case 'add':
+	      return 'to add a note.';
+	    case 'edit':
+	      return 'to edit a note.';
+	    case 'remove':
+	      return 'to delete a note.';
+	    case 'hover':
+	      return "to see options to remove, edit, or view a note's contents.";
+	    default:
+	      return '';
+	  }
 	}
 
 /***/ },
@@ -32555,7 +32573,7 @@
 
 	var _List2 = _interopRequireDefault(_List);
 
-	var _Editor = __webpack_require__(298);
+	var _Editor = __webpack_require__(302);
 
 	var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -32567,7 +32585,7 @@
 
 	var _ExpandedNote2 = _interopRequireDefault(_ExpandedNote);
 
-	var _Annotations = __webpack_require__(301);
+	var _Annotations = __webpack_require__(294);
 
 	var _Annotations2 = _interopRequireDefault(_Annotations);
 
@@ -32708,7 +32726,7 @@
 	            transitionName: 'fade-in',
 	            transitionEnterTimeout: 500,
 	            transitionLeaveTimeout: 200 },
-	          Object.keys(this.state.items).length < 1 ? _react2.default.createElement(_Annotations2.default, { action: 'to add a note' }) : null,
+	          Object.keys(this.state.items).length < 1 ? _react2.default.createElement(_Annotations2.default, { type: 'add' }) : null,
 	          this.props.editor ? _react2.default.createElement(_Editor2.default, {
 	            data: this.props.itemData,
 	            updateText: this.props.updateText,
@@ -32727,6 +32745,7 @@
 	          'div',
 	          { className: 'container' },
 	          _react2.default.createElement(_List2.default, {
+	            editCheck: this.props.editor,
 	            edit: this.editItem,
 	            triggerEditor: this.props.triggerEditor,
 	            params: this.props.url,
@@ -34093,8 +34112,12 @@
 
 	    var itemData = '';
 
-	    _this.state = { showExpanded: false };
+	    _this.state = {
+	      showExpanded: false,
+	      tooltip: false
+	    };
 
+	    _this.handleRemoveTooltip = _this.handleRemoveTooltip.bind(_this);
 	    _this.passItemData = _this.passItemData.bind(_this);
 	    _this.handleOpen = _this.handleOpen.bind(_this);
 	    _this.handleClose = _this.handleClose.bind(_this);
@@ -34123,6 +34146,11 @@
 	    key: 'handleClose',
 	    value: function handleClose() {
 	      this.setState({ showExpanded: false });
+	    }
+	  }, {
+	    key: 'handleRemoveTooltip',
+	    value: function handleRemoveTooltip() {
+	      this.setState({ tooltip: true });
 	    }
 	  }, {
 	    key: 'render',
@@ -34156,6 +34184,7 @@
 	              transitionLeaveTimeout: 300 },
 	            Object.keys(listEntries).map(function (key) {
 	              return _react2.default.createElement(_Notes2.default, {
+	                editCheck: _this2.props.editCheck,
 	                edit: _this2.props.triggerEditor,
 	                key: key,
 	                index: key,
@@ -34288,7 +34317,7 @@
 
 
 	// module
-	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 35em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 5px;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white;\n    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n    .expanded--overlay .expanded--modal--form-close:hover {\n      background: #ecb54b; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".expanded--overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.expanded--overlay .expanded--modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 32em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .expanded--overlay .expanded--modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.expanded--overlay .expanded--modal {\n  position: relative; }\n  .expanded--overlay .expanded--modal--form-title {\n    font-size: 1.1em;\n    color: #EC644B;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-date {\n    position: absolute;\n    top: 20px;\n    right: 30px;\n    font-size: 1em;\n    font-weight: 600;\n    color: #909090;\n    margin: 0 0 20px; }\n  .expanded--overlay .expanded--modal--form-note {\n    margin: 0 0 50px; }\n  .expanded--overlay .expanded--modal--form-close {\n    border-radius: 5px;\n    background: #EC644B;\n    width: 100%;\n    height: 30px;\n    line-height: 30px;\n    left: 0;\n    bottom: 0;\n    cursor: pointer;\n    font-size: 0.8em;\n    font-weight: 600;\n    text-align: center;\n    text-transform: uppercase;\n    color: white;\n    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n    .expanded--overlay .expanded--modal--form-close:hover {\n      background: #ecb54b; }\n\n.divider {\n  display: block;\n  width: 100%;\n  height: 2px;\n  background: rgba(0, 0, 0, 0.2);\n  margin-bottom: 20px; }\n", ""]);
 
 	// exports
 
@@ -34328,7 +34357,7 @@
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n.expanded--modal--form-note h1, .expanded--modal--form-note h2, .expanded--modal--form-note h3, .expanded--modal--form-note h4, .expanded--modal--form-note h5, .expanded--modal--form-note h6,\n.expanded--modal--form-note p, .expanded--modal--form-note a, .expanded--modal--form-note ul, .expanded--modal--form-note ol, .expanded--modal--form-note img, .expanded--modal--form-note div,\n.expanded--modal--form-note span, .expanded--modal--form-note blockquote, .expanded--modal--form-note pre {\n  margin: 0 0 20px; }\n\n.expanded--modal--form-note h1 {\n  font-size: 1.2em;\n  color: #4076CC; }\n\n.expanded--modal--form-note h2 {\n  font-size: 1.1em;\n  color: #ecb54b; }\n\n.expanded--modal--form-note h3 {\n  font-size: 1.05em;\n  color: #EC644B; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.02em; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.01em; }\n\n.expanded--modal--form-note a {\n  text-decoration: none;\n  color: #4076CC; }\n\n.expanded--modal--form-note img,\n.expanded--modal--form-note video {\n  max-width: 100%; }\n\n.expanded--modal--form-note ul {\n  list-style: none;\n  padding: 0; }\n\n.expanded--modal--form-note li {\n  margin-bottom: 10px;\n  padding-left: 1em;\n  text-indent: -.7em; }\n\n.expanded--modal--form-note li:before {\n  content: \"\\2022   \"; }\n\n.expanded--modal--form-note li:nth-child(1n):before {\n  color: #EC644B;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(2n):before {\n  color: #ecb54b;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(3n):before {\n  color: #4076CC;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note blockquote {\n  font-style: italic;\n  padding-left: 20px;\n  border-left: 4px solid #ecb54b; }\n\n.expanded--modal--form-note pre {\n  overflow: auto;\n  word-break: normal;\n  background: #F0F0F0;\n  padding: 20px; }\n\n.expanded--modal--form-note code {\n  padding: 5px 10px;\n  background: #F0F0F0; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n.expanded--modal--form-note h1, .expanded--modal--form-note h2, .expanded--modal--form-note h3, .expanded--modal--form-note h4, .expanded--modal--form-note h5, .expanded--modal--form-note h6,\n.expanded--modal--form-note p, .expanded--modal--form-note a, .expanded--modal--form-note ul, .expanded--modal--form-note ol, .expanded--modal--form-note img, .expanded--modal--form-note div,\n.expanded--modal--form-note span, .expanded--modal--form-note blockquote, .expanded--modal--form-note pre {\n  margin: 0 0 20px; }\n\n.expanded--modal--form-note h1 {\n  font-size: 1.2em;\n  color: #4076CC; }\n\n.expanded--modal--form-note h2 {\n  font-size: 1.1em;\n  color: #ecb54b; }\n\n.expanded--modal--form-note h3 {\n  font-size: 1.05em;\n  color: #EC644B; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.02em; }\n\n.expanded--modal--form-note h4 {\n  font-size: 1.01em; }\n\n.expanded--modal--form-note a {\n  text-decoration: none;\n  color: #4076CC; }\n\n.expanded--modal--form-note img,\n.expanded--modal--form-note video {\n  max-width: 100%; }\n\n.expanded--modal--form-note ul {\n  list-style: none;\n  padding: 0; }\n\n.expanded--modal--form-note li {\n  margin-bottom: 10px;\n  padding-left: 1em;\n  text-indent: -.7em; }\n\n.expanded--modal--form-note li:before {\n  content: \"\\2022   \"; }\n\n.expanded--modal--form-note li:nth-child(1n):before {\n  color: #EC644B;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(2n):before {\n  color: #ecb54b;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note li:nth-child(3n):before {\n  color: #4076CC;\n  /* or whatever color you prefer */ }\n\n.expanded--modal--form-note blockquote {\n  font-style: italic;\n  padding-left: 20px;\n  border-left: 4px solid #ecb54b; }\n\n.expanded--modal--form-note pre {\n  overflow: auto;\n  word-break: normal;\n  background: #F0F0F0;\n  padding: 20px; }\n\n.expanded--modal--form-note code {\n  background: #F0F0F0; }\n", ""]);
 
 	// exports
 
@@ -34347,11 +34376,16 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(294);
+	var _Annotations = __webpack_require__(294);
+
+	var _Annotations2 = _interopRequireDefault(_Annotations);
+
+	__webpack_require__(298);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Notes = function Notes(props) {
+	  var hovered = void 0;
 	  var details = props.details;
 
 	  // Keep any special character from showing in the excerpt due to markdown
@@ -34360,6 +34394,7 @@
 	  return _react2.default.createElement(
 	    'li',
 	    {
+	      onMouseOver: props.removeTooltip,
 	      className: 'list--items'
 	    },
 	    _react2.default.createElement('div', {
@@ -34408,10 +34443,52 @@
 /* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _desktopAnnotations = __webpack_require__(295);
+
+	var _desktopAnnotations2 = _interopRequireDefault(_desktopAnnotations);
+
+	var _helpers = __webpack_require__(271);
+
+	__webpack_require__(296);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Annotations = function Annotations(props) {
+	  var text = void 0;
+	  window.innerWidth >= 662 ? text = "Click" : text = "Tap";
+	  return _react2.default.createElement(
+	    'p',
+	    { className: 'tooltip tooltip--' + props.type },
+	    text + ' ' + (0, _helpers.decideString)(props.type)
+	  );
+	};
+
+	exports.default = Annotations;
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "/app/icons/desktop-annotations.svg";
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(295);
+	var content = __webpack_require__(297);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(270)(content, {});
@@ -34431,7 +34508,7 @@
 	}
 
 /***/ },
-/* 295 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(269)();
@@ -34439,25 +34516,65 @@
 
 
 	// module
-	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #909090;\n      border-top: 1px solid #C9C9C9;\n      background: #F0F0F0;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n      .list--items--read-more:hover, .list--items--read-more:active {\n        color: #4076CC; }\n    .list--items--title {\n      font-weight: 600;\n      color: #4076CC;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      left: -12px;\n      background: url(" + __webpack_require__(296) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--erase:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items--edit {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      right: -12px;\n      background: url(" + __webpack_require__(297) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--edit:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase,\n    .list--items:hover .list--items--edit {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+	exports.push([module.id, ".tooltip {\n  position: absolute;\n  padding: 10px 15px;\n  display: inline-block;\n  color: white;\n  background: #ecb54b;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .tooltip:before {\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n    border-color: rgba(194, 225, 245, 0);\n    border-width: 10px; }\n  .tooltip--hover {\n    position: absolute;\n    bottom: -120px;\n    left: 0; }\n    .tooltip--hover:before {\n      border-bottom-color: #ecb54b;\n      bottom: 98%;\n      left: 48%; }\n  .tooltip--add {\n    top: 70px; }\n    .tooltip--add:before {\n      border-bottom-color: #ecb54b;\n      bottom: 98%;\n      left: 5%; }\n    @media screen and (max-width: 660px) {\n      .tooltip--add {\n        top: auto;\n        background: #EC644B;\n        position: fixed;\n        right: 20px;\n        bottom: 75px; }\n        .tooltip--add:before {\n          top: 100%;\n          left: 80%;\n          border: solid transparent;\n          content: \" \";\n          height: 0;\n          width: 0;\n          position: absolute;\n          pointer-events: none;\n          border-color: rgba(194, 225, 245, 0);\n          border-top-color: #EC644B;\n          border-width: 10px; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 296 */
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(299);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(270)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(269)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".list {\n  padding: 0;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n  .list span {\n    padding: 0;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-justify-content: flex-start;\n    -ms-flex-pack: start;\n    justify-content: flex-start;\n    -webkit-flex-wrap: wrap-reverse;\n    -ms-flex-wrap: wrap-reverse;\n    flex-wrap: wrap-reverse;\n    margin: 25px 0 0; }\n    @media screen and (max-width: 1090px) {\n      .list span {\n        -webkit-justify-content: center;\n        -ms-flex-pack: center;\n        justify-content: center; } }\n  .list--items {\n    background: white;\n    width: 265px;\n    display: inline-block;\n    padding: 25px 25px 0;\n    height: 130px;\n    border-radius: 2px;\n    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);\n    margin: 2px 8px;\n    position: relative;\n    margin-bottom: 16px;\n    position: relative;\n    transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n    .list--items:hover, .list--items:active {\n      -webkit-transform: scale(1.02);\n      -ms-transform: scale(1.02);\n      transform: scale(1.02);\n      box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n    @media screen and (max-width: 993px) {\n      .list--items {\n        width: 40%;\n        max-width: 420px; } }\n    @media screen and (max-width: 700px) {\n      .list--items {\n        width: 100%;\n        max-width: 450px; } }\n    @media screen and (max-width: 660px) {\n      .list--items {\n        margin: 0px 0 15px;\n        box-sizing: border-box;\n        width: 100%;\n        max-width: none;\n        height: 150px; } }\n    @media screen and (max-width: 320px) {\n      .list--items {\n        width: 100%; } }\n    .list--items--read-more {\n      cursor: pointer;\n      position: absolute;\n      left: 0;\n      bottom: -1px;\n      height: 30px;\n      line-height: 30px;\n      width: 100%;\n      font-size: 0.8em;\n      text-align: center;\n      text-transform: uppercase;\n      font-weight: 600;\n      color: #909090;\n      border-top: 1px solid #C9C9C9;\n      background: #F0F0F0;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }\n      .list--items--read-more:hover, .list--items--read-more:active {\n        color: #4076CC; }\n    .list--items--title {\n      font-weight: 600;\n      color: #4076CC;\n      margin: 0 0 20px;\n      font-size: 18px;\n      padding-bottom: 20px; }\n    .list--items--date {\n      position: absolute;\n      right: 25px;\n      top: 25px;\n      margin: 0;\n      color: #909090;\n      font-size: 1rem;\n      font-weight: 600;\n      padding-bottom: 20px; }\n    .list--items--note-content {\n      display: block;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n      width: 100%;\n      margin: 0;\n      font-size: 1rem;\n      padding-bottom: 20px; }\n    .list--items--erase {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      left: -12px;\n      background: url(" + __webpack_require__(300) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--erase:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items--edit {\n      cursor: pointer;\n      position: absolute;\n      width: 30px;\n      height: 30px;\n      top: -12px;\n      right: -12px;\n      background: url(" + __webpack_require__(301) + ") transparent;\n      border-radius: 50%;\n      padding: 2px;\n      box-sizing: border-box;\n      opacity: 0;\n      transition: all 0.15s cubic-bezier(0.42, 0, 0, 2.01); }\n      .list--items--edit:hover {\n        -webkit-transform: scale(1.08);\n        -ms-transform: scale(1.08);\n        transform: scale(1.08); }\n    .list--items:hover .list--items--read-more {\n      opacity: 1; }\n    .list--items:hover .list--items--erase,\n    .list--items:hover .list--items--edit {\n      opacity: 1; }\n\n.pop-in-enter {\n  opacity: 0.01;\n  -webkit-transform: scale(0.8);\n  -ms-transform: scale(0.8);\n  transform: scale(0.8); }\n\n.pop-in-enter.pop-in-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n  transition: all 300ms ease-in-out; }\n\n.pop-in-leave {\n  opacity: 1; }\n\n.pop-in-leave.fade-in-leave-active {\n  opacity: 0.01;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-enter {\n  opacity: 0; }\n\n.fade-in-enter.fade-in-enter-active {\n  opacity: 1;\n  transition: all 300ms ease-in-out; }\n\n.fade-in-leave {\n  opacity: 1; }\n\n.fade-in-leave.fade-in-leave-active {\n  opacity: 0;\n  transition: all 300ms ease-in-out; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "/app/icons/delete.svg";
 
 /***/ },
-/* 297 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "/app/icons/edit.svg";
 
 /***/ },
-/* 298 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34474,7 +34591,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	__webpack_require__(299);
+	__webpack_require__(303);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34498,7 +34615,7 @@
 	        _react2.default.createElement(
 	          'h1',
 	          { className: 'modal--form--header' },
-	          'Write a note'
+	          props.data ? 'Edit' : 'Write a note'
 	        ),
 	        _react2.default.createElement('input', {
 	          className: 'modal--form--title',
@@ -34524,86 +34641,6 @@
 	  
 	  */
 	exports.default = Editor;
-
-/***/ },
-/* 299 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(300);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js?browsers=last 4 versions!./style.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 300 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(269)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 35em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 301 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _desktopAnnotations = __webpack_require__(302);
-
-	var _desktopAnnotations2 = _interopRequireDefault(_desktopAnnotations);
-
-	__webpack_require__(303);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Annotations = function Annotations(props) {
-	  var text = void 0;
-	  window.innerWidth >= 662 ? text = "Click" : text = "Tap";
-	  return _react2.default.createElement(
-	    'p',
-	    { className: 'tooltip' },
-	    text + ' ' + props.action
-	  );
-	};
-
-	exports.default = Annotations;
-
-/***/ },
-/* 302 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "/app/icons/desktop-annotations.svg";
 
 /***/ },
 /* 303 */
@@ -34640,7 +34677,7 @@
 
 
 	// module
-	exports.push([module.id, ".tooltip {\n  position: relative;\n  padding: 10px 15px;\n  display: inline-block;\n  color: white;\n  background: #ecb54b;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  .tooltip:before {\n    bottom: 100%;\n    left: 5%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n    border-color: rgba(194, 225, 245, 0);\n    border-bottom-color: #ecb54b;\n    border-width: 10px; }\n  @media screen and (max-width: 660px) {\n    .tooltip {\n      background: #EC644B;\n      position: fixed;\n      right: 20px;\n      bottom: 75px; }\n      .tooltip:before {\n        top: 100%;\n        left: 80%;\n        border: solid transparent;\n        content: \" \";\n        height: 0;\n        width: 0;\n        position: absolute;\n        pointer-events: none;\n        border-color: rgba(194, 225, 245, 0);\n        border-top-color: #EC644B;\n        border-width: 10px; } }\n", ""]);
+	exports.push([module.id, ".overlay .modal--form--title, .overlay .modal--form--note {\n  outline: 0;\n  border: 0;\n  border: 1px solid #F0F0F0;\n  border-radius: 0;\n  -webkit-appearance: none;\n  -webkit-border-radius: 0px;\n  font-size: 1em;\n  color: #909090;\n  box-sizing: border-box;\n  width: 100%;\n  padding-left: 10px;\n  margin-bottom: 20px; }\n\n.overlay {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(64, 118, 204, 0.9);\n  position: fixed;\n  z-index: 9998; }\n\n.overlay .modal {\n  overflow: auto;\n  position: relative;\n  box-sizing: border-box;\n  padding: 20px 30px;\n  width: 90%;\n  max-height: 90%;\n  max-width: 32em;\n  margin: 20px auto 0;\n  background: white;\n  border-radius: 5px;\n  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3); }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal {\n      border-radius: 0;\n      width: 100%;\n      height: 100%;\n      max-height: 100%;\n      margin: 0; } }\n\n.overlay .modal--form {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n  .overlay .modal--form--header {\n    color: #ecb54b;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 1.1em;\n    text-align: center;\n    margin-bottom: 20px; }\n  .overlay .modal--form--title {\n    height: 40px; }\n  .overlay .modal--form--note {\n    padding-top: 10px;\n    height: 200px;\n    margin-bottom: 40px; }\n    @media screen and (max-width: 660px) and (max-height: 736px) {\n      .overlay .modal--form--note {\n        -webkit-flex: 1;\n        -ms-flex: 1;\n        flex: 1; } }\n  @media screen and (max-width: 660px) and (max-height: 736px) {\n    .overlay .modal--form {\n      height: 100%; } }\n", ""]);
 
 	// exports
 

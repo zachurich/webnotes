@@ -21,7 +21,7 @@ class ListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {},
+      items: {}
     }
     this.addItem = this.addItem.bind(this);
     this.editItem = this.editItem.bind(this);
@@ -112,7 +112,7 @@ class ListContainer extends React.Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={200}>
           { Object.keys(this.state.items).length < 1 ?
-            <Annotations action="to add a note"/> : 
+            <Annotations type="add"/> :
             null }
           { this.props.editor ?
             <Editor
@@ -127,6 +127,7 @@ class ListContainer extends React.Component {
         </ReactCSSTransitionGroup>
         <div className="container">
           <List
+            editCheck={ this.props.editor }
             edit={ this.editItem }
             triggerEditor={ this.props.triggerEditor }
             params={ this.props.url }

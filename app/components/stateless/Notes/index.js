@@ -1,8 +1,11 @@
 import React from 'react';
 
+import Annotations from '../Annotations/'
+
 import './style.scss';
 
 const Notes = (props) => {
+  let hovered;
   const details = props.details;
 
   // Keep any special character from showing in the excerpt due to markdown
@@ -10,6 +13,7 @@ const Notes = (props) => {
   const formatted = str.trim().replace(/[^a-z0-9]+/gi, ' ');
   return (
     <li
+      onMouseOver={ props.removeTooltip }
       className="list--items"
     >
         <div

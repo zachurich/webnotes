@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --colors . --history-api-fallback",
-    "deploy": "surge -p build -d webnotes.surge.sh",
+    "deploy": "firebase deploy",
     "build": "NODE_ENV=production webpack",
     "push": "npm run build && npm run deploy"
   },
@@ -33,7 +33,6 @@
     "react-fastclick": "^2.1.2",
     "react-router": "^3.0.0",
     "sass-loader": "^4.0.2",
-    "surge": "^0.11.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1"
   },

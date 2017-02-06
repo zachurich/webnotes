@@ -15,8 +15,12 @@ class List extends React.Component {
     // This will be used to pass data to expanded component
     const itemData = '';
 
-    this.state = { showExpanded: false };
+    this.state = {
+      showExpanded: false,
+      tooltip: false,
+     };
 
+    this.handleRemoveTooltip = this.handleRemoveTooltip.bind(this);
     this.passItemData = this.passItemData.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -34,6 +38,10 @@ class List extends React.Component {
   // This is passed to expanded view to handle closing
   handleClose() {
     this.setState({ showExpanded: false });
+  }
+
+  handleRemoveTooltip() {
+    this.setState({ tooltip: true });
   }
 
   render() {
@@ -61,6 +69,7 @@ class List extends React.Component {
                   .keys(listEntries)
                     .map(key =>
                         <Notes
+                          editCheck={ this.props.editCheck }
                           edit={ this.props.triggerEditor }
                           key={key}
                           index={key}
