@@ -7,8 +7,7 @@ class Button extends React.Component {
     const text = this.props.type;
     const color = this.props.color;
     let style = {
-      height: '40px',
-      lineHeight: '38px',
+      height: '40px'
     }
     return (
       <button

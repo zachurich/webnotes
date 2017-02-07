@@ -23,7 +23,7 @@ export function handleMessage (error) {
   if (error === "auth/wrong-password") {
     return 'Please enter a valid password.';
   }
-  return initial;
+  return "Account doesn't exist.";
 }
 
 // plug this into a componentDidMount and pass in 'this'
