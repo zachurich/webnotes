@@ -31346,8 +31346,7 @@
 	      var text = this.props.type;
 	      var color = this.props.color;
 	      var style = {
-	        height: '40px',
-	        lineHeight: '38px'
+	        height: '40px'
 	      };
 	      return _react2.default.createElement(
 	        'button',
@@ -31760,7 +31759,7 @@
 	  if (error === "auth/wrong-password") {
 	    return 'Please enter a valid password.';
 	  }
-	  return initial;
+	  return "Account doesn't exist.";
 	}
 
 	// plug this into a componentDidMount and pass in 'this'
@@ -34842,7 +34841,7 @@
 
 
 	// module
-	exports.push([module.id, "html {\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #4076cc;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 500px;\n  max-height: 475px; }\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  height: 100%; }\n\nhtml {\n  -webkit-tap-highlight-color: transparent;\n  overflow: hidden; }\n\nbody {\n  background: #4076cc;\n  padding: 0;\n  margin: 0;\n  font-size: 16px;\n  font-family: \"Open Sans\", sans-serif;\n  color: #909090; }\n  @media screen and (max-width: 660px) {\n    body {\n      overflow-y: scroll;\n      -webkit-overflow-scrolling: touch; } }\n\n.show {\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n\ntextarea,\ninput[type=\"text\"],\ninput[type=\"button\"],\ninput[type=\"submit\"],\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  border-radius: 0;\n  max-width: 500px;\n  max-height: 475px; }\n", ""]);
 
 	// exports
 
