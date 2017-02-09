@@ -31276,7 +31276,7 @@
 	        ref: props.password }),
 	      _react2.default.createElement(_Button2.default, {
 	        color: '#4b83ec',
-	        type: (0, _helpers.handleValidation)('Login', props.errorMessage, props.validation)
+	        type: (0, _helpers.handleValidation)('Create Account', props.errorMessage, props.validation)
 	      })
 	    ),
 	    _react2.default.createElement(

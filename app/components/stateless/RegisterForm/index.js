@@ -39,7 +39,7 @@ const RegisterForm = (props) => {
                   ref={props.password}/>
                 <Button
                   color="#4b83ec"
-                  type={ handleValidation('Login', props.errorMessage, props.validation) }
+                  type={ handleValidation('Create Account', props.errorMessage, props.validation) }
                 />
             </form>
             <Link
