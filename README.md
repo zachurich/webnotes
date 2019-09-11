@@ -17,5 +17,3 @@ npm install
 npm run dev
 
 ```
-
-#### Checkout the app running [here](http://webnotes.surge.sh/)
