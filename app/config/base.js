@@ -1,9 +1,15 @@
-import Rebase from 're-base';
+var Rebase = require("re-base");
+var firebase = require("firebase/app");
+var auth = require("firebase/auth");
+var database = require("firebase/database");
 
-const base = Rebase.createClass({
- apiKey: "AIzaSyDJsX7jKAhEBFrhf7vZS8A4Uj2rvW51JuU",
- authDomain: "https://webnotes-977fb.firebaseio.com/",
- databaseURL: "https://webnotes-977fb.firebaseio.com/",
+const app = firebase.initializeApp({
+  apiKey: FIREBASE_API_KEY,
+  authDomain: "https://webnotes-977fb.firebaseio.com/",
+  databaseURL: "https://webnotes-977fb.firebaseio.com/"
 });
 
-export default base;
+var db = firebase.database(app);
+var base = Rebase.createClass(db);
+
+export { base, app };

@@ -1,71 +1,70 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .entry {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-    &--title {
-        padding: 0;
-        margin: 0;
-        color: $color--secondary;
-        font-size: $font--medium;
-        font-family: $mainFont;
-        text-align: center;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-    }
+  &--title {
+    padding: 0;
+    margin: 0;
+    color: $color--secondary;
+    font-size: $font--medium;
+    font-family: $mainFont;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
 
-    &--form {
-        position: relative;
-        display: block;
-        padding: 40px 30px 80px;
-        border-radius: $corners;
-        .input {
-          border-radius: 0;
-            &--email,
-            &--password,
-            &--username {
-                font-size: $font--small;
-                color: inherit;
-                height: 100%;
-                width: 100%;
-                outline: 0;
-                padding: 10px 0;
-                border: 0;
-                border-bottom: 2px solid $color--tertiary;
-                margin-bottom: 20px;
-                box-sizing: border-box;
-            }
-        }
-        @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
-          font-size: 1.1em;
-        }
-    }
-
-    &--form,
-    &--entry-link {
-        box-sizing: border-box;
-        max-width: 400px;
-        min-width: 300px;
-        width: 90%;
-        color: inherit;
-        background: white;
-        box-shadow: $shadow;
-    }
-
-    &--entry-link {
-        padding: 20px 0;
-        display: block;
-        margin-top: $padding;
+  &--form {
+    position: relative;
+    display: block;
+    padding: 40px 30px 80px;
+    border-radius: $corners;
+    .input {
+      border-radius: 0;
+      &--email,
+      &--password,
+      &--username {
         font-size: $font--small;
-        text-align: center;
-        text-decoration: none;
-        border-radius: $corners;
-        span {
-            color: $color--secondary;
-        }
+        color: inherit;
+        width: 100%;
+        outline: 0;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 2px solid $color--tertiary;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
     }
+    @media screen and (max-width: $mobile) and (max-height: $mobileHeight) {
+      font-size: 1.1em;
+    }
+  }
+
+  &--form,
+  &--entry-link {
+    box-sizing: border-box;
+    max-width: 400px;
+    min-width: 300px;
+    width: 90%;
+    color: inherit;
+    background: white;
+    box-shadow: $shadow;
+  }
+
+  &--entry-link {
+    padding: 20px 0;
+    display: block;
+    margin-top: $padding;
+    font-size: $font--small;
+    text-align: center;
+    text-decoration: none;
+    border-radius: $corners;
+    span {
+      color: $color--secondary;
+    }
+  }
 }

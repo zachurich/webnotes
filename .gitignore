@@ -11,10 +11,12 @@
 ################
 *.psd
 *.ai
+.env
 
 # Folders to Ignore #
 ################
-node_modules/
+node_modules
+build
 
 # OS generated files #
 ######################

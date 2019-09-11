@@ -1,35 +1,38 @@
-var debug        = process.env.NODE_ENV !== "production";
-var webpack      = require('webpack');
-var path         = require('path');
+var debug = process.env.NODE_ENV !== "production";
+var webpack = require("webpack");
+var path = require("path");
 
 // Output to build folder
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
-  filename: 'index.html',
-  inject: 'body'
+  template: __dirname + "/app/index.html",
+  filename: "index.html",
+  inject: "body"
+});
+
+var DefinePlugin = new webpack.DefinePlugin({
+  FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY)
 });
 
 module.exports = {
-  entry: [
-      "./app/config/Root.js"
-  ],
+  entry: ["./app/config/Root.js"],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass" ,"autoprefixer?browsers=last 4 versions"]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/app/icons/[name].[ext]"
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "file-loader?name=/app/icons/[name].[ext]"
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+          presets: ["@babel/react", "@babel/preset-env"],
+          plugins: ["react-html-attrs", "transform-class-properties"]
         }
       }
     ]
@@ -38,5 +41,5 @@ module.exports = {
     path: __dirname + "/build",
     filename: "output_bundle.js"
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [HtmlWebpackPluginConfig, DefinePlugin]
 };
