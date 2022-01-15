@@ -29,7 +29,7 @@
     "firebase-admin": "^8.5.0",
     "history": "^1.17.0",
     "keygenerator": "^1.0.4",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "re-base": "^4.0.0",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
